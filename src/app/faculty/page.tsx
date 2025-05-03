@@ -57,7 +57,7 @@ const teamInfo = [
     description:
       "Dr. Patel is a mathematics expert who makes complex concepts simple and engaging. His innovative teaching methods have helped countless students excel in mathematics and competitive exams.",
     role: "Mathematics Head",
-    image: "/images/team/Munazanasti.png",
+    image: "/images/team/MunazaNasti.png",
   },
   {
     id: 5,
