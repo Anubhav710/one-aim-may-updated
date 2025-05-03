@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "courses": "Courses",
+    "testSeries": "Test Series",
+    "contact": "Contact us"
+  },
+  "auth": {
+    "login": "Log in"
+  },
+  "contact": {
+    "phone": "+91-8955249714",
+    "email": "info@theoneaim.co.in"
+  },
+  "home": {
+    "welcome": "Turning Dreams",
+    "subtitle": "To Reality",
+    "getStarted": "Get Started",
+    "achieveYourDreams": "Achieve Your Dreams",
+    "withOneAim": "With One Aim Academy",
+    "description": "Your efforts will shine only when you are equipped with all the resources. Join our live batch today and make your dream a reality.",
+    "exploreCourses": "Explore Courses",
+    "joinNow": "Join Now"
+  },
+  "footer": {
+    "rights": "All Rights Reserved",
+    "followUs": "Follow Us"
+  }
+}
