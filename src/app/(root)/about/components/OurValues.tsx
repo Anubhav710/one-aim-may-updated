@@ -49,7 +49,7 @@ const OurValues = () => {
           <div className="mx-auto w-max">
             <CommonHeading title="Our Values" />
           </div>
-          <div className="flex justify-center flex-wrap gap-y-5 gap-x-16">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-5 gap-x-12">
             {OurValue.map((data) => (
               <Card title={data.title} desc={data.desc} img={data.img} />
             ))}

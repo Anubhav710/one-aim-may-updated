@@ -195,7 +195,6 @@ const FacultyPage = () => {
           <Testimonials />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

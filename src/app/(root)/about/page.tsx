@@ -6,8 +6,7 @@ import Team from "@/components/Team";
 import WhatWeOffer from "./components/WhatWeOffer";
 import Community from "./components/Community";
 import Testimonials from "@/components/Testimonials";
-import AboutTeam from "./components/AboutTeam";
-import Footer from "@/components/Footer";
+
 import Link from "next/link";
 
 const AboutUs = () => {
@@ -21,7 +20,7 @@ const AboutUs = () => {
       <OurStory />
       <OurValues />
       <WhatWeOffer />
-      <AboutTeam />
+      <Team />
       <Community />
       <Testimonials />
     </main>

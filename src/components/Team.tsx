@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { teamInfo } from "@/app/(root)/about/components/AboutTeam";
+import { teamInfo } from "@/constant/page";
 
 const Team = () => {
   return (
