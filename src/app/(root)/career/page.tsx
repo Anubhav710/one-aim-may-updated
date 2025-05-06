@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import Banner from "@/components/common/Banner";
-import CommonHeading2 from "@/components/common/CommonHeading2";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import { EducationIcon } from "@/components/icons";
 import Banner2 from "@/components/common/Banner2";
 import Button from "@/components/ui/Button";
