@@ -91,7 +91,7 @@ const Cart = () => {
                       <div className="text-xl text-[#FF7B07] font-semibold">
                         ₹{course.discountedPrice}
                       </div>
-                      <button className="mt-2  ring-[0.7px] rounded-full ring-primaryred px-3 py-1 border border-gray-300  hover:bg-primaryred hover:text-white duration-200 text-xs">
+                      <button className="mt-2  ring-[0.7px] rounded-full ring-primaryred px-3 py-1 text-md  hover:bg-primaryred hover:text-white duration-200 text-xs">
                         Remove
                       </button>
                     </div>

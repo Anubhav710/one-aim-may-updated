@@ -1,5 +1,6 @@
 import Banner from "@/components/common/Banner";
 import BannerSec from "@/components/common/BannerSec";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import Image from "next/image";
@@ -19,7 +20,7 @@ const FacultyPage = () => {
             <span className="text-primaryred">Faculty Details</span>
           </div>
         </BannerSec>
-        <div className="flex relative container mx-auto">
+        <div className="flex screen">
           <div className="h-80 w-80  rounded-full relative overflow-hidden left-36">
             <Image
               src="/images/team/Dikshakashyap.png"
@@ -153,11 +154,11 @@ const FacultyPage = () => {
             </div>
           </div>
         </div>
-        <div className="space-y-4 pb-9 border-b-2 border-gray-300 padding-yx">
-          <h2 className="text-4xl text-primaryred font-semibold w-max mx-auto">
+        <div className="space-y-4 screen pb-9 border-b-2 border-gray-300 padding-tx">
+          <h2 className="text-primaryred heading2 relative  w-max mx-auto">
             About Me
           </h2>
-          <p className="text-center text-lg">
+          <p className="text-center text-xl leading-9">
             Mrs. Anuradha brings over two decades of teaching experience in the
             field of science. Holding a Master's degree in Botany and a Bachelor
             of Education, she has dedicated her career to fostering a deep
@@ -167,26 +168,50 @@ const FacultyPage = () => {
           </p>
         </div>
         <div className="space-y-6 padding-yx">
-          <h2 className="text-4xl text-primaryred font-semibold w-max mx-auto">
+          <h2 className="text-primaryred heading2 relative  w-max mx-auto">
             Courses Offered
           </h2>
           <div className="flex gap-x-7 mx-auto w-max">
-            <div className="border-r max-w-xs flex flex-col items-center space-y-4 ">
-              <div className="h-12 w-12 rounded-full bg-red-300"></div>
-              <p className="text-lg font-semibold text-center">
+            <div className="  flex flex-col  px-4 py-6  items-center group space-y-4 ">
+              <div className="h-16 w-16 p-2  rounded-full bg-white">
+                <Image
+                  src="/images/icons/work.svg"
+                  alt="science"
+                  width={1200}
+                  height={1200}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-lg w-[22ch] font-semibold text-center">
                 Comprehensive Science for Competitive Exams
               </p>
             </div>
-            <div className="border-r max-w-xs flex flex-col items-center space-y-4 ">
-              <div className="h-12 w-12 rounded-full bg-red-300"></div>
-              <p className="text-lg font-semibold text-center">
-                Comprehensive Science for Competitive Exams
+            <div className=" border-x border-x-orange flex flex-col  group px-4 py-6 items-center space-y-4 ">
+              <div className="h-16 w-16 p-2  rounded-full bg-white">
+                <Image
+                  src="/images/icons/botany.svg"
+                  alt="science"
+                  width={1200}
+                  height={1200}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-lg w-[22ch] font-semibold text-center">
+                Botany Specialization Modules
               </p>
             </div>
-            <div className="border-r max-w-xs flex flex-col items-center space-y-4 ">
-              <div className="h-12 w-12 rounded-full bg-red-300"></div>
-              <p className="text-lg font-semibold text-center">
-                Comprehensive Science for Competitive Exams
+            <div className="flex flex-col  px-4 py-6 items-center sp groupace-y-4 ">
+              <div className="h-16 w-16 p-2  rounded-full bg-white">
+                <Image
+                  src="/images/icons/literacy.svg"
+                  alt="science"
+                  width={1200}
+                  height={1200}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-lg w-[22ch] font-semibold text-center">
+                Practical Science Workshops
               </p>
             </div>
           </div>

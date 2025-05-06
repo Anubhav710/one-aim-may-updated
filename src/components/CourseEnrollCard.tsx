@@ -10,6 +10,9 @@ import { FaFire } from "react-icons/fa6";
 import Link from "next/link";
 import {
   CalendarIcon,
+  CalendarIcon2,
+  ClockIcon,
+  DownloadIcon,
   LanguageIcon,
   LiveClassIcon,
   ScheduleIcon,
@@ -116,14 +119,14 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
         <div>
           <div className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5">
             <div className="text-orange">
-              <FaDownload size={18} />
+              <DownloadIcon className="w-8 h-8" />
             </div>
             <span className="font-medium text-sm">Download Study Material</span>
           </div>
 
           <div className="flex items-center gap-3 border-b border-dashed border-gray-300 py-5">
             <div className="text-orange">
-              <FaFire size={18} />
+              <ClockIcon className="w-8 h-8" />
             </div>
             <div className="text-sm">
               <span className="font-medium">Enrollment Deadline : </span>
@@ -133,7 +136,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
 
           <div className="flex items-center gap-3 cursor-pointer py-5">
             <div className="text-orange">
-              <FaCalendarAlt size={18} />
+              <CalendarIcon2 className="h-8 w-8" />
             </div>
             <span className="font-medium text-sm">Download Timetable</span>
           </div>

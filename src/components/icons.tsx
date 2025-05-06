@@ -475,3 +475,79 @@ export const EducationIcon: React.FC<IconProps> = ({
     </g>
   </svg>
 );
+
+export const DownloadIcon: React.FC<IconProps> = ({
+  width = "1.6em",
+  height = "1.6em",
+  color = "currentColor",
+  className = "",
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+    className={className}
+  >
+    <g>
+      <path
+        d="M19.82 4.18C17.8 2.16 13.32 2 12 2s-5.8.16-7.82 2.18S2 10.68 2 12s.16 5.8 2.18 7.82S10.68 22 12 22s5.8-.16 7.82-2.18S22 13.32 22 12s-.16-5.8-2.18-7.82zM14 18h-4a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2zm1.71-6.29-3 3a1 1 0 0 1-1.42 0l-3-3a1 1 0 0 1 1.42-1.42l1.29 1.3V7a1 1 0 0 1 2 0v4.59l1.29-1.3a1 1 0 0 1 1.42 1.42z"
+        fill={color}
+        opacity="1"
+        data-original="#000000"
+      />
+    </g>
+  </svg>
+);
+
+export const ClockIcon: React.FC<IconProps> = ({
+  width = "1.6em",
+  height = "1.6em",
+  color = "currentColor",
+  className = "",
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 512 512"
+    className={className}
+  >
+    <g>
+      <path
+        d="M256 212c-57.9 0-105 47.1-105 105s47.1 105 105 105 105-47.1 105-105-47.1-105-105-105zm60 120h-60c-8.28 0-15-6.72-15-15v-60c0-8.28 6.72-15 15-15s15 6.72 15 15v45h45c8.28 0 15 6.72 15 15s-6.72 15-15 15z"
+        fill={color}
+        opacity="1"
+      />
+      <path
+        d="M301 15c0-8.28-6.72-15-15-15-34.74 0-48.37 45.68-59.25 78.82C219.14 101.99 207.64 137 196 137c-9.08 0-14.95-26.66-15-45 0-13.78-17.1-20.25-26.23-9.94C107.34 135.64 61 229.31 61 317c0 106.65 86.71 195 195 195 107.52 0 195-87.48 195-195 0-125.42-150-220.15-150-302zm-45 437c-74.44 0-135-60.56-135-135s60.56-135 135-135 135 60.56 135 135-60.56 135-135 135z"
+        fill={color}
+        opacity="1"
+      />
+    </g>
+  </svg>
+);
+
+export const CalendarIcon2: React.FC<IconProps> = ({
+  width = "1.6em",
+  height = "1.6em",
+  color = "currentColor",
+  className = "",
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+    className={className}
+  >
+    <g>
+      <path
+        d="M12.51 17.74a5.58 5.58 0 0 1 5.232-5.23 5.478 5.478 0 0 1 1.868.23.3.3 0 0 0 .39-.28V9.05a.3.3 0 0 0-.3-.3H2.3a.3.3 0 0 0-.3.3V17a2.652 2.652 0 0 0 3 3h7.46a.3.3 0 0 0 .28-.39 5.493 5.493 0 0 1-.23-1.87zM7.02 17a1 1 0 0 1-.01-2h.01a1 1 0 0 1 0 2zm0-4a1 1 0 0 1-.01-2h.01a1 1 0 0 1 0 2zm4 0a1 1 0 0 1-.01-2h.01a1 1 0 0 1 0 2zM2 6.95V6.5a2.652 2.652 0 0 1 3-3h1.25V2a.75.75 0 0 1 1.5 0v1.5h6.5V2a.75.75 0 0 1 1.5 0v1.5H17a2.652 2.652 0 0 1 3 3v.45a.3.3 0 0 1-.3.3H2.3a.3.3 0 0 1-.3-.3zM18 14a4 4 0 1 0 4 4 4 4 0 0 0-4-4zm1.425 5.424a.5.5 0 0 1-.707 0l-1.072-1.07A.5.5 0 0 1 17.5 18v-1.5a.5.5 0 0 1 1 0v1.293l.925.924a.5.5 0 0 1 0 .707z"
+        fill={color}
+        opacity="1"
+        data-original="#000000"
+      />
+    </g>
+  </svg>
+);

@@ -232,3 +232,8 @@
 
   @apply rounded-tl-[50px]  rounded-br-[50px] rounded-bl-[50px];
 }
+
+.glass-effect {
+  background-color: rgba(235, 235, 235, 0.2);
+  backdrop-filter: blur(20px);
+}

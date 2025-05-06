@@ -44,7 +44,7 @@ const FilteredCourse = () => {
   return (
     <div className="bg-gradient-to-b relative">
       {/* Responsive top curved SVG */}
-
+      <div className="bg-[#FFE4CD] w-[85%]  mx-auto rounded-[100%] h-16 absolute  left-1/2 -translate-x-1/2 -top-4"></div>
       <section className="bg-[#FFE4CD]  padding-x max-sm:pt-[70px] py-[100px]   relative rounded-b-[12rem] max-sm:rounded-b-[2rem] rounded-t-[12rem] max-sm:rounded-t-[2rem]">
         <div className="screen">
           <div className="w-max mx-auto">
@@ -119,6 +119,7 @@ const FilteredCourse = () => {
               <FaChevronRight className="text-[#DC8940] group-hover:text-white" />
             </button>
           </div>
+          <div className="bg-[#FFF4EC] w-[85%]  mx-auto rounded-[100%] h-16 absolute  left-1/2 -translate-x-1/2 -bottom-12"></div>
         </div>
       </section>
 

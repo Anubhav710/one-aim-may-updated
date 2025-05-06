@@ -54,7 +54,7 @@ export default function ContactForm() {
             type="text"
             placeholder="Name"
             {...register("name", { required: "Name is required" })}
-            className="w-full p-4 border rounded-md border-orange-100 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:bg-orange-50 hover:border-orange-300 transition-colors duration-200"
+            className="w-full p-4 border rounded-md border-orange/50 focus:border-orange  bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
           />
           {errors.name && (
             <p className="text-red-500 text-sm">
@@ -72,7 +72,7 @@ export default function ContactForm() {
                 message: "Enter a valid email",
               },
             })}
-            className="w-full p-4 border rounded-md border-orange-100 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:bg-orange-50 hover:border-orange-300 transition-colors duration-200"
+            className="w-full p-4 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
           />
           {errors.email && (
             <p className="text-red-500 text-sm">
@@ -83,7 +83,7 @@ export default function ContactForm() {
           <div className="relative">
             <select
               {...register("subject", { required: "Subject is required" })}
-              className="w-full p-4 border rounded-md border-orange-100 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:bg-orange-50 appearance-none cursor-pointer hover:border-orange-300 transition-colors duration-200"
+              className="w-full p-4 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none  appearance-none cursor-pointer  transition-colors duration-200"
             >
               <option value="" disabled hidden>
                 Select a Subject
@@ -107,7 +107,7 @@ export default function ContactForm() {
           <textarea
             placeholder="Write a message .."
             {...register("message", { required: "Message is required" })}
-            className="w-full p-4 h-32 border rounded-md border-orange-100 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:bg-orange-50 hover:border-orange-300 transition-colors duration-200"
+            className="w-full p-4 h-32 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
           ></textarea>
           {errors.message && (
             <p className="text-red-500 text-sm">
@@ -145,7 +145,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="font-semibold text-gray-700">Phone Number</p>
-                <p className="text-orring-orange">+91 8079064769</p>
+                <p className="text-orange">+91 8079064769</p>
               </div>
             </div>
             <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
@@ -156,7 +156,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="font-semibold text-gray-700">Address</p>
-                <p className="text-orring-orange">
+                <p className="text-orange">
                   123, Omega, Anukampa, Near Jagdguru Sanskriti College,
                   Bhankrota
                 </p>
@@ -168,7 +168,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="font-semibold text-gray-700">Email</p>
-                <p className="text-orring-orange">indo@oneaim.com.in</p>
+                <p className="text-orange">indo@oneaim.com.in</p>
               </div>
             </div>
           </div>

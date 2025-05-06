@@ -10,7 +10,6 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import Banner from "@/components/common/Banner";
-import Footer from "@/components/Footer";
 import CourseEnrollCard from "@/components/CourseEnrollCard";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
@@ -61,7 +60,7 @@ const testData = {
         "Expert Feedback on All Tests",
         "Expert One-On-One Mentoring Call",
       ],
-      bgColor: "bg-[#3B1E19]",
+      bgImage: "url('/bgt.png')",
     },
     {
       name: "Basic Plan",
@@ -104,7 +103,7 @@ export default function TestSeriesDetail() {
   // In a real app, you would fetch data based on the slug
 
   return (
-    <div className="bg-[#FFF7F0] min-h-screen">
+    <div className="bg-[#FFF7F0]">
       <Banner
         title="Prelims Test Series – Essay Writing Test"
         desp="Your Ultimate UPSC Exam Practice Hub"
@@ -117,17 +116,17 @@ export default function TestSeriesDetail() {
       </Banner>
 
       {/* Main Content */}
-      <div className="px-4 md:px-8 lg:px-16 py-8">
-        <div className="container mx-auto max-w-6xl">
+      <div className="padding-yx">
+        <div className="screen">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Left Content (2/3 width on desktop) */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 space-y-10">
               {/* Test Overview */}
               <CommonHeading2 title="Test Overview" desc={testData.overview} />
 
               {/* Main Description */}
               <div className="mb-10">
-                <h2 className="text-primaryred heading2 relative  w-max">
+                <h2 className="text-primaryred heading2 relative  w-[32ch]">
                   <span className={`relative z-10 mb-5 inline-block }`}>
                     {testData.mainDescription}
                   </span>
@@ -180,78 +179,124 @@ export default function TestSeriesDetail() {
         </div>
       </div>
 
-      <div className="px-4 md:px-8 lg:px-16 py-12">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-[#C1151B] text-2xl md:text-3xl font-bold text-center mb-12">
-            Choose your Best Plan
-          </h2>
+      <div>
+        <div className="screen space-y-20">
+          <div className="w-max mx-auto">
+            <CommonHeading2 title="Choose your Best Plan" />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4 place-items-center">
             {testData.plans.map((plan, index) => (
-              <div
+              <PlanCard
                 key={index}
-                className={`rounded-lg overflow-hidden shadow-sm ${
-                  plan.isPopular ? "transform md:-translate-y-4" : ""
-                }`}
-              >
-                <div
-                  className={`${plan.bgColor} px-6 py-12 ${
-                    plan.isPopular ? "text-white" : ""
-                  }`}
-                >
-                  <h3 className="text-xl font-bold mb-6 text-center">
-                    {plan.name}
-                  </h3>
-
-                  <div className="space-y-4">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center">
-                        <FaCheckCircle
-                          className={`mr-3 ${
-                            plan.isPopular ? "text-white" : "text-[#FF7B07]"
-                          }`}
-                        />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 text-center">
-                    <div
-                      className={`text-2xl font-bold ${
-                        plan.isPopular ? "text-white" : "text-[#FF7B07]"
-                      }`}
-                    >
-                      ₹{plan.price}/-
-                    </div>
-                  </div>
-                </div>
-              </div>
+                plan={plan}
+                className={`${
+                  plan.isPopular ? "lg:scale-110 z-10" : ""
+                } transition-transform hover:scale-105 w-full max-w-xs duration-500`}
+                textColor={plan.isPopular ? "text-white" : ""}
+              />
             ))}
           </div>
         </div>
       </div>
 
       {/* Feature Circles */}
-      <div className="px-4 md:px-8 lg:px-16 py-12">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-wrap justify-center gap-8">
+      <div className="padding-yx">
+        <div className="screen">
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-16 my-6 md:my-12">
             {testData.keyFeatures.map((feature, index) => (
-              <div key={index} className="w-48 h-48">
-                <div className="w-full h-full rounded-full border border-[#FF7B07] flex items-center justify-center p-4 text-center">
-                  <div>
-                    <h4 className="font-medium text-sm mb-2">
-                      {feature.title}
-                    </h4>
-                    <p className="text-xs text-gray-600">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <FeatureCircle
+                key={index}
+                title={feature.title}
+                description={feature.description}
+                position={index % 2 === 0 ? "down" : "up"}
+              />
             ))}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function FeatureCircle({
+  title,
+  description,
+  position = "up",
+}: {
+  title: string;
+  description: string;
+  position: "up" | "down";
+}) {
+  return (
+    <div
+      className={`w-44 h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-64 lg:h-64 rounded-full border-2 border-orange flex flex-col items-center justify-center p-4 sm:p-5 md:p-6 text-center bg-white transition-all hover:scale-105 relative ${
+        position === "up"
+          ? "transform translate-y-0 md:-translate-y-4 lg:-translate-y-6"
+          : "transform translate-y-0 md:translate-y-4 lg:translate-y-6"
+      }`}
+    >
+      <div className="w-[90%]">
+        <h3 className="font-medium text-xs sm:text-sm md:text-base mb-1 md:mb-2">
+          {title}
+        </h3>
+        <p className="text-[10px] sm:text-xs text-gray-600">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function PlanCard({
+  plan,
+  className,
+  textColor,
+}: {
+  plan: {
+    name: string;
+    price: number;
+    isPopular: boolean;
+    features: string[];
+    bgColor?: string;
+    bgImage?: string;
+    textColor?: string;
+  };
+  textColor?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex flex-col relative bg-white overflow-hidden items-center py-12 w-max px-10 rounded-2xl shadow-lg border-x-2 border-[#FFB400] ${className} ${textColor}`}
+      style={{
+        backgroundImage: plan.bgImage,
+      }}
+    >
+      {plan.isPopular && (
+        <div className="absolute top-0 left-0 w-full h-full glass-effect"></div>
+      )}
+      <h2
+        className={`text-2xl relative z-10 text-primaryred font-semibold mb-5 ${textColor}`}
+      >
+        {plan.name}
+      </h2>
+      <div className="bg-gradient-to-b  relative z-10 from-[#FFF5EE] via-[#FFB400] to-[#FFF5EE] w-[70%] h-[2px] mx-auto"></div>
+      <div
+        className={`text-orange  relative z-10 py-10 text-center space-y-4 ${textColor}`}
+      >
+        <h4>Includes:</h4>
+        <ul className="space-y-3">
+          {plan.features.map((feature: string, index: number) => (
+            <li key={index} className={`flex items-center gap-2 text-sm `}>
+              <FaCheckCircle />
+              <p>{feature}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-gradient-to-b  relative z-10 from-[#FFF5EE] via-[#FFB400] to-[#FFF5EE] w-[70%] h-[2px] mx-auto"></div>
+      <div className="mt-5  relative z-10">
+        <p className={`text-primaryred text-2xl font-semibold ${textColor}`}>
+          ₹{plan.price}/-
+        </p>
       </div>
     </div>
   );

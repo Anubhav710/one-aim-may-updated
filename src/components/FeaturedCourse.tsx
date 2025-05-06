@@ -190,6 +190,7 @@ const FeaturedCourse = () => {
       ref={sectionRef}
       className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] relative"
     >
+      <div className="w-[80%]"></div>
       <div className="bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] rounded-t-[12rem] max-md:rounded-t-[6rem] max-sm:rounded-t-[3rem] max-sm:pt-[60px] pt-[100px]">
         <div className="screen  max-sm:space-y-8 padding-x">
           <div className="w-max mx-auto" ref={headingRef}>
