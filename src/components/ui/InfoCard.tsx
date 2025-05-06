@@ -45,13 +45,13 @@ const InfoCard = ({
           {/* Text group with animations */}
           <hgroup className="text-center transition-all duration-300 space-y-2">
             <h2
-              className="text-[#DC8940] text-4xl sm:text-5xl  font-bold transition-all 
+              className="text-[#DC8940] text-4xl sm:text-5xl lg:text-3xl xl:text-5xl font-bold transition-all 
                           group-hover:text-[#c97b36]"
             >
               {number}k+
             </h2>
             <p
-              className="text-[#DC8940] text-md transition-all
+              className="text-[#DC8940] transition-all
                         group-hover:text-[#c97b36]"
             >
               {desc}

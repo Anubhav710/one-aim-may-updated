@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import Button from "./ui/Button";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import CommonHeading from "./ui/CommonHeading";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 const About = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -125,7 +125,7 @@ const About = () => {
           <div className="w-full md:flex-1 relative">
             <div ref={contentRef}>
               <hgroup>
-                <CommonHeading
+                <CommonHeading2
                   title="Who we are"
                   desc="Welcome to One Aim Academy, where your success is our mission. Our expert instructors and comprehensive courses are designed to help you reach your academic and professional goals."
                 />

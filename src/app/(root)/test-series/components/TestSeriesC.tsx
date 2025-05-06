@@ -1,7 +1,6 @@
 "use client";
-import CommonHeading from "@/components/ui/CommonHeading";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 const testSeriesData = [
   {
@@ -41,30 +41,35 @@ const testSeriesData = [
     title: "Compete nationwide",
     icon: "/images/test-series/refresh.png",
   },
-  {
-    id: 7,
-    title: "Compete nationwide",
-    icon: "/images/test-series/refresh.png",
-  },
 ];
 
 const TestSeriesC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleSlideChange = (swiper: any) => {
+    setActiveIndex(swiper.realIndex);
+  };
+
   return (
     <div className="spadding-yx">
-      <div className="w-max mx-auto">
-        <CommonHeading title=" Why Join Our UPSC Test Series?" />
+      <div className="w-max mx-auto px-2">
+        <CommonHeading2 title=" Why Join Our UPSC Test Series?" />
       </div>
-      <div className="relative px-12 max-sm:px-0 ">
+      <div className="relative px-12 max-sm:px-5 ">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           spaceBetween={20}
           slidesPerView={3}
           grabCursor={true}
+          centeredSlides={true}
+          watchSlidesProgress={true}
+          onSlideChange={handleSlideChange}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
+          loop={true}
           pagination={{
             clickable: true,
             el: ".swiper-pagination",
@@ -108,12 +113,12 @@ const TestSeriesC = () => {
           }}
           className="!pb-20"
         >
-          {testSeriesData.map((data) => (
+          {testSeriesData.map((data, index) => (
             <SwiperSlide
               key={data.id}
               className={`${data.id % 2 === 0 ? "mt-0" : "mt-16"}`}
             >
-              <TestSeriesCard />
+              <TestSeriesCard data={data} isActive={index === activeIndex} />
             </SwiperSlide>
           ))}
           <div className="swiper-pagination"></div>
@@ -125,13 +130,27 @@ const TestSeriesC = () => {
 
 export default TestSeriesC;
 
-const TestSeriesCard = () => {
+const TestSeriesCard = ({
+  data,
+  isActive,
+}: {
+  data: any;
+  isActive: boolean;
+}) => {
   return (
-    <div className="h-72 rounded-[2rem] overflow-hidden">
-      <div className="bg-white h-1/2 flex-center">
+    <div
+      className={`h-72 rounded-[2rem] overflow-hidden transition-all duration-300 ${
+        isActive ? "scale-105" : "scale-95 opacity-90"
+      }`}
+    >
+      <div
+        className={`${
+          isActive ? "bg-white" : "bg-[#FFDBBB]"
+        }  h-1/2 flex-center`}
+      >
         <div className="h-12 w-12">
           <Image
-            src={"/images/test-series/exam.png"}
+            src={data.icon}
             alt="exam"
             height={210}
             width={210}
@@ -139,10 +158,22 @@ const TestSeriesCard = () => {
           />
         </div>
       </div>
-      <div className="bg-[#DC8940] h-1/2 flex-center relative">
-        <div className="w-full h-7 bg-white rounded-[62%] absolute -top-3"></div>
-        <p className="text-white text-xl font-semibold pl-5">
-          Exam-oriented questions
+      <div
+        className={`${
+          isActive ? "bg-lightorange" : "bg-white"
+        } h-1/2 flex-center relative transition-all duration-300`}
+      >
+        <div
+          className={`w-full h-7  rounded-[62%] absolute -top-3 ${
+            isActive ? "bg-white" : "bg-[#FFDBBB]"
+          }`}
+        ></div>
+        <p
+          className={` text-xl font-semibold pl-5 text-center ${
+            isActive ? "text-white" : "text-orange"
+          }`}
+        >
+          {data.title}
         </p>
       </div>
     </div>

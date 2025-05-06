@@ -4,7 +4,6 @@ import React from "react";
 import DemoClass from "./components/DemoClass";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "./components/FAQ";
-import Footer from "@/components/Footer";
 import Course from "./components/Course";
 
 const Courses = () => {

@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { FaChevronDown } from "react-icons/fa";
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 type FAQ = {
   question: string;
@@ -58,10 +58,10 @@ const FAQAccordion: React.FC = () => {
   return (
     <div className="screen mx-auto  padding-yx">
       <div className="w-max mx-auto hidden md:block ">
-        <CommonHeading title="Frequently Asked Questions (FAQs)" />
+        <CommonHeading2 title="Frequently Asked Questions (FAQs)" />
       </div>
       <div className="w-max mx-auto  md:hidden ">
-        <CommonHeading title="FAQ" />
+        <CommonHeading2 title="FAQ" />
       </div>
       <div className="space-y-4">
         {faqs.map((faq, index) => (

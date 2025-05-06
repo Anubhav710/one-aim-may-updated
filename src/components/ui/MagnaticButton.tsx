@@ -107,10 +107,10 @@ export default function MagneticButton({
     <div
       onClick={() => router.push(href)}
       ref={buttonRef}
-      className={`
+      className={`md:px-6 md:py-4 px-3 py-4  text-sm
         relative flex items-center justify-center 
         rounded-full  
-        cursor-pointer px-7 py-4 max-sm:px-4
+        cursor-pointer 
         overflow-hidden
         group
         ${className}

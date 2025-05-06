@@ -1,13 +1,14 @@
 import React from "react";
 import CommonHeading from "./ui/CommonHeading";
 import BlogCard from "./ui/BlogCard";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 const Blog = () => {
   return (
-    <section className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] padding-yx">
+    <section className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] padding-bx">
       <div className="screen">
         <div className="mx-auto w-max">
-          <CommonHeading title="Latest Updates" />
+          <CommonHeading2 title="Latest Updates" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-sm:space-y-6 gap-x-6">
           <BlogCard />

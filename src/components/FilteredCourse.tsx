@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Mousewheel, Navigation, Pagination } from "swiper/modules";
 import FeaturedCard from "./ui/FeaturedCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 const FilteredCourse = () => {
   const [dimensions, setDimensions] = useState({
@@ -45,44 +46,9 @@ const FilteredCourse = () => {
       {/* Responsive top curved SVG */}
 
       <section className="bg-[#FFE4CD]  padding-x max-sm:pt-[70px] py-[100px]   relative rounded-b-[12rem] max-sm:rounded-b-[2rem] rounded-t-[12rem] max-sm:rounded-t-[2rem]">
-        <div className="absolute -top-20 w-full  left-0  bg-[#FFE6E3] md:px-20 max-sm:px-0 ">
-          <svg
-            style={{
-              width: "100%",
-              height: "120px",
-            }}
-          >
-            <path
-              d={
-                isMounted
-                  ? `M0 120 Q${dimensions.width / 2} 5 ${dimensions.width} 120`
-                  : "M0 120 Q600 5 1200 120"
-              }
-              fill="#FFE4CD"
-            />
-          </svg>
-        </div>
-
-        <div className="absolute  -bottom-5 left-0  w-full  ">
-          <svg
-            style={{
-              width: "100%",
-              height: "120px",
-            }}
-          >
-            <path
-              d={
-                isMounted
-                  ? `M0 100 Q${dimensions.width / 2} 5 ${dimensions.width} 100`
-                  : "M0 100 Q600 5 1200 100"
-              }
-              fill="#FFF4EC"
-            />
-          </svg>
-        </div>
         <div className="screen">
           <div className="w-max mx-auto">
-            <CommonHeading title="Filtered Courses" />
+            <CommonHeading2 title="Filtered Courses" />
           </div>
           <div className="relative">
             {/* Custom navigation buttons */}

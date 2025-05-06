@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import Banner from "@/components/common/Banner";
 import Footer from "@/components/Footer";
+import CourseEnrollCard from "@/components/CourseEnrollCard";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 // Sample test data - in a real app, you would fetch this based on the slug
 const testData = {
@@ -121,17 +123,23 @@ export default function TestSeriesDetail() {
             {/* Left Content (2/3 width on desktop) */}
             <div className="md:col-span-2">
               {/* Test Overview */}
-              <div className="mb-10">
-                <h2 className="text-[#C1151B] text-2xl font-bold mb-4">
-                  Test Overview
-                </h2>
-                <p className="text-gray-700">{testData.overview}</p>
-              </div>
+              <CommonHeading2 title="Test Overview" desc={testData.overview} />
 
               {/* Main Description */}
               <div className="mb-10">
-                <h2 className="text-[#C1151B] text-2xl font-bold mb-6">
-                  {testData.mainDescription}
+                <h2 className="text-primaryred heading2 relative  w-max">
+                  <span className={`relative z-10 mb-5 inline-block }`}>
+                    {testData.mainDescription}
+                  </span>
+                  <div className="h-20 w-20 md:h-32 md:w-32 absolute top-1/2 -translate-y-1/2 -right-20 -translate-x-1/2">
+                    <Image
+                      src={"/images/icons/button-style.svg"}
+                      alt="style-1"
+                      width={120}
+                      height={120}
+                      className="h-full w-full"
+                    />
+                  </div>
                 </h2>
 
                 <div>
@@ -154,75 +162,19 @@ export default function TestSeriesDetail() {
 
             {/* Right Sidebar (1/3 width on desktop) */}
             <div>
-              {/* Test Card */}
-              <div className="bg-white rounded-lg shadow-sm overflow-hidden mb-6">
-                <div className="p-4 border-b">
-                  <Image
-                    src="/images/test-series/sample-test.jpg"
-                    alt="Essay Writing Test"
-                    width={600}
-                    height={300}
-                    className="w-full h-36 object-cover mb-4 rounded"
-                  />
-                  <h3 className="font-semibold">Essay Writing Test</h3>
-                  <div className="flex items-center mt-1 text-sm text-gray-600">
-                    <span>English / Hindi</span>
-                    <span className="mx-2">•</span>
-                    <span>UPSC, Mains, Mock Tests</span>
-                  </div>
-                  <div className="mt-1 text-sm text-gray-600">
-                    <span>Only 4 hrs Left!</span>
-                  </div>
-                  <div className="mt-4">
-                    <div className="text-[#FF7B07] font-bold text-2xl">
-                      ₹{testData.price}
-                    </div>
-                  </div>
-                  <button className="mt-4 bg-black text-white rounded-md py-2 px-4 w-full hover:bg-gray-800 transition-colors">
-                    Enroll now
-                  </button>
-                </div>
-
-                <div className="p-4 space-y-4">
-                  <div className="flex items-center">
-                    <FaDownload className="text-[#FF7B07] mr-3" />
-                    <span className="font-medium">Download Study Material</span>
-                  </div>
-
-                  <div className="flex items-center">
-                    <FaCalendarAlt className="text-[#FF7B07] mr-3" />
-                    <span>
-                      Enrollment Deadline :{" "}
-                      {testData.importantDates.enrollmentDeadline}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center">
-                    <FaDownload className="text-[#FF7B07] mr-3" />
-                    <span className="font-medium">Download Timetable</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Have Questions */}
-              <div className="bg-[#FFF1E5] rounded-lg p-6 border border-dashed border-[#FF7B07]/30">
-                <h3 className="font-bold text-xl mb-3">Have any Questions?</h3>
-                <p className="text-sm mb-4">
-                  Contact us on the following details:
-                </p>
-
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <FaPhone className="text-[#FF7B07] mr-3" />
-                    <span>{testData.contactInfo.phone}</span>
-                  </div>
-
-                  <div className="flex items-center">
-                    <FaMapMarkerAlt className="text-[#FF7B07] mr-3" />
-                    <span>{testData.contactInfo.address}</span>
-                  </div>
-                </div>
-              </div>
+              <CourseEnrollCard
+                title="IAS Foundation Course (Prelims + Mains) - 12 Months"
+                instructors={["Sujjan Sharma (Ex-IAS)"]}
+                price={960}
+                languages={["English", "Hindi"]}
+                features={[
+                  "PDFs, Notes, Mock Tests",
+                  "Online (Live + Recorded)",
+                ]}
+                enrollmentDeadline="22 February, 2025"
+                contactPhone="+1 (123) 456-7890"
+                contactAddress="123 Success Street, City, Country"
+              />
             </div>
           </div>
         </div>

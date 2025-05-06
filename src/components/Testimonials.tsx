@@ -21,6 +21,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
 import "swiper/css/autoplay";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 // Register ScrollTrigger with GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -98,7 +99,7 @@ const Testimonials = () => {
 
       <section className="screen  relative z-10 px-4">
         <div className="w-max mx-auto">
-          <CommonHeading title="Testimonials" />
+          <CommonHeading2 title="Testimonials" className="!mb-0" />
         </div>
 
         <div className="relative testimonial-slider px-12 max-sm:px-5">

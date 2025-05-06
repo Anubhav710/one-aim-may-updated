@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const CommonHeading = ({
+export const CommonHeading2 = ({
   title,
   desc,
   className,
@@ -12,11 +12,11 @@ const CommonHeading = ({
 }) => {
   return (
     <hgroup className="space-y-3">
-      <h2 className="text-primaryred heading relative  w-max">
+      <h2 className="text-primaryred heading2 relative  w-max">
         <span className={`relative z-10 mb-5 inline-block ${className}`}>
           {title}
         </span>
-        <div className="h-32 w-32 absolute top-1/2 -translate-y-1/2 -right-20 -translate-x-1/2">
+        <div className="h-20 w-20 md:h-32 md:w-32 absolute top-1/2 -translate-y-1/2 -right-20 -translate-x-1/2">
           <Image
             src={"/images/icons/button-style.svg"}
             alt="style-1"
@@ -30,5 +30,3 @@ const CommonHeading = ({
     </hgroup>
   );
 };
-
-export default CommonHeading;

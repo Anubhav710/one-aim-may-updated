@@ -1,4 +1,4 @@
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import Image from "next/image";
 import React from "react";
 
@@ -47,9 +47,9 @@ const OurValues = () => {
       <div className="bg-[#FFEDDD] rounded-t-[4rem] rounded-b-[4rem] md:rounded-t-[10rem] md:rounded-b-[10rem]">
         <div className="screen  padding-yx">
           <div className="mx-auto w-max">
-            <CommonHeading title="Our Values" />
+            <CommonHeading2 title="Our Values" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-5 gap-x-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 mdl:grid-cols-4 gap-y-5 gap-x-12">
             {OurValue.map((data) => (
               <Card title={data.title} desc={data.desc} img={data.img} />
             ))}
@@ -78,7 +78,7 @@ const Card = ({
                 before:content-[''] before:absolute before:top-1/2 before:-left-2 sm:before:-left-4 before:-translate-y-1/2 before:w-[20px] sm:before:w-[40px] before:rounded-[50%] before:h-[95%] before:bg-white 
                 after:content-[''] after:absolute after:top-1/2 after:-right-2 sm:after:-right-4 after:-translate-y-1/2 after:w-[20px] sm:after:w-[40px] after:rounded-[50%] after:h-[95%] after:bg-white "
     >
-      <div className="h-16 w-16 rounded-full p-5 bg-gray-200">
+      <div className="h-16 w-16 rounded-full p-5 bg-[#F5F5F5]">
         <Image
           src={img}
           alt="image"
@@ -89,7 +89,7 @@ const Card = ({
       </div>
       <div className="space-y-2">
         <h3 className="text-xl sm:text-2xl font-semibold">{title}</h3>
-        <p className="w-full max-w-[24ch]">{desc}</p>
+        <p className="w-full ">{desc}</p>
       </div>
     </div>
   );

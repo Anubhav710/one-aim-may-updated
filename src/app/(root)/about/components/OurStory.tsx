@@ -1,4 +1,5 @@
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
+
 import Image from "next/image";
 import React from "react";
 
@@ -6,37 +7,23 @@ const OurStory = () => {
   return (
     <section className="padding-yx bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
       <div className="screen">
-        <div className="flex max-sm:flex-col max-sm:gap-y-6">
+        <div className="flex max-sm:flex-col max-sm:gap-y-6 gap-x-5">
           {/* Image Container  */}
-          <div className="flex-1 ">
-            <div className="flex  w-[70%] mx-auto">
-              <div className="relative ">
-                <div className="h-[50vh] w-[30vh] md:h-[60vh] md:w-[35vh]   rounded-full overflow-hidden">
-                  <Image
-                    src={"/images/about/about-image.png"}
-                    width={5400}
-                    height={1200}
-                    alt="about-image"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="h-[22vh] w-[22vh] md:h-[30vh] md:w-[30vh] absolute top-1/2 -translate-y-1/2 left-1/2">
-                  {" "}
-                  <Image
-                    src={"/images/about/image.png"}
-                    width={4200}
-                    height={1200}
-                    alt="about-image"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
+          <div className="w-full md:w-1/2">
+            <div className="w-[90%] mx-auto">
+              <Image
+                src={"/images/about/about-hero.png"}
+                width={5400}
+                height={1200}
+                alt="about-image"
+                className=" w-full h-full mx-auto object-cover"
+              />
             </div>
           </div>
 
           {/* Information Container  */}
-          <div className="flex-1 flex flex-col gap-y-6 justify-center">
-            <CommonHeading
+          <div className="w-full md:w-1/2 flex flex-col gap-y-6 justify-center">
+            <CommonHeading2
               title="Our Story"
               desc="Founded in [Year], One Aim began with a simple yet powerful vision: to create a global community where individuals can learn, grow, and achieve their goals.
 What started as a small initiative has now grown into a movement that impacts thousands of lives across the globe."

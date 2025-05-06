@@ -1,11 +1,10 @@
 import React from "react";
-import { FaCheckCircle } from "react-icons/fa";
 import TeamCard from "@/components/ui/TeamCard";
-import CommonHeading from "@/components/ui/CommonHeading";
+
 import Banner from "@/components/common/Banner";
 import Link from "next/link";
-import Image from "next/image";
-import Footer from "@/components/Footer";
+import { EducationIcon } from "@/components/icons";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 const teamInfo = [
   {
@@ -191,22 +190,22 @@ const facultyHighlights = [
   {
     id: 1,
     title: "Highly qualified and experienced educators",
-    icon: "/icons/qualification.svg",
+    icon: <EducationIcon />,
   },
   {
     id: 2,
     title: "Personalized teaching approach",
-    icon: "/icons/personalized.svg",
+    icon: <EducationIcon />,
   },
   {
     id: 3,
     title: "Industry experts with real-world knowledge",
-    icon: "/icons/industry.svg",
+    icon: <EducationIcon />,
   },
   {
     id: 4,
     title: "Passionate about student success",
-    icon: "/icons/passionate.svg",
+    icon: <EducationIcon />,
   },
 ];
 
@@ -223,8 +222,8 @@ const FacultyPage = () => {
       </Banner>
 
       {/* Faculty Intro Section */}
-      <section className="padding-yx">
-        <div className="container mx-auto max-w-6xl">
+      <section className="padding-tx">
+        <div className="screen">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#C1151B] mb-4">
@@ -239,36 +238,16 @@ const FacultyPage = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
               {facultyHighlights.map((highlight, index) => (
                 <div
                   key={highlight.id}
-                  className={` px-4 py-12 rounded-lg shadow-sm ${
-                    highlight.id === 1
-                      ? "bg-[#DC8940] text-white -rotate-[9deg]"
-                      : "bg-white"
-                  }`}
+                  className={` px-4 py-12 group bg-white text-lightorange rounded-3xl shadow-sm  space-y-4 hover:bg-lightorange duration-500 hover:text-white font-medium  hover:-rotate-[10deg]`}
                 >
-                  <div className="flex flex-col items-center text-center">
-                    <div
-                      className={`w-12 h-12 mb-3 bg-[#FF7B07]/10 rounded-full flex items-center justify-center ${
-                        highlight.id === 1 ? " bg-white/40" : "bg-[#DC8940]"
-                      }`}
-                    >
-                      <FaCheckCircle
-                        className={` text-xl text-white ${
-                          highlight.id === 1 ? " text-white" : "text-[#DC8940]"
-                        } `}
-                      />
-                    </div>
-                    <p
-                      className={`text-sm font-medium ${
-                        highlight.id === 1 ? " text-white" : "text-[#DC8940]"
-                      }`}
-                    >
-                      {highlight.title}
-                    </p>
+                  <div className="h-14 w-14  rounded-full p-2 group-hover:bg-white/20 bg-lightorange/10  flex items-center justify-center">
+                    {highlight.icon}
                   </div>
+                  <h2 className=" text-xl leading-6">{highlight.title}</h2>
                 </div>
               ))}
             </div>
@@ -278,9 +257,9 @@ const FacultyPage = () => {
 
       {/* Faculty & Mentors Section */}
       <section className="padding-yx">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center  w-max mx-auto mb-12">
-            <CommonHeading title="Faculty & Mentors!" />
+        <div className="screen">
+          <div className="text-center  w-max mx-auto ">
+            <CommonHeading2 title="Faculty & Mentors!" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -299,18 +278,14 @@ const FacultyPage = () => {
       </section>
 
       {/* Join Our Faculty Section */}
-      <section className="padding-yx">
-        <div className="container mx-auto max-w-6xl">
-          <div className="bg-[#FFF1E5] rounded-lg px-8 py-14 border border-dashed border-[#FF7B07]/30">
-            <h3 className="text-2xl font-bold text-primaryred mb-4">
-              Join Our Faculty
-            </h3>
-            <p className="text-gray-700 mb-6">
-              Are you passionate about teaching and shaping the future? We're
+      <section className="padding-bx">
+        <div className="box p-5 flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
+          <CommonHeading2
+            title="Join Our Faculty"
+            desc="Are you passionate about teaching and shaping the future? We're
               always looking for talented educators to join our team. If you're
-              interested, send your resume to [Insert HR Email].
-            </p>
-          </div>
+              interested, send your resume to [Insert HR Email]."
+          />
         </div>
       </section>
     </main>

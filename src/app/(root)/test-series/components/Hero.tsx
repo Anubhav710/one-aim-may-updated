@@ -1,4 +1,4 @@
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import Image from "next/image";
 import React from "react";
 
@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <div className="padding-yx">
       <div className="flex flex-col md:flex-row  screen">
-        <div className="flex-1">
+        <div className="w-full md:w-1/2">
           <div>
             <Image
               src={"/images/test-series/test-series.png"}
@@ -17,7 +17,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="flex-[1.3]  my-auto">
-          <CommonHeading title="Crack UPSC Smarters" />
+          <CommonHeading2 title="Crack UPSC Smarters" />
           <div className="space-y-3">
             <hgroup className="space-y-1">
               <h3 className="text-2xl font-medium">

@@ -13,7 +13,7 @@ const Button = ({
   return (
     <Link
       href={href ?? "/"}
-      className={`bg-black hover:bg-primaryred transition-all duration-500 px-7 py-4 rounded-full text-black ${className}`}
+      className={`md:px-6 md:py-4 px-6 py-4  text-sm bg-black hover:bg-primaryred transition-all duration-500  rounded-full text-black ${className}`}
     >
       {children}
     </Link>

@@ -15,39 +15,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoChevronDown } from "react-icons/io5";
-const socialLinks = [
-  {
-    href: "https://www.facebook.com/oneaimeducation/",
-    icon: (
-      <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.instagram.com/oneaim__official/",
-    icon: (
-      <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://x.com/OneAim01",
-    icon: (
-      <FaXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.quora.com/profile/One-Aim-5",
-    icon: (
-      <FaQuora className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.youtube.com/@OneAim-q7r",
-    icon: (
-      <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-];
-
+import { socialLinks } from "@/constant/page";
 const Footer = () => {
   return (
     <footer
@@ -119,7 +87,7 @@ const Footer = () => {
                 <a href="/test-series">Test Series</a>
               </li>
               <li className="text-[#C1151B]">
-                <a href="/contact">Contact us</a>
+                <a href="/contact-us">Contact us</a>
               </li>
             </ul>
           </div>

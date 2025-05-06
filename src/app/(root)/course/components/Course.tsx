@@ -11,7 +11,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import FeaturedCard from "@/components/ui/FeaturedCard";
-import CommonHeading from "@/components/ui/CommonHeading";
+
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 interface CourseCategory {
   id: string;
@@ -385,10 +386,10 @@ const Course: React.FC = () => {
   const currentCourseContent = subCourseContent[activeSubCourse] || [];
 
   return (
-    <section id="course" className="bg-[#FFF4D5]/40 padding-yx">
+    <section id="course" className="bg-[#FFF45]/40 padding-yx">
       <div className="screen">
         <div>
-          <CommonHeading title="Our Courses" />
+          <CommonHeading2 title="Our Courses" />
           <div className="space-y-12">
             {/* Main Categories Swiper */}
             <div className="relative  max-sm:px-7">

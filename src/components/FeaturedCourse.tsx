@@ -1,11 +1,18 @@
 "use client";
 import React, { useRef } from "react";
 import FeaturedCard from "./ui/FeaturedCard";
-import CommonHeading from "./ui/CommonHeading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight, FaClipboardList } from "react-icons/fa";
 import Button from "./ui/Button";
+
+import {
+  VideoIcon,
+  SubjectIcon,
+  NewQuestion,
+  MentorshipIcon,
+  QuestionIcon,
+} from "@/components/icons";
 
 // Import Swiper styles
 import "swiper/css";
@@ -19,6 +26,7 @@ import {
   BiUser,
   BiVideo,
 } from "react-icons/bi";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 // Data
 const courses = [
@@ -30,23 +38,35 @@ const courses = [
     features: [
       {
         name: "2000 Video Lectures",
-        icon: <BiVideo className="h-7 w-7 text-primaryred" />,
+        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
       },
       {
         name: "Subjective Test Series",
-        icon: <FaClipboardList className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <SubjectIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
       {
         name: "Previous Years Question Papers",
-        icon: <BiBook className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <QuestionIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
       {
         name: "100000 Questions",
-        icon: <BiQuestionMark className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <NewQuestion height={20} width={20} className="text-primaryred" />
+        ),
       },
       {
         name: "Virtual mentorship",
-        icon: <BiUser className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <MentorshipIcon
+            height={20}
+            width={20}
+            className="text-primaryred rotate-90"
+          />
+        ),
       },
     ],
   },
@@ -57,24 +77,32 @@ const courses = [
       "This module will contain the full course for UPSC/RPSC PRELIMINARY EXAMs that will be held in year 2025-26.",
     features: [
       {
-        name: "Video Lectures ",
-        icon: <BiVideo className="h-7 w-7 text-primaryred" />,
+        name: "2000 Video Lectures",
+        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
       },
       {
         name: "Subjective Test Series",
-        icon: <FaClipboardList className="h-7 w-7 text-primaryred" />,
-      },
-      {
-        name: "Weekly Real Time Full Tests",
-        icon: <BiFile className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <SubjectIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
       {
         name: "Previous Years Question Papers",
-        icon: <BiBook className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <QuestionIcon height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "100000 Questions",
+        icon: (
+          <NewQuestion height={20} width={20} className="text-primaryred" />
+        ),
       },
       {
         name: "Virtual mentorship",
-        icon: <BiUser className="h-7 w-7 text-primaryred" />,
+        icon: (
+          <MentorshipIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
     ],
   },
@@ -85,12 +113,32 @@ const courses = [
       "This module will contain full-length tests (1 lakh questions).",
     features: [
       {
-        name: "Subjective Test Series",
-        icon: <FaClipboardList className="h-7 w-7 text-primaryred" />,
+        name: "2000 Video Lectures",
+        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
       },
       {
-        name: "Weekly Real Time Full Tests",
-        icon: <BiFile className="h-7 w-7 text-primaryred" />,
+        name: "Subjective Test Series",
+        icon: (
+          <SubjectIcon height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "Previous Years Question Papers",
+        icon: (
+          <QuestionIcon height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "100000 Questions",
+        icon: (
+          <NewQuestion height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "Virtual mentorship",
+        icon: (
+          <MentorshipIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
     ],
   },
@@ -101,8 +149,32 @@ const courses = [
       "This module will contain all subject PDFs for UPSC/IAS/CSE PRELIMINARY EXAM that will be held in year 2025-26.",
     features: [
       {
-        name: "All Subject PDFs",
-        icon: <BiFile className="h-7 w-7 text-primaryred" />,
+        name: "2000 Video Lectures",
+        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
+      },
+      {
+        name: "Subjective Test Series",
+        icon: (
+          <SubjectIcon height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "Previous Years Question Papers",
+        icon: (
+          <QuestionIcon height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "100000 Questions",
+        icon: (
+          <NewQuestion height={20} width={20} className="text-primaryred" />
+        ),
+      },
+      {
+        name: "Virtual mentorship",
+        icon: (
+          <MentorshipIcon height={20} width={20} className="text-primaryred" />
+        ),
       },
     ],
   },
@@ -121,7 +193,7 @@ const FeaturedCourse = () => {
       <div className="bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] rounded-t-[12rem] max-md:rounded-t-[6rem] max-sm:rounded-t-[3rem] max-sm:pt-[60px] pt-[100px]">
         <div className="screen  max-sm:space-y-8 padding-x">
           <div className="w-max mx-auto" ref={headingRef}>
-            <CommonHeading title="Featured Courses" />
+            <CommonHeading2 title="Featured Courses" />
           </div>
 
           <div className="relative px-12 max-sm:px-7 " ref={swiperRef}>

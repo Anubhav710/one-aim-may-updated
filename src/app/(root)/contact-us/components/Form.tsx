@@ -8,6 +8,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { HiMapPin } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 import { FaChevronDown } from "react-icons/fa";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 type FormData = {
   name: string;
@@ -41,7 +42,7 @@ export default function ContactForm() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-12">
       <div className=" w-max mx-auto">
-        <CommonHeading title="Reach out to us – we'd love to hear from you." />
+        <CommonHeading2 title="Reach out to us – we'd love to hear from you." />
       </div>
       <div className="flex flex-col md:flex-row gap-6 p-6 rounded-xl max-w-7xl mx-auto">
         {/* Left: Form */}
@@ -138,7 +139,7 @@ export default function ContactForm() {
             className="w-full rounded-lg object-cover"
           />
           <div className="bg-white p-7 rounded-xl shadow-sm space-y-5">
-            <div className="flex items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FFFDFC]">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FFFDFC]">
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                 <FaPhoneAlt className="h-[45%] w-[45%] text-[#FF8315]" />
               </div>
@@ -147,7 +148,7 @@ export default function ContactForm() {
                 <p className="text-orring-orange">+91 8079064769</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
               <div>
                 <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                   <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
@@ -161,7 +162,7 @@ export default function ContactForm() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                 <MdEmail className="h-[45%] w-[45%] text-[#FF8315]" />
               </div>

@@ -24,6 +24,7 @@ import { Locale } from "@/i18n/settings";
 import { useTranslation } from "@/hooks/useTranslation";
 import { FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
+import { BagIcon } from "./icons";
 // Constants
 const socialLinks = [
   {
@@ -134,9 +135,9 @@ const Header = () => {
   return (
     <header className="z-50 sticky top-0">
       <div className={`header-top text-white bg-primaryred py-[8px]`}>
-        <div className="bg-primaryred flex justify-between items-center screen padding-x">
-          <div className="hidden md:block">
-            <div className="flex gap-x-10">
+        <div className="bg-primaryred sm:space-x-3 flex justify-between items-center screen padding-x">
+          <div className="hidden sm:block">
+            <div className="flex gap-x-4">
               <div className="flex items-center gap-x-2">
                 <FaPhoneAlt />
                 <a href="tel: +91-8955249714">{t("contact.phone")}</a>
@@ -148,8 +149,8 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="mx-auto md:mx-0">
-            <ul className="flex gap-x-4">
+          <div className="max-sm:mx-auto">
+            <ul className="flex gap-x-4  ">
               {socialLinks.map((link, index) => (
                 <li
                   key={index}
@@ -182,8 +183,8 @@ const Header = () => {
           </a>
 
           {/* Desktop navigation */}
-          <nav className="hidden xl:block">
-            <ul className="flex gap-x-10">
+          <nav>
+            <ul className="xl:flex gap-x-10 hidden">
               {navItems.map((item, index) => {
                 const isActive = path === item.href;
                 return (
@@ -217,7 +218,7 @@ const Header = () => {
 
           {/* Buttons */}
           {isLogIn ? (
-            <div className="hidden md:flex md:items-center space-x-5">
+            <div className="hidden xl:flex xl:items-center space-x-5">
               <CustomDropdown
                 options={[
                   { value: "english", label: "English" },
@@ -231,15 +232,9 @@ const Header = () => {
               {/* Cart  */}
               <Link
                 href={"/cart"}
-                className="h-12 w-12 p-3 bg-[#FF7B07]/20 hover:bg-primaryred duration-300 ease-in-out rounded-full flex-center relative cursor-pointer"
+                className="h-12 w-12 p-3 bg-[#FF7B07]/20 group hover:bg-primaryred duration-300 ease-in-out rounded-full flex-center relative cursor-pointer"
               >
-                <Image
-                  src="/images/file.svg"
-                  alt="cart"
-                  width={24}
-                  height={24}
-                  className="h-full w-full"
-                />
+                <BagIcon className="h-7 w-7 text-black group-hover:text-white duration-300 ease-in-out" />
                 <div className=" h-5 w-5 text-white absolute bg-[#DC8940] top-1 rounded-full right-0  text-sm flex items-center justify-center">
                   3
                 </div>
@@ -255,7 +250,7 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            <div className="hidden md:flex space-x-5">
+            <div className="space-x-5">
               <CustomDropdown
                 options={[
                   { value: "english", label: "English" },
@@ -274,7 +269,7 @@ const Header = () => {
             </div>
           )}
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden">
             <button
               onClick={toggleMenu}
               className="text-primaryred p-2 focus:outline-none"

@@ -8,15 +8,19 @@ const BlogCard = ({
   title,
   description,
   link,
+  className,
 }: {
   image: string;
   date: string;
   title: string;
   description: string;
   link: string;
+  className?: string;
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div
+      className={` rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ${className}`}
+    >
       <Link href={link} className="relative w-full block">
         <div className="relative w-full h-48">
           <Image

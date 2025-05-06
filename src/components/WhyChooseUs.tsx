@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import CommonHeading from "./ui/CommonHeading";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 const WhyChooseUs = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -140,12 +140,9 @@ const WhyChooseUs = () => {
       ref={containerRef}
     >
       <section className="screen">
-        <div className="flex flex-col lg:flex-row gap-8 padding-x">
-          <div className="flex-1">
-            <div
-              className="lg:flex-1 mx-auto p-10  lg:mx-0 relative"
-              ref={imageRef}
-            >
+        <div className="flex flex-col  lg:flex-row gap-8 padding-x">
+          <div className="w-full lg:w-1/2">
+            <div className=" mx-auto  relative" ref={imageRef}>
               <div className="relative w-full flex justify-center items-center">
                 <div className="h-[80%] w-[80%] absolute">
                   <Image
@@ -188,7 +185,7 @@ const WhyChooseUs = () => {
           </div>
           <div className="lg:flex-1 space-y-8 lg:space-y-10 my-auto">
             <div ref={contentRef}>
-              <CommonHeading
+              <CommonHeading2
                 title="Why Choose Us?"
                 desc="At One Aim , we pride ourselves on standing out from the crowd. Our commitment to excellence in IAS preparation is reflected in every aspect of our platform. Here's what sets us apart :"
               />
@@ -209,7 +206,7 @@ const WhyChooseUs = () => {
                 </div>
                 {/* info  */}
                 <div className="space-y-1">
-                  <h3 className="text-xl sm:text-2xl text-primaryred font-semibold">
+                  <h3 className="text-xl sm:text-2xl xl:text-2xl lg:text-lg text-primaryred font-semibold">
                     Expert Faculty
                   </h3>
                   <p className="text-sm sm:text-base">
@@ -232,7 +229,7 @@ const WhyChooseUs = () => {
                 </div>
                 {/* info  */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl text-primaryred font-semibold">
+                  <h3 className="text-xl sm:text-2xl xl:text-2xl lg:text-lg text-primaryred font-semibold">
                     Comprehensive Curriculum
                   </h3>
                   <p className="text-sm sm:text-base">
@@ -255,7 +252,7 @@ const WhyChooseUs = () => {
                 </div>
                 {/* info  */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl text-primaryred font-semibold">
+                  <h3 className="text-xl sm:text-2xl lg:text-lg xl:text-2xl text-primaryred font-semibold">
                     Personalized Learning
                   </h3>
                   <p className="text-sm sm:text-base">
@@ -278,7 +275,7 @@ const WhyChooseUs = () => {
                 </div>
                 {/* info  */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl text-primaryred font-semibold">
+                  <h3 className="text-xl lg:text-lg xl:text-2xl sm:text-2xl text-primaryred font-semibold">
                     Interactive Sessions
                   </h3>
                   <p className="text-sm sm:text-base">

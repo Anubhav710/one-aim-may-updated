@@ -10,12 +10,6 @@ import {
   FaClipboardList,
   FaChevronRight,
 } from "react-icons/fa";
-import {
-  FaLinkedin,
-  FaSquareXTwitter,
-  FaFacebook,
-  FaInstagram,
-} from "react-icons/fa6";
 
 import FAQ from "./common/FAQ";
 import CourseContentAccordion from "./common/CourseContentAccordion";
@@ -40,11 +34,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import Footer from "./Footer";
+
+import { CommonHeading2 } from "./common/CommonHeading2";
+import Banner2 from "./common/Banner2";
+import { ProfileCards } from "./common/ProfileCards";
 
 const CourseDetailPage = () => {
   const [openId, setOpenId] = useState<string | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showFullFacultyText, setShowFullFacultyText] = useState(false);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Data
@@ -310,89 +308,70 @@ const CourseDetailPage = () => {
 
   return (
     <div className="flex flex-col w-full bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
-      {/* Course Title Banner */}
-      {/* <div className="w-full bg-pink-50 bg-opacity-30 py-8 px-4 md:px-12 text-center relative">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl md:text-3xl font-bold text-red-800">
-            IAS Foundation Course (Prelims + Mains) - 12 Months
-          </h1>
-          <p className="text-sm text-gray-600 mt-2">
-            <span className="font-medium">Start Date: </span>January 15th, 2025
-          </p>
-        </div>
-      </div> */}
-      <Banner title="IAS Foundation Course (Prelims + Mains) – 12 Months">
+      <Banner2 title="IAS Foundation Course (Prelims + Mains) – 12 Months">
         <Link href={"/"}>Home</Link>
         <span>{">"}</span>
         <Link href={"/course"}>Courses</Link>
         <span>{">"}</span>
         <p className="text-primaryred">Course Details</p>
-      </Banner>
+      </Banner2>
 
       {/* Course Content Container */}
-      <div className="screen w-full px-4 py-8 flex flex-col md:flex-row gap-8">
+      <div className="screen w-full flex flex-col md:flex-row gap-8">
         {/* Left Content Column */}
-        <div className="w-full  flex flex-col gap-10">
+        <div className="w-full flex flex-col padding-bx">
           {/* Course Overview */}
-          <div className="flex gap-x-5">
-            <div className="space-y-10">
-              <section className="w-full flex ">
-                <div>
-                  <h2 className="text-4xl font-semibold text-primaryred">
-                    Course Overview
-                  </h2>
-                  <div className="mt-4">
-                    <p className="text-gray-700">
-                      This IAS Foundation Course is designed to provide complete
+          <div className="flex flex-col lg:flex-row gap-5">
+            <div className="space-y-10 w-full lg:w-2/3">
+              <CommonHeading2
+                title="Course Overview"
+                desc="This IAS Foundation Course is designed to provide complete
                       preparation for the UPSC Civil Services Examination
                       (Prelims + Mains). Covering the full syllabus from NCERT
                       basics to advanced topics, this course ensures that
-                      aspirants build a strong conceptual foundation.
-                    </p>
-                  </div>
-                </div>
-              </section>
+                      aspirants build a strong conceptual foundation."
+              />
 
               {/* Course Features & Benefits */}
               <section className="w-full space-y-10">
                 <div>
-                  <h2 className="text-2xl font-semibold text-gray-800">
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
                     Course Features & Benefits
                   </h2>
-                  <div className="mt-4 grid grid-cols-1  gap-4">
+                  <div className="mt-4 grid grid-cols-1 gap-4">
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">Live Interactive Classes</p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Complete NCERT & Standard Book Coverage
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Daily Answer Writing & Essay Practice
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Prelims & Mains Test Series
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Personalized Mentorship & Doubt Solving
@@ -401,43 +380,43 @@ const CourseDetailPage = () => {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold text-gray-800">
+                  <h2 className="text-xl md:text-2xl font-semibold text-gray-800">
                     Study Material & Resources
                   </h2>
-                  <div className="mt-4 grid grid-cols-1  gap-4">
+                  <div className="mt-4 grid grid-cols-1 gap-4">
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">Live Interactive Classes</p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Complete NCERT & Standard Book Coverage
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Daily Answer Writing & Essay Practice
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Prelims & Mains Test Series
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <div className="h-6 w-6 flex items-center justify-center rounded-full bg-[#FF7B07]">
-                        <FaCheck className="text-white  flex-shrink-0" />
+                      <div className="h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07]">
+                        <FaCheck className="text-white flex-shrink-0" />
                       </div>
                       <p className="text-gray-700">
                         Personalized Mentorship & Doubt Solving
@@ -447,7 +426,7 @@ const CourseDetailPage = () => {
                 </div>
               </section>
             </div>
-            <div className="w-full">
+            <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
               <CourseEnrollCard
                 title="IAS Foundation Course (Prelims + Mains) - 12 Months"
                 instructors={["Sujjan Sharma (Ex-IAS)"]}
@@ -467,167 +446,57 @@ const CourseDetailPage = () => {
           {/* Demo Class */}
           <DemoClass />
 
-          {/* Foundation Course */}
+          {/* Faculty Section */}
+          <div className="mx-auto w-max padding-b">
+            <CommonHeading2 title="Faculty" />
+          </div>
+          <ProfileCards />
 
-          <div className="mx-auto w-max">
-            <CommonHeading title="Faculty" />
-          </div>
-          <div className=" relative   flex items-center">
-            <div>
-              <div className="h-[22rem] w-[22rem]  rounded-full overflow-hidden z-30 relative ">
-                <Image
-                  src="/images/team/Dikshakashyap.png"
-                  alt="faculty"
-                  width={1200}
-                  height={1200}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-            <div className="bg-[#DC8940] w-[80%] gap-y-12 left-48 rounded-r-2xl pl-40  space-y-5 flex items-center absolute h-[80%] ">
-              <div className="w-max space-y-2 pl-5">
-                <div className="text-white flex gap-x-2">
-                  <h5 className="text-white font-semibold text-lg">
-                    Designation:
-                  </h5>
-                  <p> Senior Science Instructor</p>
-                </div>
-                <div className="text-white flex gap-x-2">
-                  <h5 className="text-white font-semibold text-lg">
-                    Experience:
-                  </h5>
-                  <p> 23 years</p>
-                </div>
-                <div className="text-white flex gap-x-2">
-                  <h5 className="text-white font-semibold text-lg ">
-                    Qualifications:
-                  </h5>
-                  <p> M.Sc. in Botany, B.Ed.</p>
-                </div>
-                <div className="text-white flex gap-x-2">
-                  <h5 className="text-white font-semibold text-lg">
-                    Specialization:
-                  </h5>
-                  <p> Science Education</p>
-                </div>
-                <div className="text-white flex gap-x-4 mt-4">
-                  <div className="flex items-center gap-x-3">
-                    <Link
-                      href="#"
-                      aria-label="Facebook"
-                      className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-[#DC8940] hover:text-gray-200"
-                      >
-                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                      </svg>
-                    </Link>
-                    <Link
-                      href="#"
-                      aria-label="Twitter"
-                      className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-[#DC8940] hover:text-gray-200"
-                      >
-                        <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                      </svg>
-                    </Link>
-                    <Link
-                      href="#"
-                      aria-label="LinkedIn"
-                      className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-[#DC8940] hover:text-gray-200"
-                      >
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                      </svg>
-                    </Link>
-                    <Link
-                      href="#"
-                      aria-label="Instagram"
-                      className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-[#DC8940] hover:text-gray-200"
-                      >
-                        <rect
-                          x="2"
-                          y="2"
-                          width="20"
-                          height="20"
-                          rx="5"
-                          ry="5"
-                        ></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xl text-center">
+          <p className="text-base md:text-xl text-center mt-12 md:mt-6 px-4 md:px-0">
             Prof. <span className="text-primaryred">Rajiv Bansal</span> is a
             renowned faculty for Indian Polity & Governance, with over 10 years
             of experience in mentoring UPSC aspirants. A Ph.D. in Public
             Administration from JNU, he has been a guiding force for many
-            successful IAS officers. Known for his concept-based teaching and
-            exam-oriented approach, he simplifies complex constitutional topics
-            and governance issues with real-world examples.
+            successful IAS officers.
+            <span
+              className={`block overflow-hidden transition-all duration-500 ease-in-out ${
+                showFullFacultyText
+                  ? "max-h-[500px] opacity-100 mt-1"
+                  : "max-h-0 opacity-0"
+              }`}
+            >
+              {" "}
+              Known for his concept-based teaching and exam-oriented approach,
+              he simplifies complex constitutional topics and governance issues
+              with real-world examples. He has authored several books on Indian
+              Polity that are widely recommended for UPSC preparation. His
+              lectures are known for clarity and depth, making him one of the
+              most sought-after faculty members at our institute. Students
+              particularly appreciate his ability to connect theoretical
+              concepts with current affairs and case studies.
+            </span>
           </p>
-          <Link href={"/"} className="text-center text-[#FF7B07]">
-            Show More
-          </Link>
+          <div className="text-center mt-2">
+            <button
+              onClick={() => setShowFullFacultyText(!showFullFacultyText)}
+              className="text-[#FF7B07] hover:underline focus:outline-none transition-colors duration-300 flex items-center gap-1 mx-auto"
+            >
+              {showFullFacultyText ? "Show Less" : "Show More"}
+              <FaChevronDown
+                className={`w-3 h-3 transition-transform ${
+                  showFullFacultyText ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </div>
         </div>
-
-        {/* Right Sidebar */}
       </div>
-      <div>
+
+      {/* Course Content Section */}
+      <div className="padding-bx">
         <div className="screen space-y-2">
           <div className="mx-auto w-max">
-            <CommonHeading title="Course Content" />
+            <CommonHeading2 title="Course Content" />
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
@@ -660,10 +529,11 @@ const CourseDetailPage = () => {
           </div>
         </div>
       </div>
-      <div className="relative px-12 max-sm:px-7 ">
-        {/* Custom navigation buttons */}
+
+      {/* Related Courses Section */}
+      <div className="relative padding-bx">
         <div className="mx-auto w-max">
-          <CommonHeading title="Related Courses" />
+          <CommonHeading2 title="Related Courses" />
         </div>
         <button
           className="custom-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
@@ -729,7 +599,7 @@ const CourseDetailPage = () => {
         >
           {courses.map((course, index) => (
             <SwiperSlide key={index}>
-              <div className="h-[80vh] transform transition-transform hover:scale-[1.02] duration-300">
+              <div className=" transform transition-transform hover:scale-[1.02] duration-300">
                 <FeaturedCard
                   title={course.course}
                   description={course.description}
@@ -752,10 +622,10 @@ const CourseDetailPage = () => {
         </button>
       </div>
 
-      <div>
+      <div className="padding-bx">
         <div className="screen space-y-2">
           <div className="mx-auto w-max">
-            <CommonHeading title="Frequently Asked Questions (FAQs)" />
+            <CommonHeading2 title="Frequently Asked Questions (FAQs)" />
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (

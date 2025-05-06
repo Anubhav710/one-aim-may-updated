@@ -1,3 +1,4 @@
+"use client";
 import CourseDetailPage from "@/components/CourseDetailPage";
 import React from "react";
 

@@ -25,14 +25,22 @@
 /******************************************** Headings  ************************************************/
 
 .heroHeading {
-  font-size: clamp(1.5rem, 3.5vw, 6rem);
-  line-height: clamp(2.4rem, 4vw, 7.2rem); /* 1.2x the font size */
-  font-weight: bold;
+  @apply text-2xl sm:text-2xl  md:text-3xl mdl:text-4xl lg:text-4xl xl:text-5xl font-bold;
+  @apply leading-tight sm:leading-tight md:leading-tight mdl:leading-tight lg:leading-tight;
 }
 
 .heading {
   font-size: clamp(2rem, 3vw, 6rem);
   line-height: clamp(2.4rem, 3.5vw, 7.2rem); /* 1.2x the font size */
+  font-weight: bold;
+}
+.heading2 {
+  font-size: clamp(1.2rem, 2.2vw, 5rem);
+  line-height: clamp(
+    1.2rem,
+    2.5vw,
+    2.4rem
+  ); /* Reduced line height to match smaller font */
   font-weight: bold;
 }
 
@@ -71,6 +79,11 @@
 .padding-tx {
   @apply pt-[100px] sm:pt-[70px] md:pt-[90px] lg:pt-[100px] xl:pt-[110px] px-4 sm:px-5 md:px-6 lg:px-8;
 }
+
+.padding-bx {
+  @apply pb-[100px] sm:pb-[70px] md:pb-[90px] lg:pb-[100px] xl:pb-[110px] px-4 sm:px-5 md:px-6 lg:px-8;
+}
+
 .padding-yx {
   @apply py-[50px] sm:py-[70px] md:py-[90px] lg:py-[100px] xl:py-[110px]  px-4 sm:px-5 md:px-6 lg:px-8;
 }
@@ -209,4 +222,13 @@
 
 #file {
   fill: #ffffff !important;
+}
+
+.box {
+  height: 30vh;
+  width: 100%;
+  background-color: #f8e7d9;
+  clip-path: polygon(0% 0%, 100% 40%, 100% 100%, 0% 100%); /* Fallback */
+
+  @apply rounded-tl-[50px]  rounded-br-[50px] rounded-bl-[50px];
 }

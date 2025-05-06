@@ -1,5 +1,4 @@
 import Banner from "@/components/common/Banner";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import React from "react";
 import BlogCard from "@/components/ui/BlogCard";

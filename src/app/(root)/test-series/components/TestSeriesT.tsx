@@ -1,5 +1,6 @@
 "use client";
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
+
 import FeaturedCard from "@/components/ui/FeaturedCard";
 import React, { useState } from "react";
 
@@ -132,10 +133,10 @@ const TestSeriesT: React.FC = () => {
 
   return (
     <div className="screen padding-yx">
+      <div className="w-max mx-auto">
+        <CommonHeading2 title="Test Series" />
+      </div>
       <div className="space-y-12">
-        <div className="w-max mx-auto">
-          <CommonHeading title="Test Series" />
-        </div>
         <div className="flex gap-7 mx-auto w-max">
           {testSeries.map((data) => (
             <div

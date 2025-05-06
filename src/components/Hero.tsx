@@ -60,7 +60,7 @@ const Hero = () => {
                   <MagneticButton
                     href="/course"
                     backgroundColor="#333333"
-                    className="bg-primaryred  max-sm:!px-4 max-sm:!py-3 text-white font-semibold"
+                    className="bg-primaryred  sm:text-sm   text-white font-semibold"
                   >
                     {t("home.exploreCourses")}
                   </MagneticButton>
@@ -68,7 +68,7 @@ const Hero = () => {
                 <div className="w-max">
                   <Button
                     href="/contact-us"
-                    className="bg-transparent max-sm:!px-4 max-sm:!py-3 !hover:text-primaryred ring-[1px] ring-black font-medium hover:ring-primaryred hover:bg-transparent hover:text-primaryred"
+                    className="bg-transparent  !hover:text-primaryred ring-[1px] ring-black font-medium hover:ring-primaryred hover:bg-transparent hover:text-primaryred"
                   >
                     {t("home.joinNow")}
                   </Button>

@@ -1,27 +1,19 @@
 import Image from "next/image";
 import React from "react";
 
-interface BannerProp {
+interface Banner2Prop {
   title: string;
   desp?: string;
   children?: React.ReactNode;
+  className?: string;
 }
 
-const Banner = ({ title, desp, children }: BannerProp) => {
+const Banner2 = ({ title, desp, children, className }: Banner2Prop) => {
   return (
-    <section className=" bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFE5E5] h-[50vh] flex-center space-y-4 relative  ">
-      <div className="absolute -bottom-20 right-0 left-0 w-full">
-        <Image
-          src={"/images/hero/hero-style.png"}
-          alt="hero-style"
-          width={1200}
-          height={1200}
-          className="w-full h-32"
-        />
-      </div>
+    <section className=" bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFE5E5] h-[30vh] flex-center space-y-4 relative  ">
       <hgroup className="space-y-5">
         <h2 className="heading text-primaryred relative w-max  mx-auto">
-          <h2 className="relative z-20">{title}</h2>{" "}
+          <h2 className={`relative z-20 ${className}`}>{title}</h2>{" "}
           <Image
             src={"/images/icons/button-style.svg"}
             alt="style"
@@ -40,4 +32,4 @@ const Banner = ({ title, desp, children }: BannerProp) => {
   );
 };
 
-export default Banner;
+export default Banner2;

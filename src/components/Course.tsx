@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 import FeaturedCard from "./ui/FeaturedCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import CommonHeading from "./ui/CommonHeading";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { CommonHeading2 } from "./common/CommonHeading2";
 
 interface CourseCategory {
   id: string;
@@ -386,7 +386,7 @@ const Course: React.FC = () => {
     <section id="course" className="bg-[#FFF4D5]/40 padding-yx">
       <div className="screen">
         <div>
-          <CommonHeading title="Our Courses" />
+          <CommonHeading2 title="Our Courses" />
           <div className="space-y-12">
             {/* Main Categories Swiper */}
             <div className="relative  max-sm:px-7">

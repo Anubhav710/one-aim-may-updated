@@ -1,12 +1,12 @@
-import CommonHeading from "@/components/ui/CommonHeading";
 import React from "react";
 import Video from "./ui/Video";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 const DemoClass = () => {
   return (
     <section className="screen padding-yx ">
       <div className="mx-auto w-max">
-        <CommonHeading title="Demo Class" />
+        <CommonHeading2 title="Demo Class" />
       </div>
       <Video />
     </section>

@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 // Card Data
 const offerings = [
@@ -17,51 +18,34 @@ const offerings = [
     description:
       "Prepare for the UPSC exams with comprehensive courses and mentorship.",
     image: "/images/about/we-offer.png",
+    bgImage: "/images/bg/about-bg.png",
+    bgColor: "bg-white",
+    textColor: "text-white",
+  },
+  {
+    title: "IAS Preparation",
+    description:
+      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
+    image: "/images/about/we-offer.png",
+    bgImage: "/images/bg/about-bg-2.png",
     bgColor: "bg-white",
     textColor: "text-black",
   },
   {
-    title: "Personal Development",
-    description: "Build confidence, set goals, and create a life you love.",
-    image: "/images/about/we-offer.png",
-    bgColor: "bg-orange-400",
-    textColor: "text-white",
-  },
-  {
-    title: "Career Growth",
+    title: "IAS Preparation",
     description:
-      "Unlock your professional potential with expert guidance and actionable strategies.",
+      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
     image: "/images/about/we-offer.png",
+    bgImage: "/images/bg/about-bg.png",
     bgColor: "bg-white",
-    textColor: "text-black",
-  },
-  {
-    title: "Personal Development",
-    description: "Build confidence, set goals, and create a life you love.",
-    image: "/images/about/we-offer.png",
-    bgColor: "bg-orange-400",
     textColor: "text-white",
   },
   {
-    title: "Career Growth",
+    title: "IAS Preparation",
     description:
-      "Unlock your professional potential with expert guidance and actionable strategies.",
+      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
     image: "/images/about/we-offer.png",
-    bgColor: "bg-white",
-    textColor: "text-black",
-  },
-  {
-    title: "Personal Development",
-    description: "Build confidence, set goals, and create a life you love.",
-    image: "/images/about/we-offer.png",
-    bgColor: "bg-orange-400",
-    textColor: "text-white",
-  },
-  {
-    title: "Career Growth",
-    description:
-      "Unlock your professional potential with expert guidance and actionable strategies.",
-    image: "/images/about/we-offer.png",
+    bgImage: "/images/bg/about-bg-2.png",
     bgColor: "bg-white",
     textColor: "text-black",
   },
@@ -69,10 +53,10 @@ const offerings = [
 
 const WhatWeOffer = () => {
   return (
-    <section className="bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] py-16 relative">
+    <section className="bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] padding-yx relative">
       <div className="screen">
         <div className="w-max mx-auto">
-          <CommonHeading title="What We Offer" />
+          <CommonHeading2 title="What We Offer" />
         </div>
         <div className="relative px-12 max-sm:px-0 ">
           {/* Custom navigation buttons */}
@@ -110,15 +94,15 @@ const WhatWeOffer = () => {
                 spaceBetween: 2,
               },
               480: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 10,
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 10,
               },
               768: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 10,
               },
               991: {
@@ -130,16 +114,21 @@ const WhatWeOffer = () => {
                 spaceBetween: 20,
               },
               1200: {
-                slidesPerView: 4,
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1400: {
+                slidesPerView: 3,
                 spaceBetween: 20,
               },
             }}
-            className="!py-10 "
+            className="!py-10 !pt-5 !pl-5 !pr-5"
           >
             {offerings.map((member) => (
               <SwiperSlide key={member.title}>
                 <div className="transform transition-transform hover:scale-[1.02] duration-300">
                   <WhatWeOfferCard
+                    bgImage={member.bgImage}
                     title={member.title}
                     description={member.description}
                     image={member.image}
@@ -148,11 +137,7 @@ const WhatWeOffer = () => {
                         ? "bg-[#DC8940]"
                         : "bg-[#ffffff]"
                     }
-                    textColor={
-                      member.title === "Personal Development"
-                        ? "text-[#ffffff]"
-                        : "text-[#000000]"
-                    }
+                    textColor={member.textColor}
                   />
                 </div>
               </SwiperSlide>
@@ -180,8 +165,8 @@ interface WhatWeOfferCardProps {
   image: string;
   bgColor?: string;
   textColor?: string;
+  bgImage?: string;
 }
-
 // Card Component
 const WhatWeOfferCard: React.FC<WhatWeOfferCardProps> = ({
   title,
@@ -189,18 +174,43 @@ const WhatWeOfferCard: React.FC<WhatWeOfferCardProps> = ({
   image,
   bgColor,
   textColor,
+  bgImage,
 }) => {
   return (
-    <div
-      className={`relative flex flex-col items-center justify-center w-full px-5 py-14 rounded-lg shadow-md ${bgColor}`}
-    >
-      <h4 className={`text-xl font-semibold ${textColor} text-center`}>
-        {title}
-      </h4>
-      <div className="my-4">
-        <Image src={image} width={200} height={200} alt={title} />
+    <div>
+      <div
+        className={`relative flex flex-col items-center justify-center  h-[40vh] lg:h-[60vh]   rounded-lg `}
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
+        <h4
+          className={`text-xl font-semibold text-center ${
+            textColor || "text-white"
+          }`}
+        >
+          {title}
+        </h4>
+        <div className="my-4">
+          <Image
+            src={image}
+            width={200}
+            height={200}
+            alt={title}
+            className=""
+          />
+        </div>
+        <p
+          className={`text-center text-sm w-[26ch] md:w-[32ch] lg:w-[34ch] xl:text-md 2xl:text-lg ${
+            textColor || "text-white"
+          }`}
+        >
+          {description}
+        </p>
       </div>
-      <p className={`text-center ${textColor} text-sm`}>{description}</p>
     </div>
   );
 };

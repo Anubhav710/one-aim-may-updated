@@ -3,8 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { ReactNode } from "react";
-import { BiBook, BiQuestionMark, BiUser, BiVideo } from "react-icons/bi";
-import { FaClipboardList } from "react-icons/fa6";
+import { BiBook } from "react-icons/bi";
+import {
+  VideoIcon,
+  SubjectIcon,
+  MentorshipIcon,
+  DocumentIcon,
+  NewQuestion,
+  QuestionIcon,
+} from "@/components/icons";
 
 // Define the type for a feature item
 interface Feature {
@@ -34,11 +41,20 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
   price = "₹ 100",
   href = "/",
   features = [
-    { name: "2000 Video Lectures", icon: <BiVideo /> },
-    { name: "Subjective Test Series", icon: <FaClipboardList /> },
-    { name: "Previous Years Question Papers", icon: <BiBook /> },
-    { name: "100000 Questions", icon: <BiQuestionMark /> },
-    { name: "Virtual mentorship", icon: <BiUser /> },
+    { name: "2000 Video Lectures", icon: <VideoIcon height={20} width={20} /> },
+    {
+      name: "Subjective Test Series",
+      icon: <SubjectIcon height={20} width={20} />,
+    },
+    {
+      name: "Previous Years Question Papers",
+      icon: <QuestionIcon height={20} width={20} />,
+    },
+    { name: "100000 Questions", icon: <NewQuestion height={20} width={20} /> },
+    {
+      name: "Virtual mentorship",
+      icon: <MentorshipIcon height={20} width={20} />,
+    },
   ],
 }) => {
   return (

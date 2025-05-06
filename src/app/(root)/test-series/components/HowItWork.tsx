@@ -1,4 +1,5 @@
-import CommonHeading from "@/components/ui/CommonHeading";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
+
 import React from "react";
 
 // Step item component for reusability
@@ -42,7 +43,7 @@ const HowItWork = () => {
   return (
     <div className="container mx-auto px-4 py-12 md:py-16">
       <div className="text-center">
-        <CommonHeading title="How It Works?" />
+        <CommonHeading2 title="How It Works?" />
       </div>
       <div className="max-w-5xl mx-auto">
         {steps.map((step, index) => (
