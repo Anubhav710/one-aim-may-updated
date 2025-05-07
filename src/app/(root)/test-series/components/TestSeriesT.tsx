@@ -3,6 +3,10 @@ import { CommonHeading2 } from "@/components/common/CommonHeading2";
 
 import FeaturedCard from "@/components/ui/FeaturedCard";
 import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Navigation } from "swiper/modules";
 
 // Define TypeScript interfaces
 interface TestSeries {
@@ -137,29 +141,116 @@ const TestSeriesT: React.FC = () => {
         <CommonHeading2 title="Test Series" />
       </div>
       <div className="space-y-12">
-        <div className="flex gap-7 mx-auto w-max">
-          {testSeries.map((data) => (
-            <div
-              key={data.id}
-              onClick={() => setActiveTestSeries(data.id)}
-              className="cursor-pointer"
+        <div className="relative max-sm:px-7 pl-14">
+          {testSeries.length > 0 && (
+            <button
+              id="custom-prev-button"
+              className=" group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+              aria-label="Previous slide"
             >
-              <h1 className="text-xl">{data.label}</h1>
-              <div
-                className={`h-[3px] w-[80%] mx-auto ${
-                  data.id === activeTestSeries
-                    ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] rounded-full transition-all duration-300"
-                    : ""
-                }`}
-              ></div>
-            </div>
-          ))}
+              <FaChevronLeft className="text-primaryred group-hover:text-white" />
+            </button>
+          )}
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView="auto"
+            spaceBetween={10}
+            navigation={
+              testSeries.length > 4
+                ? {
+                    nextEl: "#custom-next-button",
+                    prevEl: "#custom-prev-button",
+                  }
+                : false
+            }
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+            }}
+            className="px-5 md:px-10"
+          >
+            {testSeries.map((data) => (
+              <SwiperSlide
+                key={data.id}
+                className="!w-auto"
+                onClick={() => setActiveTestSeries(data.id)}
+              >
+                <div
+                  className={`cursor-pointer px-5 py-2 rounded-lg text-sm transition-all duration-200 text-black ${
+                    data.id === activeTestSeries
+                      ? "relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-[100%]  after:h-[3px] after:bg-gradient-to-tr after:from-[#FFA4A8] after:to-[#FFC593] after:rounded-full"
+                      : "bg-[#FEE8D5] hover:bg-[#FEE8D5]/20"
+                  }`}
+                >
+                  {data.label}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {testSeries.length > 0 && (
+            <button
+              id="custom-prev-button"
+              className=" group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+              aria-label="Next slide"
+            >
+              <FaChevronRight className="text-primaryred group-hover:text-white" />
+            </button>
+          )}
         </div>
 
-        <div className="grid-4">
-          {courseContent[activeTestSeries]?.map((course) => (
-            <FeaturedCard href="/test-series/1" key={course.id} {...course} />
-          ))}
+        <div className="w-full">
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={20}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 2,
+              },
+              480: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              991: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1200: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
+            grabCursor={true}
+            className="w-full"
+          >
+            {courseContent[activeTestSeries]?.map((course) => (
+              <SwiperSlide key={course.id}>
+                <FeaturedCard href="/test-series/1" {...course} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>

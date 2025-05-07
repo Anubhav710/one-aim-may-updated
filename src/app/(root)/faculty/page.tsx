@@ -278,8 +278,18 @@ const FacultyPage = () => {
       </section>
 
       {/* Join Our Faculty Section */}
-      <section className="padding-bx">
+      <section className="padding-bx hidden md:block">
         <div className="box p-5 flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
+          <CommonHeading2
+            title="Join Our Faculty"
+            desc="Are you passionate about teaching and shaping the future? We're
+              always looking for talented educators to join our team. If you're
+              interested, send your resume to [Insert HR Email]."
+          />
+        </div>
+      </section>
+      <section className="padding-bx block md:hidden">
+        <div className=" p-5 bg-[#f8e7d9] rounded-2xl flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
           <CommonHeading2
             title="Join Our Faculty"
             desc="Are you passionate about teaching and shaping the future? We're

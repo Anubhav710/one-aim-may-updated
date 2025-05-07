@@ -42,9 +42,9 @@ export default function ContactForm() {
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-12">
       <div className=" w-max mx-auto">
-        <CommonHeading2 title="Reach out to us – we'd love to hear from you." />
+        <CommonHeading2 title="Reach out to us" />
       </div>
-      <div className="flex flex-col md:flex-row gap-6 p-6 rounded-xl max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-6  rounded-xl screen">
         {/* Left: Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -139,7 +139,7 @@ export default function ContactForm() {
             className="w-full rounded-lg object-cover"
           />
           <div className="bg-white p-7 rounded-xl shadow-sm space-y-5">
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FFFDFC]">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                 <FaPhoneAlt className="h-[45%] w-[45%] text-[#FF8315]" />
               </div>

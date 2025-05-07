@@ -17,6 +17,7 @@ import {
   LiveClassIcon,
   ScheduleIcon,
 } from "./icons";
+import Button from "./ui/Button";
 
 interface CourseEnrollCardProps {
   title: string;
@@ -59,7 +60,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
 
         {/* Course Info */}
         <div className="p-4 space-y-4">
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-x-3">
             <div className="text-[#FF7B07] bg-gradient-to-r from-[#FFE9E9] to-[#FFF5EC] px-4 py-1 text-xs  rounded-full">
               12 Months
             </div>
@@ -103,13 +104,8 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
               )}
             </div>
           </div>
-          <div className="w-max mx-auto">
-            <Link
-              href={"/cart"}
-              className="w-max px-24 hover:bg-primaryred duration-300 rounded-full bg-black text-white py-3 mx-auto mt-4 font-medium"
-            >
-              Enroll now
-            </Link>
+          <div className="w-max mx-auto pt-3">
+            <Button className="text-white !px-24 w-full">Enroll now</Button>
           </div>
         </div>
       </div>

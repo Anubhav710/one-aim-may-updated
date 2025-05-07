@@ -171,7 +171,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="w-full h-[1px] bg-primaryred my-7"></div>
-        <div className="flex justify-between">
+        <div className="flex max-sm:flex-col max-sm:gap-y-2 justify-between">
           <p className="text-primaryred">
             © {new Date().getFullYear()} Copyright by One Aim
           </p>

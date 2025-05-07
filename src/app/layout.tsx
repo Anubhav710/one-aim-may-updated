@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} scroll-smooth`}>
       <body
-        className={`font-poppins antialiased bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]`}
+        className={`font-poppins overflow-x-clip antialiased bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]`}
         suppressHydrationWarning
       >
         <LanguageProvider>

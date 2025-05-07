@@ -179,7 +179,7 @@ const WhatWeOfferCard: React.FC<WhatWeOfferCardProps> = ({
   return (
     <div>
       <div
-        className={`relative flex flex-col items-center justify-center  h-[40vh] lg:h-[60vh]   rounded-lg `}
+        className={`relative flex flex-col items-center justify-center  h-[50vh] lg:h-[60vh] overflow-x-hidden   rounded-lg `}
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "contain",
@@ -204,7 +204,7 @@ const WhatWeOfferCard: React.FC<WhatWeOfferCardProps> = ({
           />
         </div>
         <p
-          className={`text-center text-sm w-[26ch] md:w-[32ch] lg:w-[34ch] xl:text-md 2xl:text-lg ${
+          className={`text-center text-sm w-[26ch] md:w-[32ch] lg:w-[28ch] xl:text-md 2xl:text-lg ${
             textColor || "text-white"
           }`}
         >

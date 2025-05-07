@@ -307,8 +307,8 @@ const CourseDetailPage = () => {
   ];
 
   return (
-    <div className="flex flex-col w-full bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
-      <Banner2 title="IAS Foundation Course (Prelims + Mains) – 12 Months">
+    <div className="flex flex-col w-full bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] overflow-x-hidden">
+      <Banner2 title="IAS Foundation Course ">
         <Link href={"/"}>Home</Link>
         <span>{">"}</span>
         <Link href={"/course"}>Courses</Link>
@@ -624,8 +624,11 @@ const CourseDetailPage = () => {
 
       <div className="padding-bx">
         <div className="screen space-y-2">
-          <div className="mx-auto w-max">
+          <div className="mx-auto w-max max-sm:hidden">
             <CommonHeading2 title="Frequently Asked Questions (FAQs)" />
+          </div>
+          <div className="mx-auto w-max hidden max-sm:block">
+            <CommonHeading2 title=" FAQs" />
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (

@@ -161,7 +161,7 @@ const TestSeriesCard = ({
       <div
         className={`${
           isActive ? "bg-lightorange" : "bg-white"
-        } h-1/2 flex-center relative transition-all duration-300`}
+        } h-1/2 flex items-center relative transition-all duration-300`}
       >
         <div
           className={`w-full h-7  rounded-[62%] absolute -top-3 ${
@@ -169,7 +169,7 @@ const TestSeriesCard = ({
           }`}
         ></div>
         <p
-          className={` text-xl font-semibold pl-5 text-center ${
+          className={` text-xl font-semibold pl-5 text-center w-full  ${
             isActive ? "text-white" : "text-orange"
           }`}
         >

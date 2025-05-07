@@ -12,11 +12,13 @@ export const CommonHeading2 = ({
 }) => {
   return (
     <hgroup className="space-y-3">
-      <h2 className="text-primaryred heading2 relative  w-max">
-        <span className={`relative z-10 mb-5 inline-block ${className}`}>
+      <div className="text-primaryred heading2 relative  w-max">
+        <span
+          className={`relative  text-center leading-7 z-10 mb-5 inline-block ${className}`}
+        >
           {title}
         </span>
-        <div className="h-20 w-20 md:h-32 md:w-32 absolute top-1/2 -translate-y-1/2 -right-20 -translate-x-1/2">
+        <div className="h-20 max-sm:hidden w-20 md:h-32 md:w-32 absolute top-1/2 -translate-y-1/2 -right-20 -translate-x-1/2">
           <Image
             src={"/images/icons/button-style.svg"}
             alt="style-1"
@@ -25,7 +27,7 @@ export const CommonHeading2 = ({
             className="h-full w-full"
           />
         </div>
-      </h2>
+      </div>
       {desc ?? <p className="text-lg w-[95%]">{desc}</p>}
     </hgroup>
   );

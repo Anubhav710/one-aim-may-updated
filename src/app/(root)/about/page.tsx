@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const AboutUs = () => {
   return (
-    <main className="w-full bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
+    <main className="w-full bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] overflow-x-clip">
       <Banner title="About Us" desp="Empowering Lives, One Step at a Time">
         <Link href="/">Home</Link>
         <span>{">"}</span>

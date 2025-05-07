@@ -18,7 +18,7 @@ const StepItem = ({ number, title, isReversed = false }: StepItemProps) => {
     >
       <div className="flex flex-col relative w-full  md:w-auto order-2 md:order-none">
         <div className="relative mb-3">
-          <h1 className="bg-white w-max py-2 px-4 text-lg font-medium shadow-sm">
+          <h1 className="bg-white w-max py-2 px-4 text-lg font-medium shadow-sm max-sm:text-sm">
             {title}
           </h1>
           {/* <div className="w-0 h-0 border-l-[10px] border-l-transparent border-t-[15px] border-t-white border-r-[10px] border-r-transparent absolute bottom-[-15px] left-0 transform"></div> */}
