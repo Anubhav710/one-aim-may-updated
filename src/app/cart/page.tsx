@@ -113,7 +113,7 @@ const Cart = () => {
                   <p className="font-semibold">Use Code: AIM10</p>
                 </div>
 
-                <div className="mt-4 relative">
+                <div className="mt-4 relative z-40">
                   <div className="h-10 border-t border-dashed border-white opacity-30 my-3"></div>
                   <input
                     type="text"
@@ -125,7 +125,7 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="absolute left-0 bottom-0">
+                <div className="absolute z-10 left-0 bottom-0">
                   <Image
                     src="/images/cart/cart.png"
                     alt="course-bg"
