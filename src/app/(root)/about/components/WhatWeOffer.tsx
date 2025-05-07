@@ -15,8 +15,7 @@ import { CommonHeading2 } from "@/components/common/CommonHeading2";
 const offerings = [
   {
     title: "IAS Preparation",
-    description:
-      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
+    description: "Prepare for the UPSC exams with comprehensive ",
     image: "/images/about/we-offer.png",
     bgImage: "/images/bg/about-bg.png",
     bgColor: "bg-white",
@@ -24,8 +23,7 @@ const offerings = [
   },
   {
     title: "IAS Preparation",
-    description:
-      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
+    description: "Prepare for the UPSC exams with comprehensive ",
     image: "/images/about/we-offer.png",
     bgImage: "/images/bg/about-bg-2.png",
     bgColor: "bg-white",
@@ -33,8 +31,7 @@ const offerings = [
   },
   {
     title: "IAS Preparation",
-    description:
-      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
+    description: "Prepare for the UPSC exams with comprehensive ",
     image: "/images/about/we-offer.png",
     bgImage: "/images/bg/about-bg.png",
     bgColor: "bg-white",
@@ -42,8 +39,7 @@ const offerings = [
   },
   {
     title: "IAS Preparation",
-    description:
-      "Prepare for the UPSC exams with comprehensive courses and mentorship.",
+    description: "Prepare for the UPSC exams with comprehensive ",
     image: "/images/about/we-offer.png",
     bgImage: "/images/bg/about-bg-2.png",
     bgColor: "bg-white",
@@ -204,7 +200,7 @@ const WhatWeOfferCard: React.FC<WhatWeOfferCardProps> = ({
           />
         </div>
         <p
-          className={`text-center text-sm w-[26ch] md:w-[32ch] lg:w-[28ch] xl:text-md 2xl:text-lg ${
+          className={`text-center text-sm w-[20ch] md:w-[28ch] lg:w-[28ch] xl:text-md 2xl:text-lg ${
             textColor || "text-white"
           }`}
         >
