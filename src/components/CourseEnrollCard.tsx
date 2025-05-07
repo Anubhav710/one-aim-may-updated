@@ -105,7 +105,9 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             </div>
           </div>
           <div className="w-max mx-auto pt-3">
-            <Button className="text-white !px-24 w-full">Enroll now</Button>
+            <Button href="/cart" className="text-white !px-24 w-full">
+              Enroll now
+            </Button>
           </div>
         </div>
       </div>

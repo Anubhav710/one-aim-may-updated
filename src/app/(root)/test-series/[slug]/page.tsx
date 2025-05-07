@@ -25,7 +25,7 @@ const testData = {
   overview:
     "Get the real exam experience with our UPSC Test Series. Designed by experts, our test series ensures comprehensive coverage of Prelims, Mains, and Optional subjects with in-depth solutions, performance analysis, and personalized feedback.",
   price: 2550,
-  mainDescription: "Master the Art of Essay Writing for UPSC Prelims & Mains",
+  mainDescription: "Master the Art of Essay Writing",
   inclusions: [
     "Topic-Wise Essay Tests - Covers diverse themes, including current affairs & philosophical topics.",
     "Model Answers & Structure Guidance – Learn how to frame and present compelling arguments.",
@@ -103,7 +103,7 @@ export default function TestSeriesDetail() {
   // In a real app, you would fetch data based on the slug
 
   return (
-    <div className="bg-[#FFF7F0]">
+    <div className="bg-[#FFF7F0] overflow-x-clip">
       <Banner
         title="Prelims Test Series"
         desp="Your Ultimate UPSC Exam Practice Hub"
