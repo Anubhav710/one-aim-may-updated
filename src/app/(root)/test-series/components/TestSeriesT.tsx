@@ -188,7 +188,7 @@ const TestSeriesT: React.FC = () => {
                 <div
                   className={`cursor-pointer px-5 py-2 rounded-lg text-sm transition-all duration-200 text-black ${
                     data.id === activeTestSeries
-                      ? "relative after:content-[''] after:absolute after:bottom-0 after:left-0w after:w-[100%]  after:h-[3px] after:bg-gradient-to-tr after:from-[#FFA4A8] after:to-[#FFC593] after:rounded-full"
+                      ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] text-white shadow-md"
                       : "bg-[#FEE8D5] hover:bg-[#FEE8D5]/20"
                   }`}
                 >
