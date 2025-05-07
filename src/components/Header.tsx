@@ -288,7 +288,7 @@ const Header = () => {
       {isMenuOpen && (
         <div
           ref={mobileMenuRef}
-          className="fixed top-0 bottom-0 right-0 h-screen w-[80%] bg-white shadow-lg z-50 overflow-y-auto"
+          className="fixed top-0 right-0 w-[80%] min-h-screen bg-white shadow-lg z-[999] overflow-y-auto"
         >
           <div className="p-4 flex justify-end">
             <button
@@ -347,6 +347,33 @@ const Header = () => {
                 {t("auth.login")}
               </Button> */}
             </div>
+
+            {isLogIn && (
+              <div className="flex items-center justify-between border-t border-b py-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 bg-[#FF7B07]/20 rounded-full flex-center overflow-hidden">
+                    <Image
+                      src="/images/team/NarendraRajSingh.png"
+                      alt="user"
+                      width={40}
+                      height={40}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                  <span className="text-gray-700 font-medium">My Account</span>
+                </div>
+
+                <Link
+                  href="/cart"
+                  className="flex items-center gap-2 bg-[#FF7B07]/20 hover:bg-primaryred hover:text-white duration-300 ease-in-out rounded-full p-2 relative"
+                >
+                  <BagIcon className="h-6 w-6" />
+                  <span className="h-5 w-5 text-white absolute bg-[#DC8940] -top-1 rounded-full -right-1 text-xs flex items-center justify-center">
+                    3
+                  </span>
+                </Link>
+              </div>
+            )}
 
             <div className="pt-4">
               <div className="flex items-center gap-x-2 mb-3">
