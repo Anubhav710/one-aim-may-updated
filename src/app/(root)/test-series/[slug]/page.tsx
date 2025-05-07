@@ -105,7 +105,7 @@ export default function TestSeriesDetail() {
   return (
     <div className="bg-[#FFF7F0]">
       <Banner
-        title="Prelims Test Series – Essay Writing Test"
+        title="Prelims Test Series"
         desp="Your Ultimate UPSC Exam Practice Hub"
       >
         <Link href="/">Home</Link>
