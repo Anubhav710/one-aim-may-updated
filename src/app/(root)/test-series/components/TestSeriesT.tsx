@@ -169,7 +169,7 @@ const TestSeriesT: React.FC = () => {
                 spaceBetween: 10,
               },
               640: {
-                slidesPerView: 3,
+                slidesPerView: 1,
                 spaceBetween: 15,
               },
               1024: {

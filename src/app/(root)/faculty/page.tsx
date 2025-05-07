@@ -217,7 +217,7 @@ const FacultyPage = () => {
         <Link href="/" className="hover:text-[#FF7B07]">
           Home
         </Link>
-        <span>/</span>
+        <span>{">"}</span>
         <span className="text-[#FF7B07]">Faculty</span>
       </Banner>
 
