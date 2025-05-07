@@ -340,12 +340,12 @@ const Header = () => {
                 placeholder={locale === "en" ? "English" : "Hindi"}
                 className="w-44"
               />
-              <Button
+              {/* <Button
                 href="/auth/login"
                 className="w-full !py-3 !px-8 hover:bg-primaryred !text-white"
               >
                 {t("auth.login")}
-              </Button>
+              </Button> */}
             </div>
 
             <div className="pt-4">
