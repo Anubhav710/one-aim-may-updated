@@ -30,7 +30,7 @@ const Testimonials = () => {
   const nextButtonClass = "custom-next-button";
 
   return (
-    <section className="testimonial-gradient-bg bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] relative overflow-hidden padding-tx">
+    <section className="testimonial-gradient-bg overflow-hidden bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] relative  padding-tx">
       {/* Decorative elements */}
       <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-[#c1151b]/5 blur-2xl"></div>
       <div className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-[#c1151b]/5 blur-2xl"></div>
@@ -70,7 +70,7 @@ const Testimonials = () => {
               1024: { slidesPerView: 3, spaceBetween: 20 },
               1200: { slidesPerView: 4, spaceBetween: 20 },
             }}
-            className="!pt-20"
+            className="!pt-20 !pb-10  md:!px-10 !px-5"
           >
             {[...Array(7)].map((_, index) => (
               <SwiperSlide key={index}>

@@ -3,8 +3,14 @@ import TeamCard from "@/components/ui/TeamCard";
 
 import Banner from "@/components/common/Banner";
 import Link from "next/link";
-import { EducationIcon } from "@/components/icons";
+import {
+  EducationIcon,
+  IndustryIcon,
+  PassionIcon,
+  TeachingIcon,
+} from "@/components/icons";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import Banner2 from "@/components/common/Banner2";
 
 const teamInfo = [
   {
@@ -195,17 +201,17 @@ const facultyHighlights = [
   {
     id: 2,
     title: "Personalized teaching approach",
-    icon: <EducationIcon />,
+    icon: <TeachingIcon />,
   },
   {
     id: 3,
     title: "Industry experts with real-world knowledge",
-    icon: <EducationIcon />,
+    icon: <IndustryIcon />,
   },
   {
     id: 4,
     title: "Passionate about student success",
-    icon: <EducationIcon />,
+    icon: <PassionIcon />,
   },
 ];
 
@@ -222,7 +228,7 @@ const FacultyPage = () => {
       </Banner>
 
       {/* Faculty Intro Section */}
-      <section className="padding-tx">
+      <section className="padding-tx ">
         <div className="screen">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
@@ -238,7 +244,7 @@ const FacultyPage = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 grid-cols-1 gap-4">
+            <div className="grid sm:grid-cols-2 grid-cols-1 gap-9 max-sm:gap-14">
               {facultyHighlights.map((highlight, index) => (
                 <div
                   key={highlight.id}
@@ -278,26 +284,28 @@ const FacultyPage = () => {
       </section>
 
       {/* Join Our Faculty Section */}
-      <section className="padding-bx hidden md:block">
-        <div className="box p-5 flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
-          <CommonHeading2
-            title="Join Our Faculty"
-            desc="Are you passionate about teaching and shaping the future? We're
+      <div>
+        <section className="padding-bx hidden md:block">
+          <div className="box p-5 flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
+            <CommonHeading2
+              title="Join Our Faculty"
+              desc="Are you passionate about teaching and shaping the future? We're
               always looking for talented educators to join our team. If you're
               interested, send your resume to [Insert HR Email]."
-          />
-        </div>
-      </section>
-      <section className="padding-bx block md:hidden">
-        <div className=" p-5 bg-[#f8e7d9] rounded-2xl flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
-          <CommonHeading2
-            title="Join Our Faculty"
-            desc="Are you passionate about teaching and shaping the future? We're
+            />
+          </div>
+        </section>
+        <section className="padding-bx block md:hidden">
+          <div className=" p-5 bg-[#f8e7d9] rounded-2xl flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
+            <CommonHeading2
+              title="Join Our Faculty"
+              desc="Are you passionate about teaching and shaping the future? We're
               always looking for talented educators to join our team. If you're
               interested, send your resume to [Insert HR Email]."
-          />
-        </div>
-      </section>
+            />
+          </div>
+        </section>
+      </div>
     </main>
   );
 };

@@ -40,11 +40,12 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-12">
-      <div className=" w-max mx-auto">
-        <CommonHeading2 title="Reach out to us" />
+    <div>
+      <div className="w-max mx-auto max-sm:w-full">
+        <CommonHeading2 title="Reach out to us – we’d love to hear from you." />
       </div>
-      <div className="flex flex-col md:flex-row gap-6  rounded-xl screen">
+
+      <div className="flex flex-col md:flex-row gap-6  rounded-xl">
         {/* Left: Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -54,7 +55,7 @@ export default function ContactForm() {
             type="text"
             placeholder="Name"
             {...register("name", { required: "Name is required" })}
-            className="w-full p-4 border rounded-md border-orange/50 focus:border-orange  bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
+            className="w-full bg-[rgba(255,123,7,0.04)] p-4 border rounded-xl border-orange/50 focus:border-orange   text-gray-700 focus:outline-none   transition-colors duration-200"
           />
           {errors.name && (
             <p className="text-red-500 text-sm">
@@ -72,7 +73,7 @@ export default function ContactForm() {
                 message: "Enter a valid email",
               },
             })}
-            className="w-full p-4 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
+            className="w-full p-4 border rounded-xl border-orange/50 focus:border-orange bg-[rgba(255,123,7,0.04)] text-gray-700 focus:outline-none   transition-colors duration-200"
           />
           {errors.email && (
             <p className="text-red-500 text-sm">
@@ -83,7 +84,7 @@ export default function ContactForm() {
           <div className="relative">
             <select
               {...register("subject", { required: "Subject is required" })}
-              className="w-full p-4 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none  appearance-none cursor-pointer  transition-colors duration-200"
+              className="w-full p-4 border rounded-xl border-orange/50 focus:border-orange bg-[rgba(255,123,7,0.04)] text-gray-700 focus:outline-none  appearance-none cursor-pointer  transition-colors duration-200"
             >
               <option value="" disabled hidden>
                 Select a Subject
@@ -107,7 +108,8 @@ export default function ContactForm() {
           <textarea
             placeholder="Write a message .."
             {...register("message", { required: "Message is required" })}
-            className="w-full p-4 h-32 border rounded-md border-orange/50 focus:border-orange bg-white text-gray-700 focus:outline-none   transition-colors duration-200"
+            className="w-full p-4 border rounded-xl border-orange/50 focus:border-orange bg-[rgba(255,123,7,0.04)] text-gray-700 focus:outline-none   transition-colors duration-200"
+            rows={8}
           ></textarea>
           {errors.message && (
             <p className="text-red-500 text-sm">
@@ -135,11 +137,11 @@ export default function ContactForm() {
             src="/images/contact/contact-us.png"
             alt="Speaker"
             width={500}
-            height={300}
+            height={1200}
             className="w-full rounded-lg object-cover"
           />
           <div className="bg-white p-7 rounded-xl shadow-sm space-y-5">
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                 <FaPhoneAlt className="h-[45%] w-[45%] text-[#FF8315]" />
               </div>
@@ -148,7 +150,7 @@ export default function ContactForm() {
                 <p className="text-orange">+91 8079064769</p>
               </div>
             </div>
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
               <div>
                 <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                   <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
@@ -162,7 +164,7 @@ export default function ContactForm() {
                 </p>
               </div>
             </div>
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[#FF7B07]/5">
+            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
               <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
                 <MdEmail className="h-[45%] w-[45%] text-[#FF8315]" />
               </div>

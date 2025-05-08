@@ -1,12 +1,8 @@
 "use client";
-import { CommonHeading2 } from "@/components/common/CommonHeading2";
-
+import CommonHeading from "@/components/ui/CommonHeading";
 import FeaturedCard from "@/components/ui/FeaturedCard";
+
 import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { Navigation } from "swiper/modules";
 
 // Define TypeScript interfaces
 interface TestSeries {
@@ -136,122 +132,32 @@ const TestSeriesT: React.FC = () => {
   };
 
   return (
-    <div className="screen padding-yx">
+    <div className="screen padding-yx space-y-12">
       <div className="w-max mx-auto">
-        <CommonHeading2 title="Test Series" />
+        <CommonHeading title="Test Series" />
       </div>
-      <div className="space-y-12">
-        <div className="relative max-sm:px-7 pl-14">
-          {testSeries.length > 0 && (
-            <button
-              id="custom-prev-button"
-              className=" group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
-              aria-label="Previous slide"
-            >
-              <FaChevronLeft className="text-primaryred group-hover:text-white" />
-            </button>
-          )}
-          <Swiper
-            modules={[Navigation]}
-            slidesPerView="auto"
-            spaceBetween={10}
-            navigation={
-              testSeries.length > 4
-                ? {
-                    nextEl: "#custom-next-button",
-                    prevEl: "#custom-prev-button",
-                  }
-                : false
-            }
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-              640: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-              },
-              1024: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
-            }}
-            className="px-5 md:px-10"
+      <div className="flex gap-7 mx-auto w-max">
+        {testSeries.map((data) => (
+          <div
+            key={data.id}
+            onClick={() => setActiveTestSeries(data.id)}
+            className="cursor-pointer"
           >
-            {testSeries.map((data) => (
-              <SwiperSlide
-                key={data.id}
-                className="!w-auto"
-                onClick={() => setActiveTestSeries(data.id)}
-              >
-                <div
-                  className={`cursor-pointer px-5 py-2 rounded-lg text-sm transition-all duration-200 text-black ${
-                    data.id === activeTestSeries
-                      ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] text-white shadow-md"
-                      : "bg-[#FEE8D5] hover:bg-[#FEE8D5]/20"
-                  }`}
-                >
-                  {data.label}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          {testSeries.length > 0 && (
-            <button
-              id="custom-prev-button"
-              className=" group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
-              aria-label="Next slide"
-            >
-              <FaChevronRight className="text-primaryred group-hover:text-white" />
-            </button>
-          )}
-        </div>
-
-        <div className="w-full">
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={20}
-            breakpoints={{
-              320: {
-                slidesPerView: 1,
-                spaceBetween: 2,
-              },
-              480: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 10,
-              },
-              991: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-              1200: {
-                slidesPerView: 3,
-                spaceBetween: 20,
-              },
-            }}
-            grabCursor={true}
-            className="w-full"
-          >
-            {courseContent[activeTestSeries]?.map((course) => (
-              <SwiperSlide key={course.id}>
-                <FeaturedCard href="/test-series/1" {...course} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+            <h1 className="text-xl">{data.label}</h1>
+            <div
+              className={`h-[3px] w-[80%] mx-auto ${
+                data.id === activeTestSeries
+                  ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] rounded-full transition-all duration-300"
+                  : ""
+              }`}
+            ></div>
+          </div>
+        ))}
+      </div>
+      <div className="grid-4">
+        {courseContent[activeTestSeries]?.map((course) => (
+          <FeaturedCard key={course.id} {...course} href="/test-series/1" />
+        ))}
       </div>
     </div>
   );

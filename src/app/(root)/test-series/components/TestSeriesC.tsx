@@ -51,8 +51,8 @@ const TestSeriesC = () => {
   };
 
   return (
-    <div className="spadding-yx">
-      <div className="w-max mx-auto px-2">
+    <div>
+      <div className="w-max mx-auto ">
         <CommonHeading2 title=" Why Join Our UPSC Test Series?" />
       </div>
       <div className="relative px-12 max-sm:px-5 ">

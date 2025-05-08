@@ -99,7 +99,7 @@ const AddressPage = () => {
             </div>
           </div>
 
-          <div className="flex justify-end mt-6">
+          <div className="flex sm:justify-end max-sm:justify-center mt-6">
             <PButton href={"/cart/payment"}>Proceed</PButton>
           </div>
         </div>

@@ -154,7 +154,7 @@ const Header = () => {
               {socialLinks.map((link, index) => (
                 <li
                   key={index}
-                  className="bg-white rounded-full h-7 w-7 md:h-7 md:w-7 flex-center group hover:bg-primaryred hover:ring-[1.5px] hover:ring-white duration-300 ease-in-out cursor-pointer"
+                  className="bg-white rounded-full h-7 w-7 md:h-6 md:w-6 md:p-3.5 flex-center group hover:bg-primaryred hover:ring-[1.5px] hover:ring-white duration-300 ease-in-out cursor-pointer"
                 >
                   <a href={link.href}>{link.icon}</a>
                 </li>

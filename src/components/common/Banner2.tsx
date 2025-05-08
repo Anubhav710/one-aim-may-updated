@@ -6,11 +6,20 @@ interface Banner2Prop {
   desp?: string;
   children?: React.ReactNode;
   className?: string;
+  className2?: string;
 }
 
-const Banner2 = ({ title, desp, children, className }: Banner2Prop) => {
+const Banner2 = ({
+  title,
+  desp,
+  children,
+  className,
+  className2,
+}: Banner2Prop) => {
   return (
-    <section className=" bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFE5E5] h-[30vh] flex-center space-y-4 relative  ">
+    <section
+      className={` bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFE5E5] h-[30vh] flex-center space-y-4 relative ${className2}`}
+    >
       <hgroup className="space-y-5">
         <h2 className="heading text-primaryred relative w-max  mx-auto">
           <h2 className={`relative z-20 ${className}`}>{title}</h2>{" "}

@@ -12,9 +12,9 @@ export const CommonHeading2 = ({
 }) => {
   return (
     <hgroup className="space-y-3">
-      <div className="text-primaryred heading2 relative  w-max">
+      <div className="text-primaryred heading2 relative    w-max max-sm:w-full ">
         <span
-          className={`relative  text-center leading-7 z-10 mb-5 inline-block ${className}`}
+          className={`relative text-center leading-7 z-10 w-full mb-10 inline-block break-words whitespace-normal overflow-wrap-break-word ${className}`}
         >
           {title}
         </span>

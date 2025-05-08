@@ -11,15 +11,13 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 
-import FAQ from "./common/FAQ";
-import CourseContentAccordion from "./common/CourseContentAccordion";
 import Banner from "./common/Banner";
 import DemoClass from "@/app/(root)/course/components/DemoClass";
 import CourseEnrollCard from "./CourseEnrollCard";
 import CommonHeading from "./ui/CommonHeading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-import Courses from "@/app/(root)/course/page";
+
 import {
   BiBook,
   BiFile,
@@ -144,28 +142,49 @@ const CourseDetailPage = () => {
   // Sample demo class videos
   const demoVideos = [
     {
-      id: "v1",
-      title: "Introduction to UPSC Exam Structure",
-      thumbnail: "/images/course/demo-class.jpg",
-      videoUrl: "#",
+      id: "1",
+      title: "GS Prelims + Mains Comprehensive Course",
+      description:
+        "Comprehensive preparation covering all UPSC syllabus topics with structured learning modules and regular tests.",
+      duration: "12 Months",
+      instructor: "Dr. Rajesh Sharma (Ex-IRS)",
+      imageSrc: "/images/course/feature-course.png",
     },
     {
-      id: "v2",
-      title: "Indian Polity Overview",
-      thumbnail: "/images/course/demo-thumb-1.jpg",
-      videoUrl: "#",
+      id: "2",
+      title: "Complete UPSC CSE Foundation Course",
+      description:
+        "A structured approach to building your UPSC preparation from ground up with focus on fundamentals and concept clarity.",
+      duration: "10 Months",
+      instructor: "Dr. Meeta Sharma",
+      imageSrc: "/images/course/feature-course.png",
     },
     {
-      id: "v3",
-      title: "Geography for UPSC",
-      thumbnail: "/images/course/demo-thumb-2.jpg",
-      videoUrl: "#",
+      id: "3",
+      title: "Weekend Foundation Batch",
+      description:
+        "Perfect for working professionals, this course offers comprehensive weekend classes covering the entire UPSC syllabus.",
+      duration: "14 Months",
+      instructor: "Prof. Sunil Kumar",
+      imageSrc: "/images/course/feature-course.png",
     },
     {
-      id: "v4",
-      title: "Indian Economy Basics",
-      thumbnail: "/images/course/demo-thumb-3.jpg",
-      videoUrl: "#",
+      id: "4",
+      title: "Weekend Foundation Batch",
+      description:
+        "Perfect for working professionals, this course offers comprehensive weekend classes covering the entire UPSC syllabus.",
+      duration: "14 Months",
+      instructor: "Prof. Sunil Kumar",
+      imageSrc: "/images/course/feature-course.png",
+    },
+    {
+      id: "5",
+      title: "Weekend Foundation Batch",
+      description:
+        "Perfect for working professionals, this course offers comprehensive weekend classes covering the entire UPSC syllabus.",
+      duration: "14 Months",
+      instructor: "Prof. Sunil Kumar",
+      imageSrc: "/images/course/feature-course.png",
     },
   ];
 
@@ -317,11 +336,11 @@ const CourseDetailPage = () => {
       </Banner2>
 
       {/* Course Content Container */}
-      <div className="screen w-full flex flex-col md:flex-row gap-8">
+      <div className=" w-full flex flex-col md:flex-row  gap-8">
         {/* Left Content Column */}
-        <div className="w-full flex flex-col padding-bx">
+        <div className="w-full flex flex-col padding-bottom">
           {/* Course Overview */}
-          <div className="flex flex-col lg:flex-row gap-5">
+          <div className="flex flex-col lg:flex-row gap-5 screen">
             <div className="space-y-10 w-full lg:w-2/3">
               <CommonHeading2
                 title="Course Overview"
@@ -447,47 +466,324 @@ const CourseDetailPage = () => {
           <DemoClass />
 
           {/* Faculty Section */}
-          <div className="mx-auto w-max padding-b">
-            <CommonHeading2 title="Faculty" />
+          <div>
+            <div className="mdl:flex hidden pb-16">
+              <div className=" ml-28 ">
+                <div className="h-[18rem] w-[18rem] rounded-full bg-white scale-150 relative left-16 overflow-hidden">
+                  <Image
+                    src={"/images/team/team.png"}
+                    alt=""
+                    width={1200}
+                    height={1200}
+                    className="h-full w-full object-cover object-top"
+                  />
+                </div>
+              </div>
+              <div className="w-[100%] bg-[#DC8940] pl-52 flex items-center 2xl:my-7">
+                <div className="   space-y-2">
+                  <h1 className="text-2xl font-bold text-white">
+                    Prof. Rajiv Bansal
+                  </h1>
+                  <div className="text-white flex flex-col md:flex-row md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Designation:
+                    </h5>
+                    <p> Senior Science Instructor</p>
+                  </div>
+                  <div className="text-white flex flex-col md:flex-row md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Experience:
+                    </h5>
+                    <p> 23 years</p>
+                  </div>
+                  <div className="text-white flex flex-col md:flex-row md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg ">
+                      Qualifications:
+                    </h5>
+                    <p> M.Sc. in Botany, B.Ed.</p>
+                  </div>
+                  <div className="text-white flex flex-col md:flex-row md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Specialization:
+                    </h5>
+                    <p> Science Education</p>
+                  </div>
+                  <div className="text-white flex gap-x-4 mt-4">
+                    <div className="flex items-center gap-x-3">
+                      <Link
+                        href="#"
+                        aria-label="Facebook"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="Twitter"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="LinkedIn"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                          <rect x="2" y="9" width="4" height="12"></rect>
+                          <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="Instagram"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                            ry="5"
+                          ></rect>
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* For Mobile View */}
+            <div className="screen mdl:hidden padding-bx">
+              <div className="h-[14rem] w-[14rem] rounded-full bg-white top-7 mx-auto relative"></div>
+              <div className="w-full bg-[#DC8940] py-10 rounded-xl">
+                <div className="space-y-2 pl-6 text-center">
+                  <h1 className="text-2xl font-bold text-white">
+                    Prof. Rajiv Bansal
+                  </h1>
+                  <div className="text-white flex flex-col  md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Designation:
+                    </h5>
+                    <p> Senior Science Instructor</p>
+                  </div>
+                  <div className="text-white flex flex-col  md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Experience:
+                    </h5>
+                    <p> 23 years</p>
+                  </div>
+                  <div className="text-white flex flex-col  md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg ">
+                      Qualifications:
+                    </h5>
+                    <p> M.Sc. in Botany, B.Ed.</p>
+                  </div>
+                  <div className="text-white flex flex-col  md:gap-x-2">
+                    <h5 className="text-white font-semibold text-lg">
+                      Specialization:
+                    </h5>
+                    <p> Science Education</p>
+                  </div>
+                  <div className="text-white  flex gap-x-4 mt-4">
+                    <div className="flex items-center gap-x-3  mx-auto">
+                      <Link
+                        href="#"
+                        aria-label="Facebook"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="Twitter"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="LinkedIn"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                          <rect x="2" y="9" width="4" height="12"></rect>
+                          <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                      </Link>
+                      <Link
+                        href="#"
+                        aria-label="Instagram"
+                        className="bg-white h-8 w-8 rounded-full flex items-center justify-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="text-[#DC8940] hover:text-gray-200"
+                        >
+                          <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                            ry="5"
+                          ></rect>
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <ProfileCards />
 
-          <p className="text-base md:text-xl text-center mt-12 md:mt-6 px-4 md:px-0">
-            Prof. <span className="text-primaryred">Rajiv Bansal</span> is a
-            renowned faculty for Indian Polity & Governance, with over 10 years
-            of experience in mentoring UPSC aspirants. A Ph.D. in Public
-            Administration from JNU, he has been a guiding force for many
-            successful IAS officers.
-            <span
-              className={`block overflow-hidden transition-all duration-500 ease-in-out ${
+          <div className="screen relative ">
+            <div
+              className={`w-full   absolute bottom-0 h-[60px] ${
                 showFullFacultyText
-                  ? "max-h-[500px] opacity-100 mt-1"
-                  : "max-h-0 opacity-0"
-              }`}
-            >
-              {" "}
-              Known for his concept-based teaching and exam-oriented approach,
-              he simplifies complex constitutional topics and governance issues
-              with real-world examples. He has authored several books on Indian
-              Polity that are widely recommended for UPSC preparation. His
-              lectures are known for clarity and depth, making him one of the
-              most sought-after faculty members at our institute. Students
-              particularly appreciate his ability to connect theoretical
-              concepts with current affairs and case studies.
-            </span>
-          </p>
-          <div className="text-center mt-2">
-            <button
-              onClick={() => setShowFullFacultyText(!showFullFacultyText)}
-              className="text-[#FF7B07] hover:underline focus:outline-none transition-colors duration-300 flex items-center gap-1 mx-auto"
-            >
-              {showFullFacultyText ? "Show Less" : "Show More"}
-              <FaChevronDown
-                className={`w-3 h-3 transition-transform ${
-                  showFullFacultyText ? "rotate-180" : ""
+                  ? "bg-transparent"
+                  : "bg-gradient-to-t from-[#FFF5EE] via-[#FFECDB]/70 to-[#FFF5EE] blur-xl"
+              }  left-0`}
+            ></div>
+            <p className="text-base md:text-xl text-center mt-12 md:mt-6 px-4 md:px-0 ">
+              Prof. <span className="text-primaryred">Rajiv Bansal</span> is a
+              renowned faculty for Indian Polity & Governance, with over 10
+              years of experience in mentoring UPSC aspirants. A Ph.D. in Public
+              Administration from JNU, he has been a guiding force for many
+              successful IAS officers.
+              <span
+                className={`block overflow-hidden transition-all duration-500 ease-in-out ${
+                  showFullFacultyText
+                    ? "max-h-[500px] opacity-100 mt-1"
+                    : "max-h-0 opacity-0"
                 }`}
-              />
-            </button>
+              >
+                {" "}
+                Known for his concept-based teaching and exam-oriented approach,
+                he simplifies complex constitutional topics and governance
+                issues with real-world examples. He has authored several books
+                on Indian Polity that are widely recommended for UPSC
+                preparation. His lectures are known for clarity and depth,
+                making him one of the most sought-after faculty members at our
+                institute. Students particularly appreciate his ability to
+                connect theoretical concepts with current affairs and case
+                studies.
+              </span>
+            </p>
+            <div className="text-center mt-2 relative z-10">
+              <button
+                onClick={() => setShowFullFacultyText(!showFullFacultyText)}
+                className="text-[#FF7B07] hover:underline focus:outline-none transition-colors duration-300 flex items-center gap-1 mx-auto"
+              >
+                {showFullFacultyText ? "Show Less" : "Show More"}
+                <FaChevronDown
+                  className={`w-3 h-3 transition-transform ${
+                    showFullFacultyText ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -535,91 +831,89 @@ const CourseDetailPage = () => {
         <div className="mx-auto w-max">
           <CommonHeading2 title="Related Courses" />
         </div>
-        <button
-          className="custom-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
-          aria-label="Previous slide"
-        >
-          <FaChevronLeft className="text-primaryred group-hover:text-white" />
-        </button>
-
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay, EffectFade]}
-          spaceBetween={20}
-          slidesPerView={3}
-          grabCursor={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          pagination={{
-            clickable: true,
-            el: ".swiper-pagination",
-            bulletClass: "swiper-pagination-bullet",
-            bulletActiveClass: "swiper-pagination-bullet-active",
-            type: "bullets",
-          }}
-          navigation={{
-            nextEl: ".custom-next-button",
-            prevEl: ".custom-prev-button",
-          }}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 2,
-            },
-            480: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            991: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            1200: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-          }}
-          style={{
-            padding: "0px 10px 50px 10px",
-          }}
-        >
-          {courses.map((course, index) => (
-            <SwiperSlide key={index}>
-              <div className=" transform transition-transform hover:scale-[1.02] duration-300">
-                <FeaturedCard
-                  title={course.course}
-                  description={course.description}
-                  features={course.features}
-                  price={course.price}
-                  href="/course"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-
-          <div className="swiper-pagination"></div>
-        </Swiper>
-        {/* Next Button  */}
-        <button
-          className="custom-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
-          aria-label="Next slide"
-        >
-          <FaChevronRight className="text-primaryred group-hover:text-white" />
-        </button>
+        {/* Course Content Cards Swiper */}
+        <div className="relative px-12 max-sm:px-7">
+          <button
+            className="custom-content-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+            aria-label="Previous slide"
+          >
+            <FaChevronLeft className="text-primaryred group-hover:text-white" />
+          </button>
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={20}
+            slidesPerView={1}
+            navigation={{
+              nextEl: ".custom-content-next-button",
+              prevEl: ".custom-content-prev-button",
+            }}
+            pagination={{
+              clickable: true,
+              el: ".swiper-pagination",
+              bulletClass: "swiper-pagination-bullet",
+              bulletActiveClass: "swiper-pagination-bullet-active",
+            }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 2,
+              },
+              480: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              991: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1200: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
+            style={{
+              padding: "0px 10px 50px 10px",
+            }}
+          >
+            {courses.length > 0 ? (
+              courses.map((course, id) => (
+                <SwiperSlide key={id}>
+                  <FeaturedCard buttonText="Enroll Now" href="/course/1" />
+                </SwiperSlide>
+              ))
+            ) : (
+              <SwiperSlide>
+                <div className="text-center py-12 h-64 flex flex-col items-center justify-center bg-gray-50 rounded-2xl">
+                  <p className="text-gray-500">
+                    No courses available in this category yet.
+                  </p>
+                  <button className="mt-4 bg-[#c1151b] text-white px-6 py-2 rounded-full hover:bg-[#a61016] transition-colors">
+                    Request This Course
+                  </button>
+                </div>
+              </SwiperSlide>
+            )}
+          </Swiper>
+          <div className="swiper-pagination flex justify-center mt-5"></div>
+          <button
+            className="custom-content-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+            aria-label="Next slide"
+          >
+            <FaChevronRight className="text-primaryred group-hover:text-white" />
+          </button>
+        </div>
       </div>
 
       <div className="padding-bx">

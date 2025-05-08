@@ -12,6 +12,7 @@ import {
 import Banner from "@/components/common/Banner";
 import CourseEnrollCard from "@/components/CourseEnrollCard";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import Banner2 from "@/components/common/Banner2";
 
 // Sample test data - in a real app, you would fetch this based on the slug
 const testData = {
@@ -104,16 +105,30 @@ export default function TestSeriesDetail() {
 
   return (
     <div className="bg-[#FFF7F0] overflow-x-clip">
-      <Banner
-        title="Prelims Test Series"
-        desp="Your Ultimate UPSC Exam Practice Hub"
+      <section
+        className={` bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] h-[40vh] flex-center space-y-4 relative `}
       >
-        <Link href="/">Home</Link>
-        <span>{">"}</span>
-        <Link href="/test-series">Test Series</Link>
-        <span>{">"}</span>
-        <span className="text-primaryred"> {testData.title}</span>
-      </Banner>
+        <hgroup className="space-y-5">
+          <h2 className="heading text-primaryred relative w-max  mx-auto">
+            <h2 className={`relative z-20 `}>Prelims Test Series</h2>{" "}
+            <Image
+              src={"/images/icons/button-style.svg"}
+              alt="style"
+              width={140}
+              height={120}
+              className="absolute top-5 right-5"
+            />
+          </h2>
+        </hgroup>
+        {/* Breadcrumbs */}
+        <div className="flex items-center gap-2 text-sm">
+          <Link href="/">Home</Link>
+          <span>{">"}</span>
+          <Link href="/test-series">Test Series</Link>
+          <span>{">"}</span>
+          <span className="text-primaryred"> {testData.title}</span>
+        </div>
+      </section>
 
       {/* Main Content */}
       <div className="padding-yx">
@@ -126,7 +141,7 @@ export default function TestSeriesDetail() {
 
               {/* Main Description */}
               <div className="mb-10">
-                <h2 className="text-primaryred heading2 relative  w-[32ch]">
+                <h2 className="text-primaryred heading2 relative w-max">
                   <span className={`relative z-10 mb-5 inline-block }`}>
                     {testData.mainDescription}
                   </span>

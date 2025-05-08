@@ -14,7 +14,7 @@ const ContactUs = () => {
         <span className="text-primaryred"> Contact Us</span>
       </Banner>
 
-      <div className="padding-tx">
+      <div className="padding-yx">
         <ContactForm />
       </div>
       <div className="padding-bx">

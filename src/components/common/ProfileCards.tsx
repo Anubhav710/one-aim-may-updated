@@ -5,19 +5,16 @@ import Image from "next/image";
 
 export const ProfileCards = () => {
   return (
-    <div className="relative w-full px-4 md:px-0">
-      <div className="flex flex-col md:flex-row">
-        <div className="h-60 w-60 md:h-80 md:w-80 rounded-full relative overflow-hidden mx-auto md:mx-0 md:left-36">
-          <Image
-            src="/images/team/Dikshakashyap.png"
-            alt="faculty"
-            width={1200}
-            height={1200}
-            className="w-full h-full object-cover"
-          />
+    <div className="relative w-full ">
+      <div className="h-[35vh] bg-red-400 relative">
+        <div>
+          <div className="h-40 w-40 rounded-full"></div>
         </div>
-        <div className="bg-[#DC8940] w-full md:w-[70%] rounded-xl md:rounded-r-2xl md:rounded-l-none p-6 md:pl-40 my-4 space-y-5 flex items-center">
-          <div className="w-full space-y-2">
+        <div className="w-[70%] h-full bg-purple-700 flex items-center ml-auto left-24">
+          <div className="   space-y-2">
+            <h1 className="text-2xl font-bold text-white">
+              Prof. Rajiv Bansal
+            </h1>
             <div className="text-white flex flex-col md:flex-row md:gap-x-2">
               <h5 className="text-white font-semibold text-lg">Designation:</h5>
               <p> Senior Science Instructor</p>

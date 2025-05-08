@@ -5,7 +5,12 @@ import { FaPlay } from "react-icons/fa";
 import Footer from "@/components/Footer";
 import Banner from "@/components/common/Banner";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
-import { EducationIcon } from "@/components/icons";
+import {
+  ClockIcon2,
+  EducationIcon,
+  SalaryIcon,
+  TargetIcon,
+} from "@/components/icons";
 import Banner2 from "@/components/common/Banner2";
 import Button from "@/components/ui/Button";
 
@@ -15,19 +20,19 @@ const CareerPage = () => {
       id: 1,
       title: "Impactful Work",
       description: "Shape the future of civil servants through education",
-      icon: <EducationIcon />,
+      icon: <TargetIcon />,
     },
     {
       id: 2,
       title: "Competitive Salary",
       description: "Attractive compensation and benefits",
-      icon: <EducationIcon />,
+      icon: <SalaryIcon />,
     },
     {
       id: 3,
       title: "Flexible Work Options",
       description: "Balance professional and personal life",
-      icon: <EducationIcon />,
+      icon: <ClockIcon2 />,
     },
     {
       id: 4,
@@ -95,7 +100,7 @@ const CareerPage = () => {
   ];
 
   return (
-    <div className="bg-[#FFF7F0] min-h-screen bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
+    <div className="bg-[#FFE6D0] min-h-screen bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
       {/* Breadcrumb */}
       <Banner title="Career" desp="Join Our Team & Be a Part of One Aim!">
         <div className="flex items-center text-sm">
@@ -147,21 +152,23 @@ const CareerPage = () => {
           <div className="mx-auto w-max">
             <CommonHeading2 title="Why Work with Us?" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mdl:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mdl:grid-cols-5 gap-4 bg-[#FFE6D0]">
             {benefits.map((benefit, index) => (
               <div
                 key={benefit.id}
-                className={`px-5 py-16 rounded-lg text-center ${"bg-[#FFE6D0] hover:bg-lightorange hover:text-white hover:scale-110 duration-500 transition-all hover:shadow-[0_0_10px_10px_rgba(243,187,138,40)]"}`}
+                className={`px-5 py-16 rounded-lg text-center ${"bg-[#FFE6D0] group hover:bg-lightorange  hover:scale-110 duration-500 transition-all hover:shadow-[0_0_10px_10px_rgba(243,187,138,0.6)]"}`}
               >
                 <div className="h-10 flex justify-center mb-3">
-                  <div className="rounded-full  flex items-center justify-center">
+                  <div className="rounded-full  flex items-center justify-center group-hover:text-white text-orange duration-300 transition-all">
                     {benefit.icon}
                   </div>
                 </div>
-                <h3 className="font-medium sm:text-lg text-sm mb-1">
+                <h3 className="font-medium sm:text-lg text-sm mb-1 group-hover:text-white text-black duration-300 transition-all">
                   {benefit.title}
                 </h3>
-                <p className="text-xs sm:text-base">{benefit.description}</p>
+                <p className="text-xs sm:text-base group-hover:text-white text-black duration-300 transition-all">
+                  {benefit.description}
+                </p>
               </div>
             ))}
           </div>

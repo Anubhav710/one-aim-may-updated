@@ -384,7 +384,7 @@ const Course: React.FC = () => {
 
   return (
     <section id="course" className="bg-[#FFF4D5]/40 padding-yx">
-      <div className="screen">
+      <div className="screen ">
         <div>
           <CommonHeading2 title="Our Courses" />
           <div className="space-y-12">
