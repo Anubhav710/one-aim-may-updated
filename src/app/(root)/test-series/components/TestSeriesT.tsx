@@ -136,7 +136,7 @@ const TestSeriesT: React.FC = () => {
       <div className="w-max mx-auto">
         <CommonHeading title="Test Series" />
       </div>
-      <div className="flex gap-7 mx-auto w-max">
+      <div className="flex max-sm:flex-col gap-7 mx-auto w-max">
         {testSeries.map((data) => (
           <div
             key={data.id}
@@ -145,7 +145,7 @@ const TestSeriesT: React.FC = () => {
           >
             <h1 className="text-xl">{data.label}</h1>
             <div
-              className={`h-[3px] w-[80%] mx-auto ${
+              className={`h-[3px] w-[80%] sm:mx-auto  ${
                 data.id === activeTestSeries
                   ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] rounded-full transition-all duration-300"
                   : ""
