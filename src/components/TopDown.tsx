@@ -34,7 +34,7 @@ const TopDown = () => {
 
   return (
     <div
-      className={`fixed bottom-5 right-5 bg-primaryred w-14 h-14 z-[99] max-sm:w-10 max-sm:h-10 rounded-full shadow-lg transition-all duration-300 ${
+      className={`fixed bottom-5 right-5 bg-primaryred w-14 h-14 z-[80] max-sm:w-10 max-sm:h-10 rounded-full shadow-lg transition-all duration-300 ${
         isVisible
           ? "opacity-100 scale-100"
           : "opacity-0 scale-75 pointer-events-none"

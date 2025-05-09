@@ -35,7 +35,7 @@
   font-weight: bold;
 }
 .heading2 {
-  font-size: clamp(1.2rem, 2.5vw, 5.2rem);
+  font-size: clamp(1.7rem, 2.5vw, 5.2rem);
   line-height: clamp(
     1.2rem,
     2.5vw,

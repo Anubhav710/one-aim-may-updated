@@ -190,16 +190,16 @@ const CareerPage = () => {
                     : "h-max mt-auto"
                 } bg-white p-6 rounded-t-3xl shadow-lg`}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-orange mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-orange mb-2 xl:text-3xl">
                   {job.title}
                 </h3>
-                <p className="text-sm mb-4">{job.location}</p>
+                <p className="mb-4">{job.location}</p>
 
                 <div className="mb-4">
                   <h4 className="text-base sm:text-lg font-semibold mb-2">
                     Responsibilities:
                   </h4>
-                  <ul className={` text-xs space-y-1 text-[0.8rem] md:text-md`}>
+                  <ul className={` text-xs space-y-1  sm:text-[0.9rem]`}>
                     {job.responsibilities.map((item, idx) => (
                       <li key={idx} className="flex items-start">
                         <span
@@ -217,7 +217,7 @@ const CareerPage = () => {
                   <h4 className="text-base sm:text-lg font-semibold mb-2">
                     Requirements:
                   </h4>
-                  <ul className="text-xs space-y-1 text-[0.8rem] md:text-md">
+                  <ul className="text-xs space-y-1 text-[0.8rem] md:text-[0.9rem]">
                     {job.requirements.map((item, idx) => (
                       <li key={idx} className="flex items-start">
                         <span
@@ -238,14 +238,14 @@ const CareerPage = () => {
 
       {/* Career Application Form */}
       <section className="padding-bx">
-        <div className="screen">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10 text-[#C1151B] text-center">
-            Career Application Form
-          </h2>
-          <form className="max-w-3xl mx-auto bg-white py-6 px-4 sm:px-8 md:px-12 rounded-lg">
+        <div className="screen ">
+          <div className="w-max mx-auto">
+            <CommonHeading2 title="            Career Application Form" />
+          </div>
+          <form className=" bg-white py-6 px-4 sm:px-8 md:px-12 rounded-lg">
             {/* Personal Details */}
             <div className="mb-8">
-              <h3 className="text-[#FF7B07] text-lg sm:text-xl font-semibold mb-4">
+              <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Personal Details
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -311,7 +311,7 @@ const CareerPage = () => {
 
             {/* Experience & Qualification */}
             <div className="mb-8">
-              <h3 className="text-[#FF7B07] text-lg sm:text-xl font-semibold mb-4">
+              <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Experience & Qualification
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -389,7 +389,7 @@ const CareerPage = () => {
 
             {/* Additional Information */}
             <div className="mb-8">
-              <h3 className="text-[#FF7B07] text-lg sm:text-xl font-semibold mb-4">
+              <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Availability & Additional Information
               </h3>
               <div className="grid grid-cols-1 gap-4">
@@ -413,7 +413,7 @@ const CareerPage = () => {
 
             {/* Agreement */}
             <div className="mb-8">
-              <h3 className="text-[#FF7B07] text-lg sm:text-xl font-semibold mb-4">
+              <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Agreement & Consent
               </h3>
               <div className="flex items-start mb-6">
@@ -426,7 +426,9 @@ const CareerPage = () => {
             </div>
 
             <div className="flex justify-center">
-              <Button className="text-white !py-2 !px-7">Submit</Button>
+              <Button className="text-white !py-2 !px-7 xl:!px-10 xl:!py-4 xl:text-[1rem]">
+                Submit
+              </Button>
             </div>
           </form>
         </div>

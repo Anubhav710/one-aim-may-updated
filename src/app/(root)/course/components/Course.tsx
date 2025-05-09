@@ -482,7 +482,7 @@ const Course: React.FC = () => {
                     <div
                       className={`cursor-pointer px-5 py-2 rounded-lg text-sm transition-all duration-200 text-black ${
                         subItem.id === activeSubCourse
-                          ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] text-white shadow-md"
+                          ? "bg-gradient-to-tr from-[#FFA4A8] to-[#FFC593] text-black shadow-md"
                           : "bg-[#FEE8D5] hover:bg-[#FEE8D5]/20"
                       }`}
                     >

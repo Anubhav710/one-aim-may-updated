@@ -268,7 +268,7 @@ const FacultyPage = () => {
             <CommonHeading2 title="Faculty & Mentors!" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {teamInfo.map((faculty) => (
               <div key={faculty.id} className="h-full">
                 <TeamCard
@@ -286,7 +286,7 @@ const FacultyPage = () => {
       {/* Join Our Faculty Section */}
       <div>
         <section className="padding-bx hidden md:block">
-          <div className="box p-5 flex justify-center items-center max-sm:h-[30vh] md:h-[35vh]">
+          <div className="box p-5 flex  items-center max-sm:h-[30vh] md:h-[35vh]">
             <CommonHeading2
               title="Join Our Faculty"
               desc="Are you passionate about teaching and shaping the future? We're

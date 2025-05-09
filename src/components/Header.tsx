@@ -8,7 +8,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import { IoMdMail } from "react-icons/io";
+import { IoIosArrowForward, IoMdMail } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 import { TiSocialLinkedin } from "react-icons/ti";
@@ -24,7 +24,18 @@ import { Locale } from "@/i18n/settings";
 import { useTranslation } from "@/hooks/useTranslation";
 import { FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
-import { BagIcon } from "./icons";
+import {
+  AboutIcon,
+  BagIcon,
+  ContactIcon,
+  CourseIcon,
+  FAQIcon,
+  HomeIcon,
+  LogoutIcon,
+  NotificationIcon,
+  SupportIcon,
+  TestSeriesIcon,
+} from "./icons";
 // Constants
 const socialLinks = [
   {
@@ -286,106 +297,110 @@ const Header = () => {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div
-          ref={mobileMenuRef}
-          className="fixed top-0 right-0 w-[80%] min-h-screen bg-white shadow-lg z-[999] overflow-y-auto"
-        >
-          <div className="p-4 flex justify-end">
-            <button
-              onClick={toggleMenu}
-              className="text-primaryred p-2 focus:outline-none"
-            >
-              <IoMdClose className="h-8 w-8" />
-            </button>
-          </div>
-
-          <div className="p-6 space-y-8">
-            <div className="flex justify-center">
-              <a href="/">
+        <div className="fixed top-0 right-0 w-[80%] h-screen bg-white shadow-lg z-[1999] overflow-y-auto px-4">
+          {/* top header  */}
+          <div className="flex flex-col h-[30%]">
+            <div className="p-4 flex justify-end">
+              <button
+                onClick={toggleMenu}
+                className="text-primaryred p-2 focus:outline-none"
+              >
+                <IoMdClose className="h-8 w-8" />
+              </button>
+            </div>
+            <div className="mb-3">
+              {/* Logo */}
+              <a href="/" className="cursor-pointer">
                 <Image
                   src={"/images/logo.svg"}
                   alt="logo"
-                  width={140}
+                  width={120}
                   height={50}
+                  className="w-[170px] md:w-[160px] lg:w-[220px]"
                 />
               </a>
             </div>
-
-            <nav>
-              <ul className="space-y-6">
-                {navItems.map((item, index) => (
-                  <li key={index} className="mobile-menu-item border-b pb-2">
-                    <a
-                      href={item.href}
-                      className={`text-primaryred block text-lg ${
-                        item.href === path
-                          ? "text-primaryred"
-                          : "hover:text-primaryred"
-                      }`}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            <div className="space-y-4">
-              <CustomDropdown
-                options={[
-                  { value: "english", label: "English" },
-                  { value: "hindi", label: "Hindi" },
-                ]}
-                onChange={handleLanguageChange}
-                placeholder={locale === "en" ? "English" : "Hindi"}
-                className="w-44"
-              />
-              {/* <Button
-                href="/auth/login"
-                className="w-full !py-3 !px-8 hover:bg-primaryred !text-white"
-              >
-                {t("auth.login")}
-              </Button> */}
-            </div>
-
-            {isLogIn && (
-              <div className="flex items-center justify-between border-t border-b py-4">
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 bg-[#FF7B07]/20 rounded-full flex-center overflow-hidden">
-                    <Image
-                      src="/images/team/NarendraRajSingh.png"
-                      alt="user"
-                      width={40}
-                      height={40}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <span className="text-gray-700 font-medium">My Account</span>
-                </div>
-
-                <Link
-                  href="/cart"
-                  className="flex items-center gap-2 bg-[#FF7B07]/20 hover:bg-primaryred hover:text-white duration-300 ease-in-out rounded-full p-2 relative"
-                >
-                  <BagIcon className="h-6 w-6" />
-                  <span className="h-5 w-5 text-white absolute bg-[#DC8940] -top-1 rounded-full -right-1 text-xs flex items-center justify-center">
-                    3
-                  </span>
-                </Link>
+            {/* Middle header  */}
+            <div className="bg-red-40 flex items-center gap-x-3">
+              <div className="h-20 w-20 rounded-full overflow-hidden">
+                <Image
+                  src={"/images/team/AatibaNasti.png"}
+                  alt="profile pic"
+                  width={1200}
+                  height={1200}
+                  className="h-full w-full object-cover"
+                />
               </div>
-            )}
+              <div>
+                <h5 className="text-xl font-semibold">Aatiba Nasti</h5>
+                <p className="text-sm text-gray-500">+91 1234567890</p>
+              </div>
+              <div className="ml-auto">
+                <IoIosArrowForward className="h-6 w-6 text-orange" />
+              </div>
+            </div>
+          </div>
 
-            <div className="pt-4">
-              <div className="flex items-center gap-x-2 mb-3">
-                <FaPhoneAlt className="text-primaryred" />
-                <a href="tel: +91-8955249714" className="text-gray-700">
-                  {t("contact.phone")}
+          {/* List Of items  */}
+          <div className="flex flex-col  h-[70%]">
+            <div className="mt-10  space-y-8">
+              <div className="flex items-start gap-4">
+                <div className="text-orange hover:text-red-700">
+                  <HomeIcon />
+                </div>
+                <a href="/" className="hover:text-red-700 font-semibold">
+                  Home
                 </a>
               </div>
-              <div className="flex items-center gap-x-2">
-                <IoMdMail className="text-primaryred" />
-                <a href="mailto:info@theoneaim.co.in" className="text-gray-700">
-                  {t("contact.email")}
+              <div className="flex gap-4">
+                <div className="text-orange hover:text-red-700">
+                  <AboutIcon />
+                </div>
+                <a href="/about" className="hover:text-red-700 font-semibold">
+                  About
+                </a>
+              </div>
+              <div className="flex gap-4">
+                <div className="text-orange hover:text-red-700">
+                  <CourseIcon />
+                </div>
+                <a href="/course" className="hover:text-red-700 font-semibold">
+                  Courses
+                </a>
+              </div>
+              <div className="flex gap-4">
+                <div className="text-orange hover:text-red-700">
+                  <TestSeriesIcon />
+                </div>
+                <a
+                  href="/test-series"
+                  className="hover:text-red-700 font-semibold"
+                >
+                  Test Series
+                </a>
+              </div>
+              <div className="flex gap-4">
+                <div className="text-orange hover:text-red-700">
+                  <ContactIcon />
+                </div>
+                <a
+                  href="/contact-us"
+                  className="hover:text-red-700 font-semibold"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+            <div className="space-y-5 mt-auto pb-4">
+              <div className="flex gap-4 self-end">
+                <div className="text-orange hover:text-red-700">
+                  <LogoutIcon />
+                </div>
+                <a
+                  href="/auth/logout"
+                  className="hover:text-red-700 font-semibold"
+                >
+                  Logout
                 </a>
               </div>
             </div>
