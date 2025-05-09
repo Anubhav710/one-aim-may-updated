@@ -102,7 +102,7 @@ const CareerPage = () => {
   ];
 
   return (
-    <div className="bg-[#FFE6D0] min-h-screen bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
+    <div className="bg-[#FFE6D0] min-h-screen bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] ">
       {/* Breadcrumb */}
       <Banner title="Career" desp="Join Our Team & Be a Part of One Aim!">
         <div className="flex items-center text-sm">

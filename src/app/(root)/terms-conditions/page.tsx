@@ -1,16 +1,20 @@
 import React from "react";
 import Footer from "@/components/Footer";
+import BannerSec from "@/components/common/BannerSec";
 
 const TermsConditions = () => {
   return (
     <div className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] min-h-screen">
-      <div className="container mx-auto px-4 py-12">
+      <BannerSec>
+        <div className="flex items-center  gap-x-2">
+          <a href="/">Home</a>
+          <div>{">"}</div>
+          <p className="text-primaryred">Terms & Condition</p>
+        </div>
+      </BannerSec>
+      <div>
         <div className="screen">
-          <h1 className="text-4xl font-bold mb-8 text-gray-800">
-            Terms and Conditions
-          </h1>
-
-          <div className="bg-white rounded-lg shadow-sm p-8 space-y-6">
+          <div className="rounded-lg shadow-sm p-8 space-y-6">
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">
                 1. Introduction

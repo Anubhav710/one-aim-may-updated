@@ -27,7 +27,6 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
           <TopDown />
-          <Footer />
         </LanguageProvider>
       </body>
     </html>
