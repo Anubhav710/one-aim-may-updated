@@ -719,3 +719,27 @@ export const ClockIcon2: React.FC<IconProps> = ({
     </g>
   </svg>
 );
+
+export const MountainIcon: React.FC<IconProps> = ({
+  width = "2.3em",
+  height = "2.3em",
+  color = "currentColor",
+  className = "",
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={width}
+    height={height}
+    viewBox="0 0 512 512"
+    className={className}
+  >
+    <g>
+      <path
+        d="M151 90h45v301h120V90h45L256 0zM421 271h30l-75-89.985-30 35.995V391h75zM166 391V217.01l-30-35.995L61 271h30v120zM347.774 421l44.993 91H512l-75.993-91zM197.776 421l-44.998 91h206.444l-44.993-91zM164.231 421H75.993L0 512h119.235z"
+        fill={color}
+        opacity="1"
+        data-original="#000000"
+      />
+    </g>
+  </svg>
+);

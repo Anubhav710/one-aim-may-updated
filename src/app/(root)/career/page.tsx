@@ -8,6 +8,7 @@ import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import {
   ClockIcon2,
   EducationIcon,
+  MountainIcon,
   SalaryIcon,
   TargetIcon,
 } from "@/components/icons";
@@ -38,7 +39,7 @@ const CareerPage = () => {
       id: 4,
       title: "Growth Opportunities",
       description: "Learn, develop, and advance your career",
-      icon: <EducationIcon />,
+      icon: <MountainIcon />,
     },
     {
       id: 5,

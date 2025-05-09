@@ -5,7 +5,7 @@ const TermsConditions = () => {
   return (
     <div className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] min-h-screen">
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
+        <div className="screen">
           <h1 className="text-4xl font-bold mb-8 text-gray-800">
             Terms and Conditions
           </h1>
