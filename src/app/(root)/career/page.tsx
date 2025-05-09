@@ -7,6 +7,7 @@ import Banner from "@/components/common/Banner";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import {
   ClockIcon2,
+  CollaborativeIcon,
   EducationIcon,
   MountainIcon,
   SalaryIcon,
@@ -45,7 +46,7 @@ const CareerPage = () => {
       id: 5,
       title: "Collaborative Environment",
       description: "Work with talented professionals",
-      icon: <EducationIcon />,
+      icon: <CollaborativeIcon />,
     },
   ];
 
