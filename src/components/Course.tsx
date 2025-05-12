@@ -391,10 +391,10 @@ const Course: React.FC = () => {
             {/* Main Categories Swiper */}
             <div className="relative  max-sm:px-7">
               <button
-                className="custom-main-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-[#DC8940] hover:text-white transition-colors duration-300"
+                className="custom-main-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
                 aria-label="Previous slide"
               >
-                <FaChevronLeft className="text-[#DC8940] group-hover:text-white" />
+                <FaChevronLeft className="text-primaryred group-hover:text-white" />
               </button>
               <Swiper
                 modules={[Navigation]}
@@ -425,18 +425,18 @@ const Course: React.FC = () => {
                 ))}
               </Swiper>
               <button
-                className="custom-main-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-[#DC8940] hover:text-white transition-colors duration-300"
+                className="custom-main-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
                 aria-label="Next slide"
               >
-                <FaChevronRight className="text-[#DC8940] group-hover:text-white" />
+                <FaChevronRight className="text-primaryred group-hover:text-white" />
               </button>
             </div>
 
             {/* Sub Categories Swiper */}
-            <div className="relative  max-sm:px-7 pl-14">
+            <div className="relative max-sm:px-7 pl-14">
               {currentSubCourses.length > 0 && (
                 <button
-                  className="custom-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+                  className="custom-sub-prev-button group absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
                   aria-label="Previous slide"
                 >
                   <FaChevronLeft className="text-primaryred group-hover:text-white" />
@@ -446,25 +446,21 @@ const Course: React.FC = () => {
                 modules={[Navigation]}
                 slidesPerView="auto"
                 spaceBetween={10}
-                navigation={
-                  currentSubCourses.length > 4
-                    ? {
-                        nextEl: ".custom-next-button",
-                        prevEl: ".custom-prev-button",
-                      }
-                    : false
-                }
+                navigation={{
+                  nextEl: ".custom-sub-next-button",
+                  prevEl: ".custom-sub-prev-button",
+                }}
                 breakpoints={{
                   320: {
                     slidesPerView: 1,
                     spaceBetween: 10,
                   },
                   640: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 15,
                   },
                   1024: {
-                    slidesPerView: 2,
+                    slidesPerView: 3,
                     spaceBetween: 20,
                   },
                 }}
@@ -490,7 +486,7 @@ const Course: React.FC = () => {
               </Swiper>
               {currentSubCourses.length > 0 && (
                 <button
-                  className="custom-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
+                  className="custom-sub-next-button group absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 max-sm:w-7 max-sm:h-7 rounded-full shadow-lg flex items-center justify-center hover:bg-primaryred hover:text-white transition-colors duration-300"
                   aria-label="Next slide"
                 >
                   <FaChevronRight className="text-primaryred group-hover:text-white" />
