@@ -35,9 +35,9 @@ const FacultyPage = () => {
                 />
               </div>
             </div>
-            <div className="w-[100%] bg-[#DC8940] lg:py-6 pl-52 flex items-center 2xl:my-7">
-              <div className="   space-y-2">
-                <h1 className="text-2xl font-bold text-white">
+            <div className="w-[100%] bg-[#DC8940] py-20  pl-52 flex items-center -my-14">
+              <div className="space-y-3">
+                <h1 className="text-2xl lg:text-3xl font-bold text-white">
                   Prof. Rajiv Bansal
                 </h1>
                 <div className="text-white flex flex-col md:flex-row md:gap-x-2">

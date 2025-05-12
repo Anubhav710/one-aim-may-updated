@@ -154,7 +154,7 @@ const CareerPage = () => {
           <div className="mx-auto w-max">
             <CommonHeading2 title="Why Work with Us?" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mdl:grid-cols-5 gap-4 bg-[#FFE6D0]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mdl:grid-cols-5 gap-10 bg-[#FFE6D0]">
             {benefits.map((benefit, index) => (
               <div
                 key={benefit.id}
@@ -240,15 +240,15 @@ const CareerPage = () => {
       <section className="padding-bx">
         <div className="screen ">
           <div className="w-max mx-auto">
-            <CommonHeading2 title="            Career Application Form" />
+            <CommonHeading2 title="Career Application Form" />
           </div>
-          <form className=" bg-white py-6 px-4 sm:px-8 md:px-12 rounded-lg">
+          <form className=" bg-white py-12 px-4 sm:px-8 md:px-12 rounded-lg">
             {/* Personal Details */}
             <div className="mb-8">
               <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Personal Details
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
                   <label className="block text-sm mb-1">
                     Full Name<span className="text-red-500">*</span>
@@ -314,7 +314,7 @@ const CareerPage = () => {
               <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Experience & Qualification
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
                   <label className="block text-sm mb-1">
                     Highest Qualification
@@ -338,7 +338,7 @@ const CareerPage = () => {
 
             {/* Upload Files */}
             <div className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div>
                   <label className="block text-sm mb-1">
                     Upload Resume & Work Samples
@@ -392,7 +392,7 @@ const CareerPage = () => {
               <h3 className="text-[#FF7B07] text-lg sm:text-2xl font-semibold mb-4">
                 Availability & Additional Information
               </h3>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-10">
                 <div>
                   <label className="block text-sm mb-1">
                     Preferred Work Mode

@@ -466,8 +466,8 @@ const CourseDetailPage = () => {
           <DemoClass />
 
           {/* Faculty Section */}
-          <div>
-            <div className="mdl:flex hidden pb-16">
+          <div className="padding-bottom">
+            <div className="mdl:flex hidden ">
               <div className=" ml-28 ">
                 <div className="h-[18rem] w-[18rem] rounded-full bg-white scale-150 relative left-16 overflow-hidden">
                   <Image
@@ -479,9 +479,9 @@ const CourseDetailPage = () => {
                   />
                 </div>
               </div>
-              <div className="w-[100%] bg-[#DC8940] pl-52 flex items-center 2xl:my-7">
-                <div className="   space-y-2">
-                  <h1 className="text-2xl font-bold text-white">
+              <div className="w-[100%] bg-[#DC8940] py-20  pl-52 flex items-center -my-14">
+                <div className="space-y-3">
+                  <h1 className="text-2xl lg:text-3xl font-bold text-white">
                     Prof. Rajiv Bansal
                   </h1>
                   <div className="text-white flex flex-col md:flex-row md:gap-x-2">
@@ -608,7 +608,15 @@ const CourseDetailPage = () => {
             </div>
             {/* For Mobile View */}
             <div className="screen mdl:hidden padding-bx">
-              <div className="h-[14rem] w-[14rem] rounded-full bg-white top-7 mx-auto relative"></div>
+              <div className="h-[14rem] w-[14rem] rounded-full bg-white top-7 mx-auto relative overflow-hidden">
+                <Image
+                  src={"/images/team/team.png"}
+                  alt=""
+                  width={1200}
+                  height={1200}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
               <div className="w-full bg-[#DC8940] py-10 rounded-xl">
                 <div className="space-y-2 pl-6 text-center">
                   <h1 className="text-2xl font-bold text-white">
