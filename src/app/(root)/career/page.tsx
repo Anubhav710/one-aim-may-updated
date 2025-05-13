@@ -119,7 +119,7 @@ const CareerPage = () => {
         <div className="screen">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center padding-yx">
             <CommonHeading2
-              title="Join Our Team & Be a Part of One Aim!"
+              title="Join Our Team "
               desc=" Are you passionate about teaching, content creation, or
                 mentoring UPSC aspirants? Join One Aim and contribute to shaping
                 the future of civil servants! We are looking for dedicated

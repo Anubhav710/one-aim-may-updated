@@ -466,7 +466,7 @@ const CourseDetailPage = () => {
           <DemoClass />
 
           {/* Faculty Section */}
-          <div className="padding-bottom">
+          <div className="padding-bottom pt-14">
             <div className="mdl:flex hidden ">
               <div className=" ml-28 ">
                 <div className="h-[18rem] w-[18rem] rounded-full bg-white scale-150 relative left-16 overflow-hidden">
@@ -820,10 +820,17 @@ const CourseDetailPage = () => {
                   ref={(el) => {
                     contentRefs.current[index] = el;
                   }}
-                  className="overflow-hidden"
+                  className="overflow-hidden transition-all duration-300 ease-in-out"
                   style={{
-                    height: openIndex === index ? "auto" : 0,
+                    maxHeight:
+                      openIndex === index
+                        ? `${contentRefs.current[index]?.scrollHeight}px`
+                        : "0px",
                     opacity: openIndex === index ? 1 : 0,
+                    transform:
+                      openIndex === index
+                        ? "translateY(0)"
+                        : "translateY(-10px)",
                   }}
                 >
                   <div className="p-4 text-gray-700">{faq.answer}</div>

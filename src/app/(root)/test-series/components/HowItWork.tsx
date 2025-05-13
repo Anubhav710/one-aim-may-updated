@@ -18,7 +18,7 @@ interface StepItemProps {
 //     >
 //       <div className="flex flex-col relative w-full  md:w-auto order-2 md:order-none">
 //         <div className="relative mb-3">
-//           <h1 className="bg-white w-max py-2 px-4 text-lg font-medium shadow-sm max-sm:text-sm">
+//           <h1 className="bg-white w-max py-2 px-4 text-lg max-sm:text-sm sm:text-[0.9rem] md:text-lg font-medium shadow-sm max-sm:text-sm sm:text-[0.9rem] md:text-lg">
 //             {title}
 //           </h1>
 //           {/* <div className="w-0 h-0 border-l-[10px] border-l-transparent border-t-[15px] border-t-white border-r-[10px] border-r-transparent absolute bottom-[-15px] left-0 transform"></div> */}
@@ -36,19 +36,19 @@ const HowItWork = () => {
       <div className="flex justify-center">
         <CommonHeading2 title="How It Works?" />
       </div>
-      <div className="space-y-7 mt-20">
+      <div className="space-y-7 mt-20 max-sm:space-y-28">
         <div>
           <div className="flex items-center">
             <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
             <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text order-1 md:order-none before:content-[''] before:bg-red-500 before:w-16 before:h-[2px]">
-              <div className="text-sm absolute bg-white text-black -top-14 left-10 ">
+              <div className="text-sm absolute bg-white text-black -top-14  left-10 max-sm:-top-[4rem] ">
                 {/* Triangle */}
                 <div
                   className="absolute left-0 top-full w-0 h-0 
                     border-t-[20px] border-t-[#D6863A] 
                     border-r-[40px] border-r-transparent"
                 ></div>
-                <h3 className="py-2 font-medium text-lg px-4">
+                <h3 className="py-2 font-medium text-lg  px-4 max-sm:text-sm sm:text-[0.9rem] md:text-lg hover:text-orange duration-300 transition-all">
                   Enroll in Your Preferred Test Series
                 </h3>
               </div>
@@ -60,14 +60,14 @@ const HowItWork = () => {
           <div className="flex items-center flex-row-reverse">
             <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
             <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text">
-              <div className="text-sm absolute bg-white text-black -top-14 right-10 ">
+              <div className="text-sm absolute bg-white text-black -top-14 max-sm:-top-[4rem] right-10 ">
                 {/* Triangle */}
                 <div
                   className="absolute right-0 top-full w-0 h-0 
                     border-t-[20px] border-t-[#D6863A] 
                     border-l-[40px] border-l-transparent"
                 ></div>
-                <h3 className="py-2 font-medium text-lg px-4 text-orange">
+                <h3 className="py-2 font-medium text-lg max-sm:text-sm sm:text-[0.9rem] md:text-lg px-4 text-black hover:text-orange duration-300 transition-all">
                   Get Instant Access to Tests & Study Material
                 </h3>
               </div>
@@ -79,14 +79,14 @@ const HowItWork = () => {
           <div className="flex items-center">
             <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
             <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text order-1 md:order-none before:content-[''] before:bg-red-500 before:w-16 before:h-[2px]">
-              <div className="text-sm absolute bg-white text-black -top-14 left-10 ">
+              <div className="text-sm absolute bg-white text-black -top-14 max-sm:-top-[4rem] left-10 ">
                 {/* Triangle */}
                 <div
                   className="absolute left-0 top-full w-0 h-0 
                     border-t-[20px] border-t-[#D6863A] 
                     border-r-[40px] border-r-transparent"
                 ></div>
-                <h3 className="py-2 font-medium text-lg px-4">
+                <h3 className="py-2 font-medium text-lg max-sm:text-sm sm:text-[0.9rem] md:text-lg px-4 hover:text-orange duration-300 transition-all">
                   Enroll in Your Preferred Test Series
                 </h3>
               </div>
@@ -98,14 +98,14 @@ const HowItWork = () => {
           <div className="flex items-center flex-row-reverse">
             <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
             <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text">
-              <div className="text-sm absolute bg-white text-black -top-14 right-10 ">
+              <div className="text-sm absolute bg-white text-black -top-14 max-sm:-top-[4rem] right-10 ">
                 {/* Triangle */}
                 <div
                   className="absolute right-0 top-full w-0 h-0 
                     border-t-[20px] border-t-[#D6863A] 
                     border-l-[40px] border-l-transparent"
                 ></div>
-                <h3 className="py-2 font-medium text-lg px-4 text-orange">
+                <h3 className="py-2 font-medium text-lg max-sm:text-sm sm:text-[0.9rem] md:text-lg px-4 text-black hover:text-orange duration-300 transition-all">
                   Get Instant Access to Tests & Study Material
                 </h3>
               </div>
@@ -117,14 +117,14 @@ const HowItWork = () => {
           <div className="flex items-center">
             <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
             <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text order-1 md:order-none before:content-[''] before:bg-red-500 before:w-16 before:h-[2px]">
-              <div className="text-sm absolute bg-white text-black -top-14 left-10 ">
+              <div className="text-sm absolute bg-white text-black -top-14 max-sm:-top-[4rem] left-10 ">
                 {/* Triangle */}
                 <div
                   className="absolute left-0 top-full w-0 h-0 
                     border-t-[20px] border-t-[#D6863A] 
                     border-r-[40px] border-r-transparent"
                 ></div>
-                <h3 className="py-2 font-medium text-lg px-4">
+                <h3 className="py-2 font-medium text-lg max-sm:text-sm sm:text-[0.9rem] md:text-lg px-4 hover:text-orange duration-300 transition-all">
                   Enroll in Your Preferred Test Series
                 </h3>
               </div>
