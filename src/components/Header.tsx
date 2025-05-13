@@ -181,7 +181,7 @@ const Header = () => {
             : "-translate-y-[66%] md:-translate-y-[69%] lg:-translate-y-[55%]  top-full"
         }`}
       >
-        <div className="screen py-2 flex items-center justify-between max-sm:px-1.5">
+        <div className="screen py-2 flex items-center justify-between padding-x">
           {/* Logo */}
           <a href="/" className="cursor-pointer">
             <Image

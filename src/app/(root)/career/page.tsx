@@ -116,8 +116,8 @@ const CareerPage = () => {
 
       {/* Hero Section */}
       <section>
-        <div className="screen">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center padding-yx">
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center screen padding-yx">
             <CommonHeading2
               title="Join Our Team "
               desc=" Are you passionate about teaching, content creation, or
@@ -149,8 +149,8 @@ const CareerPage = () => {
       </section>
 
       {/* Why Work with Us */}
-      <section className="padding-bx">
-        <div className="screen">
+      <section>
+        <div className="screen padding-bx">
           <div className="mx-auto w-max">
             <CommonHeading2 title="Why Work with Us?" />
           </div>
@@ -237,8 +237,8 @@ const CareerPage = () => {
       </section>
 
       {/* Career Application Form */}
-      <section className="padding-bx">
-        <div className="screen ">
+      <section>
+        <div className="screen padding-bx">
           <div className="w-max mx-auto">
             <CommonHeading2 title="Career Application Form" />
           </div>

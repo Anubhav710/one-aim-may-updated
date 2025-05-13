@@ -46,7 +46,7 @@ const FilteredCourse = () => {
       {/* Responsive top curved SVG */}
       <div className="bg-[#FFE4CD] w-[85%]  mx-auto rounded-[100%] h-16 absolute  left-1/2 -translate-x-1/2 -top-4"></div>
       <section className="bg-[#FFE4CD]  padding-x max-sm:pt-[70px] py-[100px]   relative rounded-b-[12rem] max-sm:rounded-b-[2rem] rounded-t-[12rem] max-sm:rounded-t-[2rem]">
-        <div className="screen">
+        <div className="screen padding-x">
           <div className="w-max mx-auto">
             <CommonHeading2 title="Filtered Courses" />
           </div>

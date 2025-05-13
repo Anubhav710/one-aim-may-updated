@@ -131,8 +131,8 @@ export default function TestSeriesDetail() {
       </section>
 
       {/* Main Content */}
-      <div className="padding-yx">
-        <div className="screen">
+      <div>
+        <div className="screen padding-yx">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Left Content (2/3 width on desktop) */}
             <div className="md:col-span-2 space-y-10">
@@ -216,8 +216,8 @@ export default function TestSeriesDetail() {
       </div>
 
       {/* Feature Circles */}
-      <div className="padding-yx">
-        <div className="screen">
+      <div>
+        <div className="screen padding-yx">
           <div className="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-16 my-6 md:my-12">
             {testData.keyFeatures.map((feature, index) => (
               <FeatureCircle

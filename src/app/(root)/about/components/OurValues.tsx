@@ -27,7 +27,7 @@ const OurValue = [
 
 const OurValues = () => {
   return (
-    <section className="bg-[#FFF5EE] relative">
+    <section className="bg-[#FFF5EE] relative ">
       <div className="h-5 w-5 rounded-full absolute top-1/2 left-10 bg-[#5D8AA8]/30"></div>
       <div className="h-5 w-5 rounded-full absolute top-[10%] left-[40%] bg-[#741316]/30"></div>
       <div className="h-5 w-5 rounded-full absolute top-[92%] left-1/2 bg-[#FFC107]/30"></div>

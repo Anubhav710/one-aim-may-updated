@@ -4,8 +4,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="padding-yx">
-      <div className="flex flex-col md:flex-row  screen">
+    <div>
+      <div className="flex flex-col md:flex-row padding-yx screen">
         <div className="w-full md:w-1/2">
           <div>
             <Image

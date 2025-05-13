@@ -5,8 +5,8 @@ import { CommonHeading2 } from "./common/CommonHeading2";
 
 const Blog = () => {
   return (
-    <section className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] padding-bx">
-      <div className="screen">
+    <section className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
+      <div className="screen  padding-bx">
         <div className="mx-auto w-max">
           <CommonHeading2 title="Latest Updates" />
         </div>

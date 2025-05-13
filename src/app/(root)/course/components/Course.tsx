@@ -386,8 +386,8 @@ const Course: React.FC = () => {
   const currentCourseContent = subCourseContent[activeSubCourse] || [];
 
   return (
-    <section id="course" className="bg-[#FFF45]/40 padding-tx">
-      <div className="screen">
+    <section id="course" className="bg-[#FFF45]/40 ">
+      <div className="screen padding-tx">
         <div>
           <CommonHeading2 title="Our Courses" />
           <div className="space-y-12">

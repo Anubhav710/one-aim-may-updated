@@ -5,8 +5,8 @@ import React from "react";
 
 const OurStory = () => {
   return (
-    <section className="padding-yx bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
-      <div className="screen">
+    <section className=" bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE]">
+      <div className="screen padding-yx">
         <div className="flex max-sm:flex-col max-sm:gap-y-6 gap-x-5">
           {/* Image Container  */}
           <div className="w-full md:w-1/2">

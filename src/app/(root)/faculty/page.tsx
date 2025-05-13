@@ -228,8 +228,8 @@ const FacultyPage = () => {
       </Banner>
 
       {/* Faculty Intro Section */}
-      <section className="padding-tx ">
-        <div className="screen">
+      <section>
+        <div className="screen padding-tx">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#C1151B] mb-4">
@@ -262,8 +262,8 @@ const FacultyPage = () => {
       </section>
 
       {/* Faculty & Mentors Section */}
-      <section className="padding-yx">
-        <div className="screen">
+      <section>
+        <div className="screen padding-yx">
           <div className="text-center  w-max mx-auto ">
             <CommonHeading2 title="Faculty & Mentors!" />
           </div>
@@ -285,7 +285,7 @@ const FacultyPage = () => {
 
       {/* Join Our Faculty Section */}
       <div>
-        <section className="padding-bx hidden md:block">
+        <section className="padding-bx screen hidden md:block">
           <div className="box p-5 flex  items-center max-sm:h-[30vh] md:h-[35vh]">
             <CommonHeading2
               title="Join Our Faculty"

@@ -36,6 +36,7 @@ import "swiper/css/effect-fade";
 import { CommonHeading2 } from "./common/CommonHeading2";
 import Banner2 from "./common/Banner2";
 import { ProfileCards } from "./common/ProfileCards";
+import { FAQAccordion } from "./common/FAQS";
 
 const CourseDetailPage = () => {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -338,9 +339,9 @@ const CourseDetailPage = () => {
       {/* Course Content Container */}
       <div className=" w-full flex flex-col md:flex-row  gap-8">
         {/* Left Content Column */}
-        <div className="w-full flex flex-col padding-bottom">
+        <div className="w-full flex flex-col padding-bottom ">
           {/* Course Overview */}
-          <div className="flex flex-col lg:flex-row gap-5 screen">
+          <div className="flex flex-col lg:flex-row gap-5 screen  padding-x">
             <div className="space-y-10 w-full lg:w-2/3">
               <CommonHeading2
                 title="Course Overview"
@@ -797,8 +798,8 @@ const CourseDetailPage = () => {
       </div>
 
       {/* Course Content Section */}
-      <div className="padding-bx">
-        <div className="screen space-y-2">
+      <div>
+        <div className="screen padding-bx space-y-2">
           <div className="mx-auto w-max">
             <CommonHeading2 title="Course Content" />
           </div>
@@ -842,7 +843,7 @@ const CourseDetailPage = () => {
       </div>
 
       {/* Related Courses Section */}
-      <div className="relative padding-bx">
+      <div className="relative screen padding-bx">
         <div className="mx-auto w-max">
           <CommonHeading2 title="Related Courses" />
         </div>
@@ -930,46 +931,7 @@ const CourseDetailPage = () => {
           </button>
         </div>
       </div>
-
-      <div className="padding-bx">
-        <div className="screen space-y-2">
-          <div className="mx-auto w-max max-sm:hidden">
-            <CommonHeading2 title="Frequently Asked Questions (FAQs)" />
-          </div>
-          <div className="mx-auto w-max hidden max-sm:block">
-            <CommonHeading2 title=" FAQs" />
-          </div>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-white px-4 rounded-lg">
-                <button
-                  onClick={() => toggleFAQIndex(index)}
-                  className="w-full flex justify-between items-center py-4 text-lg font-medium text-orange-500"
-                >
-                  {faq.question}
-                  <FaChevronDown
-                    className={`transition-transform transform ${
-                      openIndex === index ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
-                </button>
-                <div
-                  ref={(el) => {
-                    contentRefs.current[index] = el;
-                  }}
-                  className="overflow-hidden"
-                  style={{
-                    height: openIndex === index ? "auto" : 0,
-                    opacity: openIndex === index ? 1 : 0,
-                  }}
-                >
-                  <div className="p-4 text-gray-700">{faq.answer}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <FAQAccordion />
     </div>
   );
 };

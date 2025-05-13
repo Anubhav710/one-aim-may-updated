@@ -51,11 +51,11 @@ const TestSeriesC = () => {
   };
 
   return (
-    <div>
+    <div className="screen padding-x">
       <div className="w-max mx-auto ">
         <CommonHeading2 title=" Why Join Our UPSC Test Series?" />
       </div>
-      <div className="relative px-12 max-sm:px-5 ">
+      <div className="relative  ">
         <Swiper
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           spaceBetween={20}
