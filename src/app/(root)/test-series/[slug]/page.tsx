@@ -194,7 +194,7 @@ export default function TestSeriesDetail() {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div className="screen space-y-20">
           <div className="w-max mx-auto">
             <CommonHeading2 title="Choose your Best Plan" />
@@ -213,11 +213,11 @@ export default function TestSeriesDetail() {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Feature Circles */}
       <div>
-        <div className="screen padding-yx">
+        <div className="screen padding-bx">
           <div className="flex flex-wrap justify-center gap-6 md:gap-10 lg:gap-16 my-6 md:my-12">
             {testData.keyFeatures.map((feature, index) => (
               <FeatureCircle

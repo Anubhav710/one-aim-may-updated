@@ -3,8 +3,9 @@ import Link from "next/link";
 import React from "react";
 import DemoClass from "./components/DemoClass";
 import Testimonials from "@/components/Testimonials";
-import FAQ from "./components/FAQ";
+
 import Course from "./components/Course";
+import { FAQ } from "@/components/common/FAQ";
 
 const Courses = () => {
   return (
@@ -18,9 +19,9 @@ const Courses = () => {
         <span className="text-primaryred">Courses</span>
       </Banner>
       <Course />
-      <DemoClass />
+
       <Testimonials />
-      <FAQ />
+      <FAQ className="padding-yx" />
     </section>
   );
 };

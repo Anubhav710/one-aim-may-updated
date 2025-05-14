@@ -1,17 +1,10 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import {
-  FaFacebook,
-  FaPhoneAlt,
-  FaQuora,
-  FaWhatsapp,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaPhoneAlt, FaQuora, FaInstagram, FaYoutube } from "react-icons/fa";
 import { IoIosArrowForward, IoMdMail } from "react-icons/io";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
-import { TiSocialLinkedin } from "react-icons/ti";
+
 import { RiMenu3Line } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import Image from "next/image";
@@ -19,10 +12,7 @@ import Button from "./ui/Button";
 import gsap from "gsap";
 import CustomDropdown from "./ui/CustomDropdown";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Locale } from "@/i18n/settings";
-import { useTranslation } from "@/hooks/useTranslation";
-import { FaShoppingCart } from "react-icons/fa";
+
 import Link from "next/link";
 import {
   AboutIcon,
@@ -76,18 +66,16 @@ const Header = () => {
   const [headerVisible, setHeaderVisible] = useState(true);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
-  const { locale, setLocale } = useLanguage();
-  const { t } = useTranslation();
 
   const isLogIn = true;
 
   // Navigation items with translations
   const navItems = [
-    { href: "/", label: t("nav.home") },
-    { href: "/about", label: t("nav.about") },
-    { href: "/course", label: t("nav.courses") },
-    { href: "/test-series", label: t("nav.testSeries") },
-    { href: "/contact-us", label: t("nav.contact") },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/course", label: "Courses" },
+    { href: "/test-series", label: "TestSeries" },
+    { href: "/contact-us", label: "Contact" },
   ];
 
   // Functions
@@ -104,14 +92,6 @@ const Header = () => {
       setLastScrollY(scrollY > 0 ? scrollY : 0);
     }
   }, [lastScrollY]);
-
-  const handleLanguageChange = (value: string) => {
-    if (value === "english") {
-      setLocale("en" as Locale);
-    } else if (value === "hindi") {
-      setLocale("hi" as Locale);
-    }
-  };
 
   useEffect(() => {
     if (isMenuOpen && mobileMenuRef.current) {
@@ -151,11 +131,11 @@ const Header = () => {
             <div className="flex gap-x-4">
               <div className="flex items-center gap-x-2">
                 <FaPhoneAlt />
-                <a href="tel: +91-8955249714">{t("contact.phone")}</a>
+                <a href="tel: +91-8955249714">+91-8955249714</a>
               </div>
               <div className="flex items-center gap-x-2">
                 <IoMdMail />
-                <a href="mailto:info@theoneaim.co.in">{t("contact.email")}</a>
+                <a href="mailto:info@theoneaim.co.in">info@theoneaim.co.in</a>
               </div>
             </div>
           </div>
@@ -235,8 +215,6 @@ const Header = () => {
                   { value: "english", label: "English" },
                   { value: "hindi", label: "Hindi" },
                 ]}
-                onChange={handleLanguageChange}
-                placeholder={locale === "en" ? "English" : "Hindi"}
                 className="w-44"
               />
 
@@ -267,15 +245,14 @@ const Header = () => {
                   { value: "english", label: "English" },
                   { value: "hindi", label: "Hindi" },
                 ]}
-                onChange={handleLanguageChange}
-                placeholder={locale === "en" ? "English" : "Hindi"}
+                placeholder="English"
                 className="w-44"
               />
               <Button
                 href="/auth/login"
                 className="!py-3 !px-8 hover:bg-primaryred !text-white"
               >
-                {t("auth.login")}
+                {"login"}
               </Button>
             </div>
           )}

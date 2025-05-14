@@ -45,7 +45,7 @@ const TeamCard = ({
   image?: string;
 }) => {
   return (
-    <div className="group rounded-2xl relative group overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-[clamp(400px,47vw,500px)] bg-red-400">
+    <div className="group rounded-2xl relative group overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-[clamp(400px,47vw,500px)] ">
       <div className="h-full">
         <Image
           src={image}

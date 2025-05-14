@@ -1,4 +1,5 @@
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import Image from "next/image";
 
 import React from "react";
 
@@ -32,20 +33,23 @@ interface StepItemProps {
 
 const HowItWork = () => {
   return (
-    <div className="padding-bottom ">
+    <div className="padding-bottom relative">
+      <div className="absolute inset-0 ">
+        <Image src={"/images/bg/vector.png"} alt="images" fill />
+      </div>
       <div className="flex justify-center">
         <CommonHeading2 title="How It Works?" />
       </div>
       <div className="space-y-7 mt-20 max-sm:space-y-28">
         <div>
           <div className="flex items-center">
-            <div className="w-[20%] h-[2px] bg-gradient-to-t from-[#ffffff] to-[#FF7B07]"></div>
-            <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#ffffff] to-[#FF7B07] text-transparent bg-clip-text order-1 md:order-none before:content-[''] before:bg-red-500 before:w-16 before:h-[2px]">
+            <div className="w-[20%] h-[2px] bg-[rgba(255,123,7,0.27)]"></div>
+            <div className="bg-gradient-to-t w-full relative text-7xl md:text-8xl font-bold from-[#FFF5EE] from-40%  to-orange/50  text-transparent bg-clip-text order-1 md:order-none before:content-[''] before:bg-red-500 before:w-16 before:h-[2px]">
               <div className="text-sm absolute bg-white text-black -top-14  left-10 max-sm:-top-[4rem] ">
                 {/* Triangle */}
                 <div
                   className="absolute left-0 top-full w-0 h-0 
-                    border-t-[20px] border-t-[#D6863A] 
+                    border-t-[20px] border-t-[rgba(220,137,64,0.42)]
                     border-r-[40px] border-r-transparent"
                 ></div>
                 <h3 className="py-2 font-medium text-lg  px-4 max-sm:text-sm sm:text-[0.9rem] md:text-lg hover:text-orange duration-300 transition-all">

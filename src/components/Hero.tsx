@@ -3,11 +3,8 @@ import Image from "next/image";
 import React from "react";
 import MagneticButton from "./ui/MagnaticButton";
 import Button from "./ui/Button";
-import { useTranslation } from "@/hooks/useTranslation";
 
 const Hero = () => {
-  const { t } = useTranslation();
-
   return (
     <section
       id="home"
@@ -33,7 +30,7 @@ const Hero = () => {
             <div className="grid grid-cols-2 max-sm:grid-cols-1 max-sm:grid-rows-auto max-sm:gap-10 items-center h-full ">
               <div className="w-full  max-sm:space-y-5 ">
                 <div className="flex flex-wrap items-center gap-x-3 text-xl max-sm:text-lg font-semibold uppercase">
-                  <h3>{t("home.welcome")}</h3>
+                  <h3>Welcome to</h3>
                   <div className="arrow-container border border-primaryred w-28 max-sm:w-[8rem] h-8 rounded-full flex items-center justify-center">
                     <Image
                       src={"/images/icons/arrow.svg"}
@@ -42,16 +39,18 @@ const Hero = () => {
                       height={72}
                     />
                   </div>{" "}
-                  <h3>{t("home.subtitle")}</h3>
+                  <h3>{"subtitle"}</h3>
                 </div>
 
                 <hgroup className="space-y-7 pb-11 pt-5 max-sm:pb-7 max-sm:pt-3">
                   <div className="text-primaryred heroHeading overflow-hidden">
-                    <h1>{t("home.achieveYourDreams")}</h1>
-                    <h1>{t("home.withOneAim")}</h1>
+                    <h1>Achieve Your Dreams</h1>
+                    <h1>With One Aim</h1>
                   </div>
                   <p className="text-xl max-sm:text-lg max-w-[52ch] font-medium">
-                    {t("home.description")}
+                    Transform your future with our expert-led courses. Join
+                    thousands of successful students who have achieved their
+                    goals with One Aim.
                   </p>
                 </hgroup>
 
@@ -63,7 +62,7 @@ const Hero = () => {
                       backgroundColor="#333333"
                       className="bg-primaryred  sm:text-sm   text-white font-semibold"
                     >
-                      {t("home.exploreCourses")}
+                      Explore Courses
                     </MagneticButton>
                   </div>
                   <div className="w-max">
@@ -71,7 +70,7 @@ const Hero = () => {
                       href="/contact-us"
                       className="bg-transparent  !hover:text-primaryred ring-[1px] ring-black font-medium hover:ring-primaryred hover:bg-transparent hover:text-primaryred"
                     >
-                      {t("home.joinNow")}
+                      Join Now
                     </Button>
                   </div>
                 </div>

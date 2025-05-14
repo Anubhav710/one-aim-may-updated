@@ -4,19 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FaCheck,
-  FaPhone,
   FaChevronDown,
   FaChevronLeft,
   FaClipboardList,
   FaChevronRight,
 } from "react-icons/fa";
 
-import Banner from "./common/Banner";
-import DemoClass from "@/app/(root)/course/components/DemoClass";
 import CourseEnrollCard from "./CourseEnrollCard";
-import CommonHeading from "./ui/CommonHeading";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import {
   BiBook,
@@ -36,7 +32,7 @@ import "swiper/css/effect-fade";
 import { CommonHeading2 } from "./common/CommonHeading2";
 import Banner2 from "./common/Banner2";
 import { ProfileCards } from "./common/ProfileCards";
-import { FAQAccordion } from "./common/FAQS";
+import { FAQ } from "./common/FAQ";
 
 const CourseDetailPage = () => {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -339,9 +335,9 @@ const CourseDetailPage = () => {
       {/* Course Content Container */}
       <div className=" w-full flex flex-col md:flex-row  gap-8">
         {/* Left Content Column */}
-        <div className="w-full flex flex-col padding-bottom ">
+        <div className="w-full flex flex-col padding-bottom">
           {/* Course Overview */}
-          <div className="flex flex-col lg:flex-row gap-5 screen  padding-x">
+          <div className="flex flex-col lg:flex-row gap-5 screen  padding-bx">
             <div className="space-y-10 w-full lg:w-2/3">
               <CommonHeading2
                 title="Course Overview"
@@ -462,9 +458,6 @@ const CourseDetailPage = () => {
               />
             </div>
           </div>
-
-          {/* Demo Class */}
-          <DemoClass />
 
           {/* Faculty Section */}
           <div className="padding-bottom pt-14">
@@ -931,7 +924,7 @@ const CourseDetailPage = () => {
           </button>
         </div>
       </div>
-      <FAQAccordion />
+      <FAQ className="padding-bx" />
     </div>
   );
 };
