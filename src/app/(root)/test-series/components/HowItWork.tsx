@@ -35,7 +35,13 @@ const HowItWork = () => {
   return (
     <div className="padding-bottom relative">
       <div className="absolute inset-0 ">
-        <Image src={"/images/bg/vector.png"} alt="images" fill />
+        <Image
+          src={"/images/bg/vector.png"}
+          alt="images"
+          width={2100}
+          height={1200}
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="flex justify-center">
         <CommonHeading2 title="How It Works?" />
