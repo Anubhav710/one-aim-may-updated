@@ -26,7 +26,7 @@ export default function Home() {
       <Moto />
       <Testimonials />
       <Blog />
-      <FAQ className="padding-bx" />
+      <FAQ className="padding-yx" />
     </main>
   );
 }
