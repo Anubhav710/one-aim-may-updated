@@ -11,6 +11,8 @@ import {
 } from "@/components/icons";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import Banner2 from "@/components/common/Banner2";
+import axios from "axios";
+import { TeamMemberList } from "@/types";
 
 const teamInfo = [
   {
@@ -215,7 +217,26 @@ const facultyHighlights = [
   },
 ];
 
-const FacultyPage = () => {
+const FacultyPage = async () => {
+  // Change const to let to allow assignment
+  let teamMemberList: TeamMemberList | null = null;
+  try {
+    const response = await axios.get<TeamMemberList>(
+      `${process.env.BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+        },
+      }
+    );
+    // Assign the fetched data to blogList
+    teamMemberList = response.data;
+  } catch (err) {
+    console.error("Error fetching blogs:", err);
+    // Optionally handle the error state, e.g., set blogList to an empty array
+    teamMemberList = [];
+  }
+
   return (
     <main className="bg-[#FFF7F0]">
       {/* Banner Section */}
@@ -269,13 +290,17 @@ const FacultyPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {teamInfo.map((faculty) => (
-              <div key={faculty.id} className="h-full">
+            {teamMemberList.map((faculty) => (
+              <div key={faculty.slug} className="h-full">
                 <TeamCard
                   name={faculty.name}
+                  designation={faculty.designation}
+                  experience={faculty.experience}
                   qualification={faculty.qualifications}
-                  description={faculty.description}
-                  image={faculty.image}
+                  specialization={faculty.designation}
+                  description={faculty.short_description}
+                  image={faculty.featured_image_url}
+                  facultSlug={faculty.slug}
                 />
               </div>
             ))}

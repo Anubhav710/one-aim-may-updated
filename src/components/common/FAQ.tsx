@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { FaChevronDown } from "react-icons/fa";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import axios from "axios";
+import { FAQList } from "@/types";
 
 type FAQ = {
   question: string;
@@ -233,6 +235,10 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  const [faqData, setFaqData] = useState<FAQList>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     if (openIndex !== null && contentRefs.current[openIndex]) {
       gsap.fromTo(
@@ -241,6 +247,29 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
         { height: "auto", opacity: 1, duration: 0.3, ease: "power2.out" }
       );
     }
+
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get<FAQList>(
+          `https://oneaim-admin.utxotech.com/api/v1/faqs`,
+          {
+            headers: {
+              Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`,
+            },
+          }
+        );
+        // Set the fetched data into state
+        setFaqData(response.data);
+
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching faqs:", err);
+        setError("Failed to load faqs.");
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
   }, [openIndex]);
 
   const toggleFAQ = (index: number) => {
@@ -256,7 +285,7 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
         <CommonHeading2 title="FAQ" />
       </div>
       <div className="space-y-4">
-        {faqs.map((faq, index) => (
+        {faqData.map((faq, index) => (
           <div key={index} className="bg-white px-4 rounded-lg">
             <button
               onClick={() => toggleFAQ(index)}

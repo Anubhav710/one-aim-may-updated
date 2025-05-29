@@ -237,3 +237,28 @@
   background-color: rgba(235, 235, 235, 0.2);
   backdrop-filter: blur(20px);
 }
+
+.blog-content h1 {
+  @apply text-4xl mt-4 font-bold;
+}
+.blog-content h2 {
+  @apply text-3xl mt-4 font-semibold;
+}
+.blog-content h3 {
+  @apply text-xl font-semibold;
+}
+.blog-content h4 {
+  @apply text-2xl font-medium;
+}
+.blog-content h5 {
+  @apply text-xl font-medium;
+}
+.blog-content h6 {
+  @apply text-lg;
+}
+.blog-content b {
+  @apply font-bold;
+}
+.blog-content p {
+  @apply py-2;
+}

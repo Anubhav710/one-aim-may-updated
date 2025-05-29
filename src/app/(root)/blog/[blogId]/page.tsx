@@ -4,63 +4,8 @@ import BlogCard from "@/components/ui/BlogCard";
 
 import { socialLinks, socialLinks2 } from "@/constant/page";
 import { FaSearch } from "react-icons/fa";
-
-const blogPosts = [
-  {
-    id: 1,
-    image: "/images/blog/blog.png",
-    date: "11 Jan, 2025",
-    title: "How to Create an Effective Study Plan",
-    description:
-      "Learn how to create a study plan that covers all subjects systematically.",
-    link: "/blog/1",
-  },
-  {
-    id: 2,
-    image: "/images/blog/blog-2.png",
-    date: "12 Jan, 2025",
-    title: "Staying Motivated During IAS Preparation",
-    description:
-      "Explore techniques to stay motivated and focused throughout your journey.",
-    link: "/blog/2",
-  },
-  {
-    id: 3,
-    image: "/images/blog/blog-show.png",
-    date: "13 Jan, 2025",
-    title: "Top Strategies for Cracking IAS Prelims",
-    description:
-      "Discover the best strategies to ace your IAS prelims with our expert tips.",
-    link: "/blog/3",
-  },
-  {
-    id: 4,
-    image: "/images/blog/blog.png",
-    date: "14 Jan, 2025",
-    title: "Essential Books for UPSC Preparation",
-    description:
-      "A comprehensive guide to the most important books for your UPSC journey.",
-    link: "/blog/4",
-  },
-  {
-    id: 5,
-    image: "/images/blog/blog-2.png",
-    date: "15 Jan, 2025",
-    title: "Time Management Tips for UPSC Aspirants",
-    description:
-      "Learn effective time management strategies to balance your preparation.",
-    link: "/blog/5",
-  },
-  {
-    id: 6,
-    image: "/images/blog/blog-show.png",
-    date: "16 Jan, 2025",
-    title: "How to Approach UPSC Mains Answer Writing",
-    description:
-      "Master the art of writing effective answers for the UPSC Mains examination.",
-    link: "/blog/6",
-  },
-];
+import axios from "axios";
+import { BlogItem, BlogList, BlogListShow } from "@/types";
 
 const categories = [
   { name: "Study resources", count: 15 },
@@ -83,6 +28,26 @@ const instagramPosts = [
 
 const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   const { blogId } = await params;
+
+  let currentBlog: BlogListShow | undefined = undefined; // Variable to hold the found blog
+
+  try {
+    const response = await axios.get<BlogListShow>(
+      `${process.env.BASE_URL}/api/v1/blogs/${blogId}`, // Use environment variable for base URL
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+        },
+      }
+    );
+    currentBlog = await response.data;
+  } catch (error) {
+    console.log(error);
+  }
+
+  if (!currentBlog) {
+    return <div>Page Not Found</div>;
+  }
   return (
     <div className="bg-[#FFF5EE]">
       <div className="container mx-auto px-4 py-8">
@@ -94,7 +59,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
               <div className="mb-6">
                 <div className="h-[500px] overflow-hidden rounded-2xl">
                   <Image
-                    src={"/images/blog/blog-show.avif"}
+                    src={currentBlog.featured_image_url}
                     alt="blog"
                     width={1270}
                     height={500}
@@ -103,14 +68,18 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                 </div>
                 <div className="mt-4 flex items-center gap-4">
                   <p className=" font-semibold text-[#FFC107] text-lg ">
-                    11 Jan, 2025
+                    {currentBlog.publish_date}
                   </p>
                 </div>
               </div>
 
               {/* Content Container */}
+              <div
+                className="blog-content"
+                dangerouslySetInnerHTML={{ __html: currentBlog.content }}
+              ></div>
               <div>
-                <h1 className="text-3xl font-bold mb-4">
+                {/* <h1 className="text-3xl font-bold mb-4">
                   Top Strategies for Cracking IAS Prelims
                 </h1>
                 <p className="text-gray-600 mb-8">
@@ -224,7 +193,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Social Share */}
                 {/* <div className="flex gap-2 my-8">
@@ -245,8 +214,15 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6">Recent Articles</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {blogPosts.slice(0, 1).map((post) => (
-                  <BlogCard key={post.id} {...post} />
+                {currentBlog.related_blogs.map((relatedBlog) => (
+                  <BlogCard
+                    key={relatedBlog.title}
+                    title={relatedBlog.title}
+                    short_description={relatedBlog.short_description}
+                    featured_image_url={relatedBlog.featured_image_url}
+                    publish_date={relatedBlog.publish_date}
+                    blogSlug={relatedBlog.slug}
+                  />
                 ))}
               </div>
             </div>
@@ -255,7 +231,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
           {/* Sidebar */}
           <div className="w-full lg:w-1/3 space-y-8">
             {/* Search */}
-            <div>
+            {/* <div>
               <div className="relative ">
                 <input
                   type="text"
@@ -266,7 +242,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                   <FaSearch />
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Categories */}
             <div>
@@ -366,6 +342,8 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
       </div>
     </div>
   );
+  // For now, the component will render with undefined currentBlog if not found or error occurred.
+  // You would typically add a check here: if (!currentBlog) { return <div>Blog not found</div>; }
 };
 
 export default BlogId;

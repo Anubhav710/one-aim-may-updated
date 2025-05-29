@@ -2,65 +2,32 @@ import Banner from "@/components/common/Banner";
 import Link from "next/link";
 import React from "react";
 import BlogCard from "@/components/ui/BlogCard";
+import axios from "axios";
+import { BlogList } from "@/types";
 
-const blogPosts = [
-  {
-    id: 1,
-    image: "/images/blog/blog-1.jpg",
-    date: "11 Jan, 2025",
-    title: "How to Create an Effective Study Plan",
-    description:
-      "Learn how to create a study plan that covers all subjects systematically.",
-    link: "/blog/1",
-  },
-  {
-    id: 2,
-    image: "/images/blog/blog-2.jpg",
-    date: "12 Jan, 2025",
-    title: "Staying Motivated During IAS Preparation",
-    description:
-      "Explore techniques to stay motivated and focused throughout your journey.",
-    link: "/blog/2",
-  },
-  {
-    id: 3,
-    image: "/images/blog/blog-3.jpg",
-    date: "13 Jan, 2025",
-    title: "Top Strategies for Cracking IAS Prelims",
-    description:
-      "Discover the best strategies to ace your IAS prelims with our expert tips.",
-    link: "/blog/3",
-  },
-  {
-    id: 4,
-    image: "/images/blog/blog-4.jpg",
-    date: "14 Jan, 2025",
-    title: "Essential Books for UPSC Preparation",
-    description:
-      "A comprehensive guide to the most important books for your UPSC journey.",
-    link: "/blog/4",
-  },
-  {
-    id: 5,
-    image: "/images/blog/blog-5.jpg",
-    date: "15 Jan, 2025",
-    title: "Time Management Tips for UPSC Aspirants",
-    description:
-      "Learn effective time management strategies to balance your preparation.",
-    link: "/blog/5",
-  },
-  {
-    id: 6,
-    image: "/images/blog/blog-6.jpg",
-    date: "16 Jan, 2025",
-    title: "How to Approach UPSC Mains Answer Writing",
-    description:
-      "Master the art of writing effective answers for the UPSC Mains examination.",
-    link: "/blog/6",
-  },
-];
+const BlogPage = async () => {
+  // Change const to let to allow assignment
+  let blogList: BlogList | null = null;
+  try {
+    const response = await axios.get<BlogList>(
+      `${process.env.BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+        },
+      }
+    );
+    // Assign the fetched data to blogList
+    blogList = response.data;
+  } catch (err) {
+    console.error("Error fetching blogs:", err);
+    // Optionally handle the error state, e.g., set blogList to an empty array
+    blogList = [];
+  }
 
-const BlogPage = () => {
+  // Ensure blogList is treated as an array for mapping, even if null initially
+  const blogsToDisplay = blogList || [];
+
   return (
     <div className="bg-beige-50 min-h-screen">
       <Banner title="Blog" desp="Empowering Lives, One Step at a Time">
@@ -70,8 +37,15 @@ const BlogPage = () => {
       </Banner>
       <div className="container mx-auto py-24 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.id} {...post} />
+          {blogsToDisplay.map((blog) => (
+            <BlogCard
+              key={blog.slug} // Use slug as key if available and unique
+              blogSlug={blog.slug}
+              title={blog.title}
+              featured_image_url={blog.featured_image_url}
+              publish_date={blog.publish_date}
+              short_description={blog.short_description}
+            />
           ))}
         </div>
       </div>

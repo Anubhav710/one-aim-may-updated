@@ -5,7 +5,17 @@ import { IoStar } from "react-icons/io5";
 import { MdFormatQuote } from "react-icons/md";
 import { gsap } from "gsap";
 
-const TestimonialCard = () => {
+const TestimonialCard = ({
+  name,
+  subHeading,
+  imgsrc,
+  content,
+}: {
+  name: string;
+  subHeading: string;
+  imgsrc?: string;
+  content: string;
+}) => {
   const cardRef = useRef(null);
   const imageRef = useRef(null);
   const quoteRef = useRef(null);
@@ -19,7 +29,7 @@ const TestimonialCard = () => {
                   shadow-md transition-all duration-500 group-hover:shadow-xl group-hover:scale-105"
       >
         <Image
-          src={"/images/testimonial/archika.png"}
+          src={imgsrc ?? "/images/image.png"}
           alt="image"
           width={940}
           height={240}
@@ -46,10 +56,7 @@ const TestimonialCard = () => {
 
         {/* Testimonial text */}
         <p className="text-center text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque
-          voluptatibus beatae eligendi architecto asperiores ipsa ad vitae,
-          doloremque numquam dicta maiores in ipsum alias repellendus sunt hic
-          exercitationem voluptatem fuga.
+          {content}
         </p>
 
         {/* Border that appears on hover */}
@@ -61,10 +68,10 @@ const TestimonialCard = () => {
         {/* Author info */}
         <hgroup className="flex justify-center items-baseline gap-x-2">
           <p className="text-xl font-semibold text-gray-700 group-hover:text-primaryred transition-colors duration-300">
-            Archika
+            {name}
           </p>
           <p className="text-[12px] text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-            Manager at xyz
+            Manager at xyz {subHeading}
           </p>
         </hgroup>
       </div>

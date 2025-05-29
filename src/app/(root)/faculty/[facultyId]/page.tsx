@@ -5,11 +5,34 @@ import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import ProfileCards from "@/components/common/ProfileCards";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import { FacultyItem } from "@/types";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const FacultyPage = () => {
+const FacultyPage = async ({
+  params,
+}: {
+  params: Promise<{ facultyId: string }>;
+}) => {
+  const { facultyId } = await params;
+
+  let facultyData: FacultyItem | undefined = undefined; // Variable to hold the found blog
+
+  try {
+    const response = await axios.get<FacultyItem>(
+      `${process.env.BASE_URL}/api/v1/blogs/${facultyId}`, // Use environment variable for base URL
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+        },
+      }
+    );
+    facultyData = await response.data;
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <div>
       <div>
