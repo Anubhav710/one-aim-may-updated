@@ -33,10 +33,10 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
 
   try {
     const response = await axios.get<BlogListShow>(
-      `${process.env.BASE_URL}/api/v1/blogs/${blogId}`, // Use environment variable for base URL
+      `https://oneaim-admin.utxotech.com/api/v1/blogs/${blogId}`, // Use environment variable for base URL
       {
         headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+          Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`, // Use environment variable for auth token
         },
       }
     );
