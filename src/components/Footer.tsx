@@ -36,11 +36,14 @@ const Footer = async () => {
   let companyData: CompanyData | null = null;
 
   try {
-    const response = await axios.get(`${process.env.BASE_URL}/api/v1/company`, {
-      headers: {
-        Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
-      },
-    });
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/company`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+        },
+      }
+    );
     companyData = await response.data.data;
   } catch (error) {
     console.error("Error fetching protected data:", error);

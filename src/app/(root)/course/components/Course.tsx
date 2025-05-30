@@ -13,6 +13,8 @@ import "swiper/css/pagination";
 import FeaturedCard from "@/components/ui/FeaturedCard";
 
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import axios from "axios";
+import { CourseCategoryList } from "@/types";
 
 interface CourseCategory {
   id: string;
@@ -376,10 +378,33 @@ const Course: React.FC = () => {
     ],
   };
 
+  let [courseCategoryList, setCourseCategoryList] =
+    useState<CourseCategoryList>();
+
   useEffect(() => {
     if (subCourseCategory[activeCourse]?.length) {
       setActiveSubCourse(subCourseCategory[activeCourse][0].id);
     }
+    const courseDetail = async () => {
+      try {
+        const response = await axios.get<CourseCategoryList>(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/course-categories`, // Use environment variable for base URL
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
+            },
+          }
+        );
+        console.log(response);
+        // Assign the fetched data to blogList
+        setCourseCategoryList(response.data);
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
+        // Optionally handle the error state, e.g., set blogList to an empty array
+        courseCategoryList = [];
+      }
+    };
+    courseDetail();
   }, [activeCourse]);
 
   const currentSubCourses = subCourseCategory[activeCourse] || [];

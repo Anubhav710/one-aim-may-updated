@@ -18,13 +18,16 @@ const BlogCard = ({
   return (
     <div className="space-y-3 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0px_10px_20px_rgba(0,0,0,0.25)] rounded-lg overflow-hidden cursor-pointer group p-8">
       <div className="overflow-hidden">
-        <Link href={`/blog/${blogSlug}`}>
+        <Link
+          href={`/blog/${blogSlug}`}
+          className="bg-red-300 h-52 w-full inline-block rounded-2xl overflow-hidden"
+        >
           <Image
             src={featured_image_url}
             alt="blog"
             width={440}
             height={340}
-            className="transition-transform duration-500 group-hover:scale-105 size-80 w-full"
+            className="transition-transform duration-500 group-hover:scale-105  h-full w-full object-cover "
           />
         </Link>
       </div>

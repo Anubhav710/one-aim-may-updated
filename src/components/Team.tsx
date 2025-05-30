@@ -22,16 +22,15 @@ const Team = () => {
     const facultyDetail = async () => {
       try {
         const response = await axios.get<TeamMemberList>(
-          `${process.env.BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
           {
             headers: {
-              Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
             },
           }
         );
         // Assign the fetched data to blogList
         setTeamMember(response.data);
-        console.log(response.data);
       } catch (err) {
         console.error("Error fetching blogs:", err);
         // Optionally handle the error state, e.g., set blogList to an empty array

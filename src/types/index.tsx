@@ -176,3 +176,52 @@ interface MediaItem {
   original_url: string;
   preview_url: string;
 }
+
+// Courses
+
+export interface CourseCategory {
+  name: string;
+  slug: string;
+  sequence: number;
+  children: CourseCategory[]; // Recursive for nested categories
+  courses: CourseItem[];
+}
+
+interface CourseItem {
+  heading: string;
+  slug: string;
+  sub_heading: string;
+  language: string;
+  duration: string;
+  video_lectures: string;
+  questions_count: string;
+  price: number;
+  short_description: string;
+  featured: number;
+  sequence: number;
+  featured_image_url: string;
+  study_material_url: string;
+  timetable_url: string;
+  pivot: CoursePivot;
+  course_course_contents: CourseContent[];
+  course_course_faqs: CourseFAQ[];
+}
+
+interface CoursePivot {
+  course_category_id: number;
+  course_id: number;
+}
+
+interface CourseContent {
+  title: string;
+  content: string;
+  sequence: number;
+}
+
+interface CourseFAQ {
+  question: string;
+  answer: string;
+  sequence: number;
+}
+
+export type CourseCategoryList = CourseCategory[];

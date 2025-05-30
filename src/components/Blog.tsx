@@ -14,16 +14,15 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get<BlogList>(
-          `https://oneaim-admin.utxotech.com/api/v1/blogs`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/blogs`,
           {
             headers: {
-              Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`,
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
             },
           }
         );
         // Set the fetched data into state
         setFaqData(response.data);
-
         setLoading(false);
       } catch (err) {
         console.error("Error fetching faqs:", err);
