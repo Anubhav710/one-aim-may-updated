@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import React from "react";
 import { Poppins } from "next/font/google";
 import Footer from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,6 +17,17 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       {children}
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

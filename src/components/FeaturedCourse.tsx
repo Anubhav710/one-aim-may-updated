@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FeaturedCard from "./ui/FeaturedCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
@@ -27,6 +27,8 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import { CommonHeading2 } from "./common/CommonHeading2";
+import axios from "axios";
+import { CouseItemList } from "@/types";
 
 // Data
 const courses = [
@@ -184,6 +186,27 @@ const FeaturedCourse = () => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const swiperRef = useRef(null);
+  const [featuredCourses, setFeaturedCourses] = useState<CouseItemList>([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get<CouseItemList>(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+            },
+          }
+        );
+        console.log(response.data);
+        setFeaturedCourses(response.data.filter((data) => data.featured === 1));
+      } catch (err: any) {
+        console.error("Error fetching featured courses:", err);
+      }
+    };
+    fetchCourses();
+  }, []);
 
   return (
     <section
@@ -261,15 +284,14 @@ const FeaturedCourse = () => {
                 padding: "0px 10px 50px 10px",
               }}
             >
-              {courses.map((course, index) => (
+              {featuredCourses.map((course, index) => (
                 <SwiperSlide key={index}>
                   <div className="h-full transform transition-transform hover:scale-[1.02] duration-300">
                     <FeaturedCard
-                      title={course.course}
-                      description={course.description}
-                      features={course.features}
+                      title={course.heading}
+                      description={course.sub_heading}
                       price={course.price}
-                      href="/course/1"
+                      href={course.slug}
                     />
                   </div>
                 </SwiperSlide>

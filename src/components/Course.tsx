@@ -51,7 +51,7 @@ const Course: React.FC = () => {
             },
           }
         );
-        console.log(response.data);
+
         // Assign the fetched data to blogList
         setCourseCategoryList(response.data);
         if (response.data && response.data.length > 0) {

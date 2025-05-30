@@ -22,7 +22,7 @@ const Team = () => {
     const facultyDetail = async () => {
       try {
         const response = await axios.get<TeamMemberList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/faculties`, // Use environment variable for base URL
           {
             headers: {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token

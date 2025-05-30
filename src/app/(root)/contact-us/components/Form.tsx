@@ -1,18 +1,19 @@
 "use client";
-
-import { useForm, FieldError } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Image from "next/image";
-import CommonHeading from "@/components/ui/CommonHeading";
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiMapPin } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 import { FaChevronDown } from "react-icons/fa";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 type FormData = {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
 };
@@ -29,20 +30,38 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log(data);
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/enquiries`, // replace with actual POST endpoint
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+        }
+      );
+
+      console.log("Server response:", response.data);
       reset();
+      toast.success("Your message has been sent successfully!");
+      // Optionally add a success message/toast here
+    } catch (error) {
+      console.error("Error sending form data:", error);
+      toast.error("Failed to send your message. Please try again.");
+      // Optionally add an error message/toast here
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
     <div>
       <div className="w-max mx-auto max-sm:w-full">
-        <CommonHeading2 title="Reach out to us – we’d love to hear from you." />
+        <CommonHeading2 title="Reach out to us – we'd love to hear from you." />
       </div>
 
       <div className="flex flex-col md:flex-row gap-6  rounded-xl">
@@ -81,7 +100,7 @@ export default function ContactForm() {
             </p>
           )}
 
-          <div className="relative">
+          {/* <div className="relative">
             <select
               {...register("subject", { required: "Subject is required" })}
               className="w-full p-4 border rounded-xl border-orange/50 focus:border-orange bg-[rgba(255,123,7,0.04)] text-gray-700 focus:outline-none  appearance-none cursor-pointer  transition-colors duration-200"
@@ -102,6 +121,18 @@ export default function ContactForm() {
           {errors.subject && (
             <p className="text-red-500 text-sm">
               {errors.subject.message as string}
+            </p>
+          )} */}
+
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            {...register("phone", { required: "Phone Number is required" })}
+            className="w-full p-4 border rounded-xl border-orange/50 focus:border-orange bg-[rgba(255,123,7,0.04)] text-gray-700 focus:outline-none   transition-colors duration-200"
+          />
+          {errors.phone && (
+            <p className="text-red-500 text-sm">
+              {errors.phone.message as string}
             </p>
           )}
 

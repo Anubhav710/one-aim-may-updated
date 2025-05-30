@@ -178,7 +178,6 @@ interface MediaItem {
 }
 
 // Courses
-
 export interface CourseCategory {
   name: string;
   slug: string;
@@ -225,3 +224,38 @@ interface CourseFAQ {
 }
 
 export type CourseCategoryList = CourseCategory[];
+
+interface Pivot {
+  test_series_category_id: number;
+  test_series_id: number;
+}
+
+interface TestSeries {
+  heading: string;
+  slug: string;
+  sub_heading: string;
+  language: string;
+  duration: string;
+  video_lectures: string;
+  questions_count: string;
+  price: number;
+  short_description: string;
+  featured: number;
+  sequence: number;
+  featured_image_url: string | null;
+  study_material_url: string | null;
+  timetable_url: string | null;
+  pivot: Pivot;
+}
+
+interface TestSeriesCategory {
+  name: string;
+  slug: string;
+  sequence: number;
+  children: TestSeriesCategory[];
+  test_series: TestSeries[];
+}
+
+export type TestSeriesList = TestSeriesCategory[];
+
+export type CouseItemList = CourseItem[];

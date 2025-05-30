@@ -28,7 +28,7 @@ interface FeaturedCardProps {
   buttonText?: string;
   features?: Feature[];
   href: string;
-  price?: string;
+  price?: string | number;
 }
 
 const FeaturedCard: React.FC<FeaturedCardProps> = ({

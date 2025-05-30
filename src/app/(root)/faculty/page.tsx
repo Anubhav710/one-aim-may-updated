@@ -1,198 +1,15 @@
-import React from "react";
-import TeamCard from "@/components/ui/TeamCard";
-
+import axios from "axios";
+import { TeamMemberList } from "@/types";
 import Banner from "@/components/common/Banner";
 import Link from "next/link";
+import { CommonHeading2 } from "@/components/common/CommonHeading2";
+import TeamCard from "@/components/ui/TeamCard";
 import {
   EducationIcon,
   IndustryIcon,
   PassionIcon,
   TeachingIcon,
 } from "@/components/icons";
-import { CommonHeading2 } from "@/components/common/CommonHeading2";
-import Banner2 from "@/components/common/Banner2";
-import axios from "axios";
-import { TeamMemberList } from "@/types";
-
-const teamInfo = [
-  {
-    id: 1,
-    name: "Diksha kashyap",
-    qualifications: {
-      experience: "Fresher",
-      education: "MA Political Science, UGC NET",
-      subject: "Political Science",
-    },
-    description:
-      "Enthusiastic, Aspiring to be a Professor, passionate educator, make complex information easy.",
-    role: "Faculty (Indian Polity)",
-    image: "/images/team/Dikshakashyap.png",
-  },
-  {
-    id: 2,
-    name: "Ritika kaushal",
-    qualifications: {
-      experience: "4 Years of Experience",
-      education:
-        "BA Programming with Data Analytics, MBA in Human Resource and Operations",
-      subject: "Economics",
-    },
-    description: "Make subjects engaging and relatable for students.",
-    role: "Faculty",
-    image: "/images/team/Ritikakaushal.png",
-  },
-  {
-    id: 3,
-    name: "Aatiba Nasti",
-    qualifications: {
-      experience: "5 Years as Lecturer",
-      education: "B.Tech Civil Engineering, M.Tech Transportation Engineering",
-      subject: "Mathematics, Physics, Chemistry, and Reasoning",
-    },
-    description: "Educator, a passion for lifelong learning.",
-    role: "Faculty",
-    image: "/images/team/AatibaNasti.png",
-  },
-  {
-    id: 4,
-    name: "Munaza Nasti ",
-    qualifications: {
-      experience: "7 Years of Experience",
-      education: "B.Sc Masters in Gender Studies",
-      subject: "Mathematics",
-    },
-    description:
-      "Dr. Patel is a mathematics expert who makes complex concepts simple and engaging. His innovative teaching methods have helped countless students excel in mathematics and competitive exams.",
-    role: "Mathematics Head",
-    image: "/images/team/MunazaNasti.png",
-  },
-  {
-    id: 5,
-    name: "Saloni Vaishnoi",
-    qualifications: {
-      experience: "15 Years",
-      education: "B.Tech, M.A., B.Ed., pursuing PhD",
-      subject: "Geography",
-    },
-    description: "Karate player, PLC programming, training in Doordarshan.",
-    role: "Faculty",
-    image: "/images/team/SaloniVaishnoi.png",
-  },
-  {
-    id: 6,
-    name: "Col Paresh Dave",
-    qualifications: {
-      experience: "14 Years of Experience",
-      education: "M.Com., CA",
-      subject: "Commerce",
-    },
-    description:
-      "Mr. Kumar brings real-world financial expertise to the classroom. His experience in chartered accountancy and commerce education makes him an invaluable asset for commerce students.",
-    role: "Commerce Expert",
-    image: "/images/team/ColPareshDave.png",
-  },
-  {
-    id: 7,
-    name: "Narendra Raj Singh",
-    qualifications: {
-      experience: "23 Years",
-      education: "M.S (AI & ML), M.B.A (IB), M.A (Business Economics)",
-      subject: "Geography, Indian Art & Architecture",
-    },
-    description: "Corporate Training.",
-    role: "Faculty",
-    image: "/images/team/NarendraRajSingh.png",
-  },
-  {
-    id: 8,
-    name: "Preeti Rathi",
-    qualifications: {
-      experience: "6 Years",
-      education: "PhD pursuing, UGC NET, MA (Economics), BEd",
-      subject: "Economics, Medieval History",
-    },
-    description:
-      "Researcher, educator, training & consultancy, case study specialist.",
-    role: "Faculty",
-    image: "/images/team/PreetiRathi.png",
-  },
-
-  {
-    id: 10,
-    name: "Charu Singh",
-    qualifications: {
-      experience: "Taken two mains (UPPCS), Content Developer",
-      education: "B.Sc, B.Ed",
-      subject: "General Studies",
-    },
-    description: "Faculty for Hindi medium.",
-    role: "Faculty",
-    image: "/images/team/CharuSingh.png",
-  },
-  {
-    id: 11,
-    name: "Hammad Jafri",
-    qualifications: {
-      experience: "2 years of teaching experience",
-      education: "B.Sc. (Hons) Maths & B.Ed from AMU",
-      subject: "Indian Polity",
-    },
-    description: "Faculty for English medium.",
-    role: "Faculty (Indian Polity)",
-    image: "/images/team/HammadJafri.png",
-  },
-  {
-    id: 12,
-    name: "Sarvesh Mishra",
-    qualifications: {
-      experience:
-        "Worked as a general studies faculty in Eklavya Academy, Indore. Provided 1-on-1 UPSC answer writing mentorship. Worked as a guest faculty in various colleges.",
-      education:
-        "Bachelor of Arts (Political Science, Economics, Sociology), B.Ed",
-      subject: "General Studies",
-    },
-    description: "Experienced mentor in UPSC preparation.",
-    role: "Faculty",
-    image: "/images/team/SarveshMishra.png",
-  },
-  {
-    id: 13,
-    name: "Monu Kumar",
-    qualifications: {
-      experience: "1.5 years",
-      education: "B.A. (Political Science)",
-      subject: "Political Science",
-    },
-    description: "Faculty for Hindi medium.",
-    role: "Faculty",
-    image: "/images/team/MonuKumar.png",
-  },
-  {
-    id: 14,
-    name: "Manish Mishra",
-    qualifications: {
-      experience: "9 years of teaching experience in UPSC and State PCS",
-      education: "B.Sc, M.A. (Sociology), M.A. (History), LLB (Law)",
-      subject: "Sociology & History",
-    },
-    description: "Faculty for Hindi medium.",
-    role: "Faculty",
-    image: "/images/team/ManishMishra.png",
-  },
-  {
-    id: 15,
-    name: "Satyendra Kumar Sharma",
-    qualifications: {
-      experience: "10 years",
-      education: "Post Graduate in Economics, Political Science, and History",
-      subject: "Economics, Political Science, and History",
-    },
-    description:
-      "Faculty at Chahal IAS Academy, Geetanjali IAS Academy, and Chanakya IAS Academy.",
-    role: "Faculty",
-    image: "/images/team/SatyendraKumarSharma.png",
-  },
-];
 
 const facultyHighlights = [
   {
@@ -218,22 +35,22 @@ const facultyHighlights = [
 ];
 
 const FacultyPage = async () => {
-  // Change const to let to allow assignment
   let teamMemberList: TeamMemberList | null = null;
+
   try {
     const response = await axios.get<TeamMemberList>(
-      `${process.env.BASE_URL}/api/v1/blogs`, // Use environment variable for base URL
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/faculties`, // Use environment variable for base URL
       {
         headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`, // Use environment variable for auth token
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
         },
       }
     );
-    // Assign the fetched data to blogList
-    teamMemberList = response.data;
+
+    teamMemberList = await response.data;
   } catch (err) {
     console.error("Error fetching blogs:", err);
-    // Optionally handle the error state, e.g., set blogList to an empty array
+
     teamMemberList = [];
   }
 
