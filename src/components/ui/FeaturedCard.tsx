@@ -83,7 +83,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
       <div className="relative overflow-hidden rounded-2xl group">
         {/* Princing Tag  */}
         <div className="absolute top-3 right-[1px] bg-primaryred z-30 text-white text-sm py-1 px-5 rounded-l-full font-semibold">
-          ₹ {price || "price"}
+          {price || "price"}
         </div>
         <Link
           href={`${testSeries ? `/test-series/${href}` : `/course/${href}`}`}
