@@ -13,6 +13,8 @@ import Banner from "@/components/common/Banner";
 import CourseEnrollCard from "@/components/CourseEnrollCard";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import Banner2 from "@/components/common/Banner2";
+import axios from "axios";
+import { SingleTestSeries } from "@/types/test-series";
 
 // Sample test data - in a real app, you would fetch this based on the slug
 const testData = {
@@ -100,8 +102,28 @@ const testData = {
 };
 
 // Dynamic page component for test series detail
-export default function TestSeriesDetail() {
+export default async function TestSeriesDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   // In a real app, you would fetch data based on the slug
+  let testSeiesData: SingleTestSeries | null = null;
+  const { slug } = await params;
+
+  try {
+    const response = await axios.get<SingleTestSeries>(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/test-series/${slug}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+        },
+      }
+    );
+    testSeiesData = await response.data;
+  } catch (error) {
+    console.error("Error fetching protected data:", error);
+  }
 
   return (
     <div className="bg-[#FFF7F0] overflow-x-clip">
@@ -110,7 +132,7 @@ export default function TestSeriesDetail() {
       >
         <hgroup className="space-y-5">
           <h2 className="heading text-primaryred relative w-max  mx-auto">
-            <h2 className={`relative z-20 `}>Prelims Test Series</h2>{" "}
+            <h2 className={`relative z-20 `}>{testSeiesData?.heading}</h2>{" "}
             <Image
               src={"/images/icons/button-style.svg"}
               alt="style"
@@ -126,7 +148,7 @@ export default function TestSeriesDetail() {
           <span>{">"}</span>
           <Link href="/test-series">Test Series</Link>
           <span>{">"}</span>
-          <span className="text-primaryred"> {testData.title}</span>
+          <span className="text-primaryred"> {testSeiesData?.slug}</span>
         </div>
       </section>
 
@@ -134,12 +156,13 @@ export default function TestSeriesDetail() {
       <div>
         <div className="screen padding-yx">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Left Content (2/3 width on desktop) */}
             <div className="md:col-span-2 space-y-10">
-              {/* Test Overview */}
-              <CommonHeading2 title="Test Overview" desc={testData.overview} />
+              <div
+                className="blog-content"
+                dangerouslySetInnerHTML={{ __html: testSeiesData?.content }}
+              ></div>
+              {/* <CommonHeading2 title="Test Overview" desc={testData.overview} />
 
-              {/* Main Description */}
               <div className="mb-10">
                 <h2 className="text-primaryred heading2 relative w-max">
                   <span className={`relative z-10 mb-5 inline-block }`}>
@@ -171,21 +194,29 @@ export default function TestSeriesDetail() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Sidebar (1/3 width on desktop) */}
             <div>
               <CourseEnrollCard
-                title="IAS Foundation Course (Prelims + Mains) - 12 Months"
-                instructors={["Sujjan Sharma (Ex-IAS)"]}
-                price={960}
-                languages={["English", "Hindi"]}
+                title={`${testSeiesData?.heading}`}
+                instructors={testSeiesData?.faculties.map(
+                  (data, i) => data.name
+                )}
+                duration={testSeiesData?.duration}
+                question={testSeiesData?.questions_count}
+                videoLacture={testSeiesData?.video_lectures}
+                image={testSeiesData?.featured_image_url}
+                price={testSeiesData?.price}
+                languages={testSeiesData?.language}
+                timeTable={testSeiesData?.timetable_url}
+                studyMaterial={testSeiesData?.study_material_url}
                 features={[
                   "PDFs, Notes, Mock Tests",
                   "Online (Live + Recorded)",
                 ]}
-                enrollmentDeadline="22 February, 2025"
+                enrollmentDeadline={testSeiesData?.enrolment_deadline_date}
                 contactPhone="+1 (123) 456-7890"
                 contactAddress="123 Success Street, City, Country"
               />

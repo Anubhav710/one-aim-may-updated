@@ -22,18 +22,27 @@ import Button from "./ui/Button";
 interface CourseEnrollCardProps {
   title: string;
   instructors?: string[];
-  price: number;
+  price: number | undefined;
   originalPrice?: number;
-  languages: string[];
+  languages: string | undefined;
   features: string[];
-  enrollmentDeadline: string;
+  enrollmentDeadline: string | undefined;
   contactPhone: string;
   contactAddress: string;
+  duration: string | undefined;
+  image: string | undefined | null;
+  videoLacture: string | undefined;
+  question: string | undefined;
+  studyMaterial?: any;
+  timeTable: string | undefined | null;
 }
 
 const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   title,
   instructors = [],
+  studyMaterial,
+  timeTable,
+  image,
   price,
   originalPrice,
   languages,
@@ -41,6 +50,9 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   enrollmentDeadline,
   contactPhone,
   contactAddress,
+  duration,
+  question,
+  videoLacture,
 }) => {
   return (
     <div className="flex flex-col gap-6">
@@ -50,7 +62,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
         <div className="relative h-64">
           <div className="w-full h-full">
             <Image
-              src="/images/course/course-bg.png"
+              src={image ?? "/images/course/course-bg.png"}
               alt="Course prep materials"
               fill
               className="object-cover"
@@ -62,31 +74,32 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
         <div className="p-4 space-y-4">
           <div className="flex justify-between gap-x-3">
             <div className="text-[#FF7B07] bg-gradient-to-r from-[#FFE9E9] to-[#FFF5EC] px-4 py-1 text-xs  rounded-full">
-              12 Months
+              {duration}
             </div>
-            <div className="text-[#FF7B07] bg-gradient-to-r from-[#FFE9E9] to-[#FFF5EC] px-4 py-1 text-xs  rounded-full">
-              {instructors.length > 0 && <div>Dr {instructors[0]}</div>}
+            <div className="flex gap-2">
+              {instructors.map((data, i) => (
+                <div
+                  key={i}
+                  className="text-[#FF7B07] bg-gradient-to-r from-[#FFE9E9] to-[#FFF5EC] px-4 py-1 text-xs  rounded-full"
+                >
+                  {data}
+                </div>
+              ))}
             </div>
           </div>
           <h2 className="text-lg font-bold mb-2">{title}</h2>
 
           <div className="flex items-center gap-2 mb-3">
             <LanguageIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">
-              {languages.join(" / ")}
-            </span>
+            <span className="text-sm text-gray-700">{languages}</span>
           </div>
           <div className="flex items-center gap-2 mb-3">
             <ScheduleIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">
-              {languages.join(" / ")}
-            </span>
+            <span className="text-sm text-gray-700">{question}</span>
           </div>
           <div className="flex items-center gap-2 mb-3">
             <LiveClassIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">
-              {languages.join(" / ")}
-            </span>
+            <span className="text-sm text-gray-700">{videoLacture}</span>
           </div>
 
           <div className="space-y-2 mb-4"></div>
@@ -115,12 +128,15 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
       {/* Additional Cards */}
       <div className="bg-white rounded-lg overflow-hidden p-4 shadow-orange shadow-sm">
         <div>
-          <div className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5">
+          <Link
+            href={studyMaterial ?? "/"}
+            className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5"
+          >
             <div className="text-orange">
               <DownloadIcon className="w-8 h-8" />
             </div>
             <span className="font-medium text-sm">Download Study Material</span>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-3 border-b border-dashed border-gray-300 py-5">
             <div className="text-orange">
@@ -132,12 +148,15 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3 cursor-pointer py-5">
+          <Link
+            href={timeTable ?? "/"}
+            className="flex items-center gap-3 cursor-pointer py-5"
+          >
             <div className="text-orange">
               <CalendarIcon2 className="h-8 w-8" />
             </div>
             <span className="font-medium text-sm">Download Timetable</span>
-          </div>
+          </Link>
         </div>
       </div>
 

@@ -4,11 +4,13 @@ import React from "react";
 export const CommonHeading2 = ({
   title,
   desc,
+
   className,
 }: {
   title: string;
   desc?: string;
   className?: string;
+  content?: any;
 }) => {
   return (
     <hgroup className="space-y-3">

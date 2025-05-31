@@ -292,6 +292,7 @@ const FeaturedCourse = () => {
                       description={course.sub_heading}
                       price={course.price}
                       href={course.slug}
+                      imageSrc={course.featured_image_url}
                     />
                   </div>
                 </SwiperSlide>

@@ -34,7 +34,8 @@ import Banner2 from "./common/Banner2";
 import { ProfileCards } from "./common/ProfileCards";
 import { FAQ } from "./common/FAQ";
 
-const CourseDetailPage = () => {
+const CourseDetailPage = ({ params }: { params: any }) => {
+  console.log(params);
   const [openId, setOpenId] = useState<string | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [showFullFacultyText, setShowFullFacultyText] = useState(false);

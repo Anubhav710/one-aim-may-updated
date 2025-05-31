@@ -29,17 +29,19 @@ interface FeaturedCardProps {
   features?: Feature[];
   href: string;
   price?: string | number;
+  testSeries?: boolean;
 }
 
 const FeaturedCard: React.FC<FeaturedCardProps> = ({
-  title = "Modern Indian History & Post-Independence India",
-  description = "Covering key events like British colonization, the freedom struggle, and the making of modern India, it also delves into post-independence ...",
-  duration = "12 Months",
-  instructor = "Dr. Rajesh Sharma",
-  imageSrc = "/images/course/feature-course.png",
+  title,
+  description,
+  duration,
+  instructor,
+  imageSrc,
   buttonText = "Pay now",
   price = "₹ 100",
-  href = "/",
+  testSeries = false,
+  href,
   features = [
     { name: "2000 Video Lectures", icon: <VideoIcon height={20} width={20} /> },
     {
@@ -81,13 +83,15 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
       <div className="relative overflow-hidden rounded-2xl group">
         {/* Princing Tag  */}
         <div className="absolute top-3 right-[1px] bg-primaryred z-30 text-white text-sm py-1 px-5 rounded-l-full font-semibold">
-          {price || "price"}
+          ₹ {price || "price"}
         </div>
-        <Link href={href}>
+        <Link
+          href={`${testSeries ? `/test-series/${href}` : `/course/${href}`}`}
+        >
           <div className="aspect-video relative">
             <Image
               src={imageSrc || "/images/placeholder.png"}
-              alt={title}
+              alt={title ?? "alt"}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -101,10 +105,12 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
       {/* Information */}
       <div className="space-y-4 pl-1 flex flex-col">
         <hgroup className="space-y-3 flex-grow">
-          <Link href={href}>
-            <h2 className="text-xl sm:text-2xl font-semibold line-clamp-2">
+          <Link
+            href={`${testSeries ? `/test-series/${href}` : `/course/${href}`}`}
+          >
+            <h3 className="text-xl sm:text-2xl font-semibold line-clamp-2">
               {title}
-            </h2>
+            </h3>
           </Link>
           <p className="text-gray-700 text-sm sm:text-base line-clamp-3">
             {description}
@@ -124,7 +130,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
         {/* Button */}
         <div className="mt-auto pt-2 w-max">
           <Link
-            href={href}
+            href={`${testSeries ? `/test-series/${href}` : `/course/${href}`}`}
             className="bg-black hover:bg-primaryred active:bg-primaryred transition-all duration-300 px-6 sm:px-8 py-2 rounded-full text-white text-sm sm:text-base flex items-center justify-center group"
             aria-label={`Play ${title}`}
           >

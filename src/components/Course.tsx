@@ -273,7 +273,7 @@ const Course: React.FC = () => {
                         instructor={""}
                         imageSrc={course.featured_image_url || ""}
                         buttonText="Enroll Now"
-                        href="/course/1"
+                        href={course.slug}
                       />
                     </SwiperSlide>
                   ))

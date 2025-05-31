@@ -259,3 +259,45 @@ interface TestSeriesCategory {
 export type TestSeriesList = TestSeriesCategory[];
 
 export type CouseItemList = CourseItem[];
+
+//Course Detail
+
+interface FacultyPivot {
+  course_id: number;
+  faculty_id: number;
+}
+
+interface Faculty {
+  name: string;
+  slug: string;
+  designation: string;
+  featured_image: string | null;
+  pivot: FacultyPivot;
+  media: any[]; // You can replace `any` with a more specific type if known
+}
+
+export interface SingleCourseData {
+  heading: string;
+  slug: string;
+  sub_heading: string;
+  language: string;
+  duration: string;
+  video_lectures: string;
+  questions_count: string;
+  enrolment_deadline_date: string; // You may want to use `Date` if you plan to parse this
+  price: number;
+  short_description: string;
+  long_description: string;
+  content: string;
+  extra_content: string;
+  featured_image_caption: string;
+  featured: number;
+  sequence: number;
+  featured_image_url: string | null;
+  study_material_url: string;
+  timetable_url: string | null;
+  course_course_contents: any[]; // Replace `any` with specific type
+  course_course_faqs: any[];
+  course_categories: any[];
+  faculties: Faculty[];
+}

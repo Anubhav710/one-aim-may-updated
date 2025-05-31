@@ -46,7 +46,11 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   }
 
   if (!currentBlog) {
-    return <div>Page Not Found</div>;
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <p>Page Not Found</p>
+      </div>
+    );
   }
   return (
     <div className="bg-[#FFF5EE]">

@@ -22,7 +22,7 @@ const FacultyPage = async ({
 
   try {
     const response = await axios.get<FacultyItem>(
-      `https://oneaim-admin.utxotech.com/api/v1/blogs/${facultyId}`, // Use environment variable for base URL
+      `https://oneaim-admin.utxotech.com/api/v1/faculties/${facultyId}`, // Use environment variable for base URL
       {
         headers: {
           Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`, // Use environment variable for auth token
@@ -42,7 +42,9 @@ const FacultyPage = async ({
             <span>{">"}</span>
             <Link href="/faculty">Faculty</Link>
             <span>{">"}</span>
-            <span className="text-primaryred">Faculty Details</span>
+            <span>Faculty Details</span>
+            <span>{">"}</span>
+            <span className="text-primaryred">{facultyData?.name}</span>
           </div>
         </Banner2>
         <div>
@@ -50,7 +52,9 @@ const FacultyPage = async ({
             <div className=" ml-28 ">
               <div className="h-[18rem] w-[18rem] rounded-full bg-white scale-150 relative left-16 overflow-hidden">
                 <Image
-                  src={"/images/team/team.png"}
+                  src={
+                    facultyData?.featured_image_url || "/images/team/team.png"
+                  }
                   alt=""
                   width={1200}
                   height={1200}
@@ -61,31 +65,31 @@ const FacultyPage = async ({
             <div className="w-[100%] bg-[#DC8940] py-20  pl-52 flex items-center -my-14">
               <div className="space-y-3">
                 <h1 className="text-2xl lg:text-3xl font-bold text-white">
-                  Prof. Rajiv Bansal
+                  {facultyData?.name}
                 </h1>
                 <div className="text-white flex flex-col md:flex-row md:gap-x-2">
                   <h5 className="text-white font-semibold text-lg">
                     Designation:
                   </h5>
-                  <p> Senior Science Instructor</p>
+                  <p> {facultyData?.designation}</p>
                 </div>
                 <div className="text-white flex flex-col md:flex-row md:gap-x-2">
                   <h5 className="text-white font-semibold text-lg">
                     Experience:
                   </h5>
-                  <p> 23 years</p>
+                  <p> {facultyData?.experience} years</p>
                 </div>
                 <div className="text-white flex flex-col md:flex-row md:gap-x-2">
                   <h5 className="text-white font-semibold text-lg ">
                     Qualifications:
                   </h5>
-                  <p> M.Sc. in Botany, B.Ed.</p>
+                  <p>{facultyData?.qualifications}</p>
                 </div>
                 <div className="text-white flex flex-col md:flex-row md:gap-x-2">
                   <h5 className="text-white font-semibold text-lg">
                     Specialization:
                   </h5>
-                  <p> Science Education</p>
+                  <p> {facultyData?.specialization}</p>
                 </div>
                 <div className="text-white flex gap-x-4 mt-4">
                   <div className="flex items-center gap-x-3">
@@ -329,12 +333,7 @@ const FacultyPage = async ({
             About Me
           </h2>
           <p className="text-center text-xl leading-9">
-            Mrs. Anuradha brings over two decades of teaching experience in the
-            field of science. Holding a Master's degree in Botany and a Bachelor
-            of Education, she has dedicated her career to fostering a deep
-            understanding of scientific concepts among her students. Her
-            approach combines theoretical knowledge with practical applications,
-            aiming to inspire a passion for science in learners.
+            {facultyData?.long_description}
           </p>
         </div>
         <div className="space-y-6 padding-yx">

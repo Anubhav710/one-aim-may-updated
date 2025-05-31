@@ -97,7 +97,8 @@ const TestSeriesT: React.FC = () => {
               imageSrc={
                 item.featured_image_url || "/images/course/feature-course.png"
               }
-              href={`/test-series/${item.slug}`}
+              testSeries
+              href={item.slug}
             />
           ))
         ) : (
