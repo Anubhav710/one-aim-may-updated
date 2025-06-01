@@ -20,10 +20,10 @@ const BlogCard = ({
       <div className="overflow-hidden">
         <Link
           href={`/blog/${blogSlug}`}
-          className="bg-red-300 h-52 w-full inline-block rounded-2xl overflow-hidden"
+          className=" h-52 w-full inline-block rounded-2xl overflow-hidden"
         >
           <Image
-            src={featured_image_url}
+            src={featured_image_url || "/images/placeholder.png"}
             alt="blog"
             width={440}
             height={340}

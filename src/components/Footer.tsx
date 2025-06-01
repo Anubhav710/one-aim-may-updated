@@ -16,7 +16,7 @@ interface CompanyData {
   favicon: string | null;
   logo: string | null;
   emails: { email: string }[];
-  addresses: string[];
+  addresses: { address: string }[];
   phones: {
     number: string;
     whatsapp: number;
@@ -44,7 +44,7 @@ const Footer = async () => {
         },
       }
     );
-    companyData = await response.data.data;
+    companyData = await response.data;
   } catch (error) {
     console.error("Error fetching protected data:", error);
   }
@@ -190,7 +190,7 @@ const Footer = async () => {
                       Address
                     </h4>
                     <p className="text-primaryred text-sm">
-                      {companyData!.addresses[0]}
+                      {companyData!.addresses[0].address}
                     </p>
                   </hgroup>
                 </div>

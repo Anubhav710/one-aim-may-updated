@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 
 import "./globals.css";
 import TopDown from "@/components/TopDown";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,6 +28,17 @@ export default function RootLayout({
       >
         {children}
         <TopDown />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </body>
     </html>
   );

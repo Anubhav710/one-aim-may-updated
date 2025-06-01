@@ -1,14 +1,47 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PButton from "@/components/common/PButton";
 import { useCartStore } from "@/store/cartStore";
-
+import axios from "axios";
+import { Discount } from "@/types";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 const Cart = () => {
+  const router = useRouter();
   // Use the cart store to get courses and actions
   const { courses, removeCourse, clearCart } = useCartStore();
+  const [coupon, setCoupon] = useState<Discount>({
+    code: "",
+    percentage: 0,
+  });
+
+  const { register, handleSubmit, reset } = useForm<Discount>();
+
+  const handleCoupon: SubmitHandler<Discount> = async (
+    coupanData: Discount
+  ) => {
+    try {
+      const res = await axios.get<Discount>(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/promos/${coupanData.code}`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+        }
+      );
+      const datas: Discount = await res.data;
+      setCoupon(datas);
+      toast.success("Coupon Applied Successfully");
+    } catch (err) {
+      toast.error("Invalid Coupon Code");
+    } finally {
+      reset();
+    }
+  };
 
   // Calculate price details based on courses in cart
   const calculatePriceDetails = () => {
@@ -16,15 +49,15 @@ const Cart = () => {
       (total, course) => total + (course.price || 0),
       0
     );
-    const discount = 0; // You can implement discount logic here
-    const taxes = coursePrice * 0.18; // 18% GST
+    const discount = (coursePrice * coupon.percentage!) / 100;
+
     const processingFee = 0;
-    const totalPayable = coursePrice + taxes - discount + processingFee;
+    const totalPayable = coursePrice - discount + processingFee;
 
     return {
       coursePrice,
       discount,
-      taxes,
+
       processingFee,
       totalPayable,
     };
@@ -46,7 +79,7 @@ const Cart = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Cart Items */}
             <div className="lg:col-span-2">
-              {courses.length > 0 ? (
+              {courses.length > 0 &&
                 courses.map((course) => (
                   <div
                     key={course.slug}
@@ -99,27 +132,18 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                ))
-              ) : (
+                ))}
+              {courses.length === 0 && (
                 <div className="bg-white rounded-lg p-8 mb-4 shadow text-center">
                   <h3 className="text-xl font-semibold mb-4">
                     Your cart is empty
                   </h3>
-                  <p className="mb-6">
-                    Add courses to your cart to see them here.
-                  </p>
-                  <Link
-                    href="/"
-                    className="bg-primaryred text-white px-6 py-2 rounded-full hover:bg-primaryred/90 transition-colors"
-                  >
-                    Browse Courses
-                  </Link>
                 </div>
               )}
             </div>
 
             {/* Price and Coupon */}
-            {courses.length > 0 && (
+            {
               <div className="lg:col-span-1">
                 {/* Coupon Section */}
                 <div className="bg-lightorange rounded-lg py-8 px-10 mb-4 text-white relative overflow-hidden">
@@ -129,7 +153,7 @@ const Cart = () => {
                   <div className="text-center">
                     <h2 className="text-xl font-bold mb-1">Flat 10% Off</h2>
                     <p className="mb-3">Save More on Your UPSC Preparation!</p>
-                    <p className="font-semibold">Use Code: AIM10</p>
+                    <p className="font-semibold">Use Code: 10off</p>
                   </div>
 
                   <div className="mt-4 relative z-40">
@@ -138,9 +162,18 @@ const Cart = () => {
                       type="text"
                       className="w-full p-2 rounded-md text-black text-sm"
                       placeholder="Enter your Coupon Code here"
+                      {...register("code", {
+                        required: "Coupon code is required",
+                        minLength: {
+                          value: 3,
+                          message: "Coupon code must be at least 3 characters",
+                        },
+                      })}
                     />
                     <div className="flex justify-center">
-                      <PButton href={"/cart/address"}>Apply here</PButton>
+                      <PButton onClick={handleSubmit(handleCoupon)}>
+                        Apply here
+                      </PButton>
                     </div>
                   </div>
 
@@ -169,10 +202,10 @@ const Cart = () => {
                       <span>₹{priceDetails.discount.toFixed(2)}</span>
                     </div>
 
-                    <div className="flex justify-between">
+                    {/* <div className="flex justify-between">
                       <span>Taxes (18% GST)</span>
                       <span>₹{priceDetails.taxes.toFixed(2)}</span>
-                    </div>
+                    </div> */}
 
                     <div className="flex justify-between">
                       <span>Processing Fee</span>
@@ -190,7 +223,17 @@ const Cart = () => {
                   </div>
 
                   <div className="flex justify-center mt-6">
-                    <PButton href={"/cart/address"}>Proceed</PButton>
+                    <PButton
+                      className={`${
+                        priceDetails.totalPayable === 0
+                          ? "bg-gray-400 cursor-not-allowed hover:bg-gray-400"
+                          : ""
+                      }`}
+                      disabled={priceDetails.totalPayable === 0}
+                      onClick={() => router.push("/cart/address")}
+                    >
+                      Proceed
+                    </PButton>
                   </div>
 
                   <div className="flex justify-center mt-4">
@@ -203,7 +246,7 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-            )}
+            }
           </div>
         </div>
       </div>

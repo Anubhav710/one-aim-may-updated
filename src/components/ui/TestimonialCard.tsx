@@ -29,7 +29,7 @@ const TestimonialCard = ({
                   shadow-md transition-all duration-500 group-hover:shadow-xl group-hover:scale-105"
       >
         <Image
-          src={imgsrc ?? "/images/image.png"}
+          src={imgsrc ?? "/images/placeholder.png"}
           alt="image"
           width={940}
           height={240}

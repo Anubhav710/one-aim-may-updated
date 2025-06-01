@@ -31,7 +31,7 @@ const TeamCard = ({
     <div className="group rounded-2xl relative group overflow-hidden shadow-lg transition-shadow duration-300 hover:shadow-xl h-[clamp(400px,47vw,500px)] ">
       <div className="h-full">
         <Image
-          src={image}
+          src={image || "/images/placeholder.png"}
           alt={`${name} team member photo`}
           width={720}
           height={320}

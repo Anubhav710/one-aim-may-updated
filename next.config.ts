@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
       // add more as needed
     ],
   },
+  env: {
+    NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
+  },
 };
 
 export default nextConfig;

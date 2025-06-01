@@ -229,15 +229,6 @@ const Header = () => {
                   {courses.length}
                 </div>
               </Link>
-              <div className="h-12 w-12 bg-[#FF7B07]/20 rounded-full flex-center overflow-hidden cursor-pointer">
-                <Image
-                  src="/images/team/NarendraRajSingh.png"
-                  alt="user"
-                  width={920}
-                  height={20}
-                  className="h-full w-full object-cover"
-                />
-              </div>
             </div>
           ) : (
             <div className="space-x-5">
