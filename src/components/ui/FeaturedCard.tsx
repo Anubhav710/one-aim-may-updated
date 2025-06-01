@@ -30,6 +30,7 @@ interface FeaturedCardProps {
   href: string;
   price?: string | number;
   testSeries?: boolean;
+  buttonSlot?: ReactNode; // Add buttonSlot to props
 }
 
 const FeaturedCard: React.FC<FeaturedCardProps> = ({
@@ -42,6 +43,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
   price = "₹ 100",
   testSeries = false,
   href,
+  buttonSlot, // Destructure buttonSlot
   features = [
     { name: "2000 Video Lectures", icon: <VideoIcon height={20} width={20} /> },
     {
@@ -127,28 +129,34 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({
           ))}
         </ul>
 
-        {/* Button */}
-        <div className="mt-auto pt-2 w-max">
-          <Link
-            href={`${testSeries ? `/test-series/${href}` : `/course/${href}`}`}
-            className="bg-black hover:bg-primaryred active:bg-primaryred transition-all duration-300 px-6 sm:px-8 py-2 rounded-full text-white text-sm sm:text-base flex items-center justify-center group"
-            aria-label={`Play ${title}`}
-          >
-            <span>Read More</span>
-            <svg
-              className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+        {/* Button Slot or Default Button */}
+        <div className="mt-auto pt-2 w-full">
+          {buttonSlot ? (
+            buttonSlot
+          ) : (
+            <Link
+              href={`${
+                testSeries ? `/test-series/${href}` : `/course/${href}`
+              }`}
+              className="bg-black hover:bg-primaryred active:bg-primaryred transition-all duration-300 px-6 sm:px-8 py-2 rounded-full text-white text-sm sm:text-base flex items-center justify-center group w-max"
+              aria-label={`Play ${title}`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+              <span>Read More</span>
+              <svg
+                className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
+          )}
         </div>
       </div>
     </div>

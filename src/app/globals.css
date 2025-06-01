@@ -239,26 +239,39 @@
 }
 
 .blog-content h1 {
-  @apply text-4xl mt-4 font-bold;
+  @apply text-4xl mt-4 font-bold text-primaryred;
 }
 .blog-content h2 {
-  @apply text-3xl mt-4 font-semibold;
+  @apply text-3xl mt-4 font-semibold text-primaryred;
 }
 .blog-content h3 {
-  @apply text-xl font-semibold;
+  @apply text-xl md:text-2xl font-semibold text-gray-800;
 }
 .blog-content h4 {
-  @apply text-2xl font-medium;
+  @apply text-xl md:text-2xl font-semibold text-gray-800;
 }
-.blog-content h5 {
-  @apply text-xl font-medium;
-}
-.blog-content h6 {
-  @apply text-lg;
-}
+
 .blog-content b {
   @apply font-bold;
 }
 .blog-content p {
   @apply py-2;
+}
+
+/* Custom styling for list items with checkmarks */
+.blog-content ul {
+  @apply space-y-3;
+}
+
+.blog-content ul li {
+  @apply flex items-start gap-2;
+}
+
+.blog-content ul li::before {
+  content: "✓";
+  @apply h-6 w-6 flex-shrink-0 flex items-center justify-center rounded-full bg-[#FF7B07] text-white;
+}
+
+.blog-content ul li p {
+  @apply text-gray-700;
 }

@@ -225,6 +225,8 @@ interface CourseFAQ {
 
 export type CourseCategoryList = CourseCategory[];
 
+export type CourseItems = CourseItem;
+
 interface Pivot {
   test_series_category_id: number;
   test_series_id: number;
