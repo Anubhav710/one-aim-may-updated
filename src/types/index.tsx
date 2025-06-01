@@ -122,8 +122,8 @@ interface CourseItem {
   featured_image: string | null;
   study_material: MediaItem | null;
   timetable: string | null;
-  pivot: CoursePivot;
-  media: MediaItem[];
+
+  media?: MediaItem[];
 }
 
 interface TestSeriesItem {
@@ -139,11 +139,6 @@ interface TestSeriesItem {
   timetable: string | null;
   pivot: TestSeriesPivot;
   media: MediaItem[];
-}
-
-interface CoursePivot {
-  faculty_id: number;
-  course_id: number;
 }
 
 interface TestSeriesPivot {
@@ -201,14 +196,8 @@ interface CourseItem {
   featured_image_url: string;
   study_material_url: string;
   timetable_url: string;
-  pivot: CoursePivot;
-  course_course_contents: CourseContent[];
-  course_course_faqs: CourseFAQ[];
-}
-
-interface CoursePivot {
-  course_category_id: number;
-  course_id: number;
+  course_course_contents?: CourseContent[];
+  course_course_faqs?: CourseFAQ[];
 }
 
 interface CourseContent {

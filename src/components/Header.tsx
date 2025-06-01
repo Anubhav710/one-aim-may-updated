@@ -26,6 +26,7 @@ import {
   SupportIcon,
   TestSeriesIcon,
 } from "./icons";
+import { useCartStore } from "@/store/cartStore";
 // Constants
 const socialLinks = [
   {
@@ -66,7 +67,7 @@ const Header = () => {
   const [headerVisible, setHeaderVisible] = useState(true);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
-
+  const { courses } = useCartStore();
   const isLogIn = true;
 
   // Navigation items with translations
@@ -225,7 +226,7 @@ const Header = () => {
               >
                 <BagIcon className="h-7 w-7 text-black group-hover:text-white duration-300 ease-in-out" />
                 <div className=" h-5 w-5 text-white absolute bg-[#DC8940] top-1 rounded-full right-0  text-sm flex items-center justify-center">
-                  3
+                  {courses.length}
                 </div>
               </Link>
               <div className="h-12 w-12 bg-[#FF7B07]/20 rounded-full flex-center overflow-hidden cursor-pointer">
