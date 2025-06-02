@@ -9,14 +9,13 @@ import {
   FaPhone,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-import Banner from "@/components/common/Banner";
-import CourseEnrollCard from "@/components/CourseEnrollCard";
-import { CommonHeading2 } from "@/components/common/CommonHeading2";
-import Banner2 from "@/components/common/Banner2";
-import axios from "axios";
-import { SingleTestSeries } from "@/types/test-series";
 
-// Sample test data - in a real app, you would fetch this based on the slug
+import CourseEnrollCard from "@/components/CourseEnrollCard";
+
+import { SingleTestSeries } from "@/types/test-series";
+import { notFound } from "next/navigation";
+import { fetchData } from "@/utils/apiUtils";
+
 const testData = {
   title: "Essay Writing Test",
   category: "Prelims Test Series",
@@ -101,7 +100,6 @@ const testData = {
   },
 };
 
-// Dynamic page component for test series detail
 export default async function TestSeriesDetail({
   params,
 }: {
@@ -111,19 +109,9 @@ export default async function TestSeriesDetail({
   let testSeiesData: SingleTestSeries | null = null;
   const { slug } = await params;
 
-  try {
-    const response = await axios.get<SingleTestSeries>(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/test-series/${slug}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-        },
-      }
-    );
-    testSeiesData = await response.data;
-  } catch (error) {
-    console.error("Error fetching protected data:", error);
-  }
+  const resp = await fetchData<SingleTestSeries>(`/test-series/${slug}`);
+  testSeiesData = resp || null;
+  if (!testSeiesData) return notFound();
 
   return (
     <div className="bg-[#FFF7F0] overflow-x-clip">
@@ -200,7 +188,7 @@ export default async function TestSeriesDetail({
             {/* Right Sidebar (1/3 width on desktop) */}
             <div>
               <CourseEnrollCard
-                title={`${testSeiesData?.heading}`}
+                heading={`${testSeiesData?.heading}`}
                 instructors={testSeiesData?.faculties.map(
                   (data, i) => data.name
                 )}

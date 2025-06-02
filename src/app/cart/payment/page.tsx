@@ -7,7 +7,7 @@ import axios from "axios";
 
 const PaymentPage = () => {
   const router = useRouter();
-  const { courses } = useCartStore();
+  const { courses, coupon } = useCartStore(); // Added coupon from store
   const [isClient, setIsClient] = useState(false);
 
   // Calculate order summary based on cart data
@@ -16,12 +16,13 @@ const PaymentPage = () => {
       (total, course) => total + course.price,
       0
     );
-    const taxes = coursePrice * 0.18; // 18% GST
-    const totalPayable = coursePrice + taxes;
+    const discountAmount = (coursePrice * (coupon.percentage || 0)) / 100;
+    const taxes = (coursePrice - discountAmount) * 0; // 18% GST on price after discount (assuming 0 for now as per original)
+    const totalPayable = coursePrice - discountAmount + taxes;
 
     return {
       coursePrice,
-      discount: 0,
+      discount: discountAmount,
       taxes,
       processingFee: 0,
       totalPayable,
@@ -130,27 +131,8 @@ const PaymentPage = () => {
     <div>
       <div className="h-[88.7vh] flex items-center bg-[#FFF7F0] px-4 md:px-8 lg:px-16 ">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className=" max-w-screen-md mx-auto">
             {/* Payment Method Section */}
-            <div>
-              <h1 className="text-xl font-semibold mb-6">Payment Method</h1>
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                {paymentMethods.map((method) => (
-                  <div key={method.id} className="mb-4 last:mb-0">
-                    <button className="w-full bg-lightorange text-white rounded-lg p-4 flex items-center justify-between">
-                      <div className="flex items-center">
-                        <span className="text-2xl mr-3">{method.icon}</span>
-                        <span className="font-medium">{method.name}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <span className="mr-2">{method.amount}</span>
-                        <span className="text-lg">›</span>
-                      </div>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Order Summary Section */}
             <div>

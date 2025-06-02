@@ -5,7 +5,9 @@ import BlogCard from "@/components/ui/BlogCard";
 import { socialLinks, socialLinks2 } from "@/constant/page";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
-import { BlogItem, BlogList, BlogListShow } from "@/types";
+import { TypeBlogShow } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
+import { notFound } from "next/navigation";
 
 const categories = [
   { name: "Study resources", count: 15 },
@@ -29,28 +31,13 @@ const instagramPosts = [
 const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   const { blogId } = await params;
 
-  let currentBlog: BlogListShow | undefined = undefined; // Variable to hold the found blog
+  let currentBlog: TypeBlogShow | null = null; // Variable to hold the found blog
 
-  try {
-    const response = await axios.get<BlogListShow>(
-      `https://oneaim-admin.utxotech.com/api/v1/blogs/${blogId}`, // Use environment variable for base URL
-      {
-        headers: {
-          Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`, // Use environment variable for auth token
-        },
-      }
-    );
-    currentBlog = await response.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const resp = await fetchData<TypeBlogShow>(`/blogs/${blogId}`);
+  currentBlog = resp || null;
 
   if (!currentBlog) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <p>Page Not Found</p>
-      </div>
-    );
+    return notFound();
   }
   return (
     <div className="bg-[#FFF5EE]">
@@ -249,7 +236,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
             </div> */}
 
             {/* Categories */}
-            <div>
+            {/* <div>
               <h3 className="text-xl font-medium mb-4 text-orange">
                 Categories
               </h3>
@@ -268,10 +255,10 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             {/* Instagram Section */}
-            <div>
+            {/* <div>
               <h3 className="text-xl font-medium mb-4 text-orange">
                 Instagram
               </h3>
@@ -291,9 +278,9 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
             {/* Tags Section  */}
-            <div>
+            {/* <div>
               <h3 className="text-xl font-medium  text-orange mb-4">Tags</h3>
               <div className="flex gap-x-4">
                 <div className="bg-white rounded-lg py-2 px-4">
@@ -306,9 +293,9 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                   <p>Live Classes</p>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* Latest Tweets  */}
-            <div>
+            {/* <div>
               <h3 className="text-xl font-medium  text-orange mb-4">
                 Latest Tweets
               </h3>
@@ -317,7 +304,7 @@ const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
                 batches at One Aim and turn your dreams into reality! 🏆
                 #CivilServices #UPSCPreparation #DreamBig"
               </p>
-            </div>
+            </div> */}
             {/* Follow us  */}
             <div>
               <h3 className="text-xl font-medium  text-orange mb-4">

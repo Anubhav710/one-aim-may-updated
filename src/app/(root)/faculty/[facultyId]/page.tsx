@@ -9,6 +9,7 @@ import { FacultyItem } from "@/types";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 
 const FacultyPage = async ({
@@ -33,6 +34,10 @@ const FacultyPage = async ({
   } catch (error) {
     console.log(error);
   }
+  if (!facultyData) {
+    return notFound();
+  }
+
   return (
     <div>
       <div>

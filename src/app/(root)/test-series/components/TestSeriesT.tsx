@@ -2,7 +2,8 @@
 
 import CommonHeading from "@/components/ui/CommonHeading";
 import FeaturedCard from "@/components/ui/FeaturedCard";
-import { TestSeriesList } from "@/types";
+import { TestSeriesCategoryList } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -13,38 +14,28 @@ interface Tab {
 }
 
 const TestSeriesT: React.FC = () => {
-  const [testSeriesData, setTestSeriesData] = useState<TestSeriesList>([]);
+  const [testSeriesData, setTestSeriesData] = useState<
+    TestSeriesCategoryList[]
+  >([]);
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTestSeries, setActiveTestSeries] = useState<string>("");
 
   useEffect(() => {
     const fetchTestSeriesData = async () => {
-      try {
-        const response = await axios.get<TestSeriesList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/test-series-categories`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-            },
-          }
-        );
+      const response = await fetchData<TestSeriesCategoryList[]>(
+        "/test-series-categories"
+      );
+      setTestSeriesData(response || []);
+      // Include all categories regardless of test_series
+      const derivedTabs = response?.map((category) => ({
+        id: category.slug,
+        label: category.name,
+      }));
 
-        const data = response.data;
-        setTestSeriesData(data);
+      setTabs(derivedTabs!);
 
-        // Include all categories regardless of test_series
-        const derivedTabs = data.map((category) => ({
-          id: category.slug,
-          label: category.name,
-        }));
-
-        setTabs(derivedTabs);
-
-        if (derivedTabs.length > 0) {
-          setActiveTestSeries(derivedTabs[0].id);
-        }
-      } catch (error) {
-        console.error("Error fetching protected data:", error);
+      if (derivedTabs!.length > 0) {
+        setActiveTestSeries(derivedTabs![0].id);
       }
     };
 
@@ -52,7 +43,7 @@ const TestSeriesT: React.FC = () => {
   }, []);
 
   const selectedCategory = testSeriesData.find(
-    (category) => category.slug === activeTestSeries
+    (category: TestSeriesCategoryList) => category.slug === activeTestSeries
   );
 
   const displayedCourses = selectedCategory?.test_series || [];
@@ -87,18 +78,12 @@ const TestSeriesT: React.FC = () => {
       {/* Courses Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedCourses.length > 0 ? (
-          displayedCourses.map((item) => (
+          displayedCourses.map((course) => (
             <FeaturedCard
-              key={item.slug}
-              title={item.heading}
-              description={item.short_description}
-              duration={item.duration}
-              instructor={item.language}
-              imageSrc={
-                item.featured_image_url || "/images/course/feature-course.png"
-              }
-              testSeries
-              href={item.slug}
+              testSeries={true}
+              course={course}
+              buttonText="Enroll Now"
+              href={course.slug}
             />
           ))
         ) : (

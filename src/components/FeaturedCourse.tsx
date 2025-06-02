@@ -27,188 +27,27 @@ import {
   BiVideo,
 } from "react-icons/bi";
 import { CommonHeading2 } from "./common/CommonHeading2";
-import axios from "axios";
-import { CouseItemList } from "@/types";
 
-// Data
-const courses = [
-  {
-    course: "Prelims Master Program",
-    price: "₹ 36500",
-    description:
-      "This module will contain the full course for UPSC/IAS/CSE foundation EXAM that will be held in year 2025-26.",
-    features: [
-      {
-        name: "2000 Video Lectures",
-        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
-      },
-      {
-        name: "Subjective Test Series",
-        icon: (
-          <SubjectIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Previous Years Question Papers",
-        icon: (
-          <QuestionIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "100000 Questions",
-        icon: (
-          <NewQuestion height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Virtual mentorship",
-        icon: (
-          <MentorshipIcon
-            height={20}
-            width={20}
-            className="text-primaryred rotate-90"
-          />
-        ),
-      },
-    ],
-  },
-  {
-    course: "IAS/RAS Foundation Batch",
-    price: "₹ 24000",
-    description:
-      "This module will contain the full course for UPSC/RPSC PRELIMINARY EXAMs that will be held in year 2025-26.",
-    features: [
-      {
-        name: "2000 Video Lectures",
-        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
-      },
-      {
-        name: "Subjective Test Series",
-        icon: (
-          <SubjectIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Previous Years Question Papers",
-        icon: (
-          <QuestionIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "100000 Questions",
-        icon: (
-          <NewQuestion height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Virtual mentorship",
-        icon: (
-          <MentorshipIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-    ],
-  },
-  {
-    course: "Test Series for UPSC",
-    price: "₹ 5000",
-    description:
-      "This module will contain full-length tests (1 lakh questions).",
-    features: [
-      {
-        name: "2000 Video Lectures",
-        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
-      },
-      {
-        name: "Subjective Test Series",
-        icon: (
-          <SubjectIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Previous Years Question Papers",
-        icon: (
-          <QuestionIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "100000 Questions",
-        icon: (
-          <NewQuestion height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Virtual mentorship",
-        icon: (
-          <MentorshipIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-    ],
-  },
-  {
-    course: "Pdf Notes for Prelims",
-    price: "₹ 10000",
-    description:
-      "This module will contain all subject PDFs for UPSC/IAS/CSE PRELIMINARY EXAM that will be held in year 2025-26.",
-    features: [
-      {
-        name: "2000 Video Lectures",
-        icon: <VideoIcon height={20} width={20} className="text-primaryred" />,
-      },
-      {
-        name: "Subjective Test Series",
-        icon: (
-          <SubjectIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Previous Years Question Papers",
-        icon: (
-          <QuestionIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "100000 Questions",
-        icon: (
-          <NewQuestion height={20} width={20} className="text-primaryred" />
-        ),
-      },
-      {
-        name: "Virtual mentorship",
-        icon: (
-          <MentorshipIcon height={20} width={20} className="text-primaryred" />
-        ),
-      },
-    ],
-  },
-];
+import { Course } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 
 const FeaturedCourse = () => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const swiperRef = useRef(null);
-  const [featuredCourses, setFeaturedCourses] = useState<CouseItemList>([]);
+  const [featuredCourses, setFeaturedCourses] = useState<Course[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
-      try {
-        const response = await axios.get<CouseItemList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/courses`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-            },
-          }
-        );
-        console.log(response.data);
-        setFeaturedCourses(response.data.filter((data) => data.featured === 1));
-      } catch (err: any) {
-        console.error("Error fetching featured courses:", err);
-      }
+      const response = await fetchData<Course[]>(`/courses`);
+      const filterCourse = response?.filter((course) => course.featured);
+      setFeaturedCourses(filterCourse || []);
     };
+
     fetchCourses();
   }, []);
 
-  return (
+  return featuredCourses.length > 0 ? (
     <section
       ref={sectionRef}
       className="bg-gradient-to-b from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] relative"
@@ -289,7 +128,7 @@ const FeaturedCourse = () => {
                   <div className="h-full transform transition-transform hover:scale-[1.02] duration-300">
                     <FeaturedCard
                       title={course.heading}
-                      description={course.sub_heading}
+                      description={course.short_description}
                       price={course.price}
                       href={course.slug}
                       imageSrc={course.featured_image_url}
@@ -318,6 +157,8 @@ const FeaturedCourse = () => {
         </div>
       </div>
     </section>
+  ) : (
+    <></>
   );
 };
 

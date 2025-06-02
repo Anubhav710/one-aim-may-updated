@@ -57,7 +57,7 @@ const FilteredCourse = () => {
 
   const curveHeight = Math.min(120, dimensions.width * 0.08);
 
-  return (
+  return testSeries?.length! > 0 ? (
     <div className="bg-gradient-to-b relative">
       <div className="bg-[#FFE4CD] w-[85%] mx-auto rounded-[100%] h-16 absolute left-1/2 -translate-x-1/2 -top-4"></div>
 
@@ -123,6 +123,8 @@ const FilteredCourse = () => {
         </div>
       </section>
     </div>
+  ) : (
+    <></>
   );
 };
 

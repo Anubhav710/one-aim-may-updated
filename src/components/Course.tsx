@@ -5,32 +5,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { CommonHeading2 } from "./common/CommonHeading2";
-import axios from "axios";
 import { CourseCategoryList } from "@/types";
-
-interface CourseCategory {
-  id: string;
-  label: string;
-}
-
-interface SubCourse {
-  id: string;
-  label: string;
-}
-
-interface CourseContent {
-  id: string;
-  title: string;
-  description: string;
-  duration: string;
-  instructor: string;
-  imageSrc: string;
-}
+import { fetchData } from "@/utils/apiUtils";
 
 const Course: React.FC = () => {
   let [courseCategoryList, setCourseCategoryList] =
@@ -41,32 +21,22 @@ const Course: React.FC = () => {
     useState<string>("");
 
   useEffect(() => {
-    const courseDetail = async () => {
-      try {
-        const response = await axios.get<CourseCategoryList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/course-categories`, // Use environment variable for base URL
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
-            },
-          }
-        );
-
-        // Assign the fetched data to blogList
-        setCourseCategoryList(response.data);
-        if (response.data && response.data.length > 0) {
-          setActiveCourseCategorySlug(response.data[0].slug);
-          if (response.data[0].children.length > 0) {
-            setActiveSubCategorySlug(response.data[0].children[0].slug);
+    const loadCourseCategories = async () => {
+      const data = await fetchData<CourseCategoryList>("/course-categories");
+      if (data) {
+        setCourseCategoryList(data);
+        if (data.length > 0) {
+          setActiveCourseCategorySlug(data[0].slug);
+          if (data[0].children.length > 0) {
+            setActiveSubCategorySlug(data[0].children[0].slug);
           }
         }
-      } catch (err) {
-        console.error("Error fetching blogs:", err);
-        // Optionally handle the error state, e.g., set blogList to an empty array
-        courseCategoryList = [];
+      } else {
+        // Handle the case where data is undefined (error occurred)
+        setCourseCategoryList([]); // Set to empty array or handle error appropriately
       }
     };
-    courseDetail();
+    loadCourseCategories();
   }, []);
 
   const handleMainCategoryClick = (slug: string) => {
@@ -93,7 +63,7 @@ const Course: React.FC = () => {
   );
   const currentCourseContent = activeSubCategory?.courses || [];
 
-  return (
+  return courseCategoryList?.length! > 0 ? (
     <section id="course" className="bg-[#FFF4D5]/40 ">
       <div className="screen padding-yx">
         <div>
@@ -267,11 +237,7 @@ const Course: React.FC = () => {
                   currentCourseContent.map((course) => (
                     <SwiperSlide key={course.slug}>
                       <FeaturedCard
-                        title={course.heading}
-                        description={course.short_description || ""}
-                        duration={course.duration}
-                        instructor={""}
-                        imageSrc={course.featured_image_url || ""}
+                        course={course}
                         buttonText="Enroll Now"
                         href={course.slug}
                       />
@@ -325,6 +291,8 @@ const Course: React.FC = () => {
         }
       `}</style>
     </section>
+  ) : (
+    <></>
   );
 };
 

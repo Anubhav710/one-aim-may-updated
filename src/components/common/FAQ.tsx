@@ -4,15 +4,14 @@ import gsap from "gsap";
 import { FaChevronDown } from "react-icons/fa";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import axios from "axios";
-import { FAQList } from "@/types";
+import { FAQType } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 
 export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const [faqData, setFaqData] = useState<FAQList>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [faqData, setFaqData] = useState<FAQType[]>([]);
 
   useEffect(() => {
     if (openIndex !== null && contentRefs.current[openIndex]) {
@@ -24,24 +23,8 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
     }
 
     const fetchFAQ = async () => {
-      try {
-        const response = await axios.get<FAQList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/faqs`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-            },
-          }
-        );
-        // Set the fetched data into state
-        setFaqData(response.data);
-
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching faqs:", err);
-        setError("Failed to load faqs.");
-        setLoading(false);
-      }
+      const resp = await fetchData<FAQType[]>("/faqs");
+      setFaqData(resp || []);
     };
 
     fetchFAQ();
@@ -51,7 +34,7 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  return (
+  return faqData.length > 0 ? (
     <div className={`screen mx-auto   ${className}`}>
       <div className="w-max mx-auto hidden md:block ">
         <CommonHeading2 title="Frequently Asked Questions (FAQs)" />
@@ -89,5 +72,7 @@ export const FAQ: React.FC<{ className?: string }> = ({ className }) => {
         ))}
       </div>
     </div>
+  ) : (
+    <></>
   );
 };

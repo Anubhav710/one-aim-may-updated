@@ -14,6 +14,7 @@ import axios from "axios";
 import { CourseCategoryList } from "@/types";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import FeaturedCard from "@/components/ui/FeaturedCard";
+import { fetchData } from "@/utils/apiUtils";
 
 interface CourseCategory {
   id: string;
@@ -44,28 +45,15 @@ const Course: React.FC = () => {
 
   useEffect(() => {
     const courseDetail = async () => {
-      try {
-        const response = await axios.get<CourseCategoryList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/course-categories`, // Use environment variable for base URL
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
-            },
-          }
-        );
-        console.log(response.data);
-        // Assign the fetched data to blogList
-        setCourseCategoryList(response.data);
-        if (response.data && response.data.length > 0) {
-          setActiveCourseCategorySlug(response.data[0].slug);
-          if (response.data[0].children.length > 0) {
-            setActiveSubCategorySlug(response.data[0].children[0].slug);
-          }
+      const response = await fetchData<CourseCategoryList>(
+        `/course-categories`
+      );
+      setCourseCategoryList(response);
+      if (response && response.length > 0) {
+        setActiveCourseCategorySlug(response[0].slug);
+        if (response[0].children.length > 0) {
+          setActiveSubCategorySlug(response[0].children[0].slug);
         }
-      } catch (err) {
-        console.error("Error fetching blogs:", err);
-        // Optionally handle the error state, e.g., set blogList to an empty array
-        courseCategoryList = [];
       }
     };
     courseDetail();
@@ -95,7 +83,7 @@ const Course: React.FC = () => {
   );
   const currentCourseContent = activeSubCategory?.courses || [];
 
-  return (
+  return courseCategoryList?.length! > 0 ? (
     <section id="course" className="bg-[#FFF4D5]/40 ">
       <div className="screen padding-yx">
         <div>
@@ -215,11 +203,7 @@ const Course: React.FC = () => {
                   currentCourseContent.map((course) => (
                     <div key={course.slug}>
                       <FeaturedCard
-                        title={course.heading}
-                        description={course.short_description || ""}
-                        duration={course.duration}
-                        instructor={""}
-                        imageSrc={course.featured_image_url || ""}
+                        course={course}
                         buttonText="Enroll Now"
                         href={course.slug}
                       />
@@ -264,6 +248,8 @@ const Course: React.FC = () => {
         }
       `}</style>
     </section>
+  ) : (
+    <></>
   );
 };
 

@@ -20,6 +20,7 @@ const CarrerForm = () => {
             <input
               type="text"
               required
+              {...register("name")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -39,6 +40,7 @@ const CarrerForm = () => {
             <input
               type="email"
               required
+              {...register("email")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -50,6 +52,7 @@ const CarrerForm = () => {
             <input
               type="tel"
               required
+              {...register("phone")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -57,6 +60,7 @@ const CarrerForm = () => {
             <label className="block text-sm mb-1">Current Location</label>
             <input
               type="text"
+              {...register("location")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -83,6 +87,7 @@ const CarrerForm = () => {
             <label className="block text-sm mb-1">Highest Qualification</label>
             <input
               type="text"
+              {...register("qualification")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -90,6 +95,7 @@ const CarrerForm = () => {
             <label className="block text-sm mb-1">Years of Experience</label>
             <input
               type="text"
+              {...register("experience")}
               className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors"
             />
           </div>
@@ -107,6 +113,7 @@ const CarrerForm = () => {
             <div className="w-full p-2 border-b border-gray-300 focus:border-[#FF7B07] focus:outline-none transition-colors flex items-center">
               <input
                 type="file"
+                {...register("resume")}
                 className="hidden"
                 id="resumeUpload"
                 required

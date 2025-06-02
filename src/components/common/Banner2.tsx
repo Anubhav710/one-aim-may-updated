@@ -22,7 +22,7 @@ const Banner2 = ({
     >
       <hgroup className="space-y-5">
         <h2 className="heading text-primaryred relative w-max  mx-auto">
-          <h2 className={`relative z-20 ${className}`}>{title}</h2>{" "}
+          <span className={`relative z-20 ${className}`}>{title}</span>{" "}
           <Image
             src={"/images/icons/button-style.svg"}
             alt="style"

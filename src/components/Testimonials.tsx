@@ -23,87 +23,30 @@ import "swiper/css/free-mode";
 import "swiper/css/autoplay";
 import { CommonHeading2 } from "./common/CommonHeading2";
 import axios from "axios";
+
+import { fetchData } from "@/utils/apiUtils";
 import { TestimonialList } from "@/types";
 
 gsap.registerPlugin(ScrollTrigger);
-
-interface TestimonialResponse {
-  data: Testimonial[];
-}
-
-interface Testimonial {
-  name: string;
-  sub_heading: string;
-  content: string;
-  caption: string | null;
-  sequence: number;
-  image: MediaItem;
-  media: MediaItem[];
-}
-
-interface MediaItem {
-  id: number;
-  model_type: string;
-  model_id: number;
-  uuid: string;
-  collection_name: string;
-  name: string;
-  file_name: string;
-  mime_type: string;
-  disk: string;
-  conversions_disk: string;
-  size: number;
-  manipulations: any[];
-  custom_properties: any[];
-  generated_conversions: {
-    thumb: boolean;
-    preview: boolean;
-  };
-  responsive_images: any[];
-  order_column: number;
-  created_at: string;
-  updated_at: string;
-  url: string;
-  thumbnail: string;
-  preview: string;
-  original_url: string;
-  preview_url: string;
-}
 
 const Testimonials = () => {
   const prevButtonClass = "custom-prev-button";
   const nextButtonClass = "custom-next-button";
   // Corrected state declaration and initialization
-  const [testimonialData, setTestimonialData] = useState<TestimonialList>([]);
+  const [testimonialData, setTestimonialData] = useState<TestimonialList[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      try {
-        const response = await axios.get<TestimonialList>(
-          `https://oneaim-admin.utxotech.com/api/v1/testimonials`,
-          {
-            headers: {
-              Authorization: `Bearer ak_y6d4lk60QIrkdu23knAdJLeyabdEerT5`,
-            },
-          }
-        );
-        // Set the fetched data into state
-        setTestimonialData(response.data);
-
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching testimonials:", err);
-        setError("Failed to load testimonials.");
-        setLoading(false);
-      }
+      const response = await fetchData<TestimonialList[]>(`/testimonials`);
+      setTestimonialData(response || []);
     };
 
     fetchTestimonials();
   }, []); // Empty dependency array means this runs once on mount
 
-  return (
+  return testimonialData.length > 0 ? (
     <section className="testimonial-gradient-bg overflow-hidden bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] relative  ">
       <div className="screen padding-tx">
         {/* Decorative elements */}
@@ -182,6 +125,8 @@ const Testimonials = () => {
         <div className="h-20"></div>
       </div>
     </section>
+  ) : (
+    <div className="h-20"></div>
   );
 };
 

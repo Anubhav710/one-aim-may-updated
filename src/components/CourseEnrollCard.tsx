@@ -1,15 +1,10 @@
+"use client";
 import React from "react";
 import Image from "next/image";
-import {
-  FaDownload,
-  FaCalendarAlt,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-} from "react-icons/fa";
-import { FaFire } from "react-icons/fa6";
+import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+
 import Link from "next/link";
 import {
-  CalendarIcon,
   CalendarIcon2,
   ClockIcon,
   DownloadIcon,
@@ -18,9 +13,11 @@ import {
   ScheduleIcon,
 } from "./icons";
 import Button from "./ui/Button";
-
+import { useCartStore } from "@/store/cartStore";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 interface CourseEnrollCardProps {
-  title: string;
+  heading: string;
   instructors?: string[];
   price: number | undefined;
   originalPrice?: number;
@@ -35,10 +32,11 @@ interface CourseEnrollCardProps {
   question: string | undefined;
   studyMaterial?: any;
   timeTable: string | undefined | null;
+  slug?: string; // Add slug for course identification
 }
 
 const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
-  title,
+  heading,
   instructors = [],
   studyMaterial,
   timeTable,
@@ -53,7 +51,32 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   duration,
   question,
   videoLacture,
+  slug = "", // Default to empty string if not provided
 }) => {
+  const { addCourse } = useCartStore();
+  const router = useRouter();
+
+  const handleEnrollNow = () => {
+    // Create a course object with the available data
+    const courseData = {
+      heading,
+      price,
+      originalPrice,
+      image,
+      slug,
+      // Add any other required fields from the Course type
+    };
+
+    // Add the course to the cart store
+    addCourse(courseData as any); // Using 'as any' as a temporary solution
+    toast.success("Course added to cart!");
+
+    // Navigate to the cart page
+    setTimeout(() => {
+      router.push("/cart");
+    }, 2000);
+  };
+
   return (
     <div className="flex flex-col gap-6">
       {/* Main Card */}
@@ -87,20 +110,25 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
               ))}
             </div>
           </div>
-          <h2 className="text-lg font-bold mb-2">{title}</h2>
-
-          <div className="flex items-center gap-2 mb-3">
-            <LanguageIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">{languages}</span>
-          </div>
-          <div className="flex items-center gap-2 mb-3">
-            <ScheduleIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">{question}</span>
-          </div>
-          <div className="flex items-center gap-2 mb-3">
-            <LiveClassIcon className="text-orange h-6 w-6" />
-            <span className="text-sm text-gray-700">{videoLacture}</span>
-          </div>
+          <h2 className="text-lg font-bold mb-2">{heading}</h2>
+          {languages && (
+            <div className="flex items-center gap-2 mb-3">
+              <LanguageIcon className="text-orange h-6 w-6" />
+              <span className="text-sm text-gray-700">{languages}</span>
+            </div>
+          )}
+          {question && (
+            <div className="flex items-center gap-2 mb-3">
+              <ScheduleIcon className="text-orange h-6 w-6" />
+              <span className="text-sm text-gray-700">{question}</span>
+            </div>
+          )}
+          {videoLacture && (
+            <div className="flex items-center gap-2 mb-3">
+              <LiveClassIcon className="text-orange h-6 w-6" />
+              <span className="text-sm text-gray-700">{videoLacture}</span>
+            </div>
+          )}
 
           <div className="space-y-2 mb-4"></div>
 
@@ -118,47 +146,60 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             </div>
           </div>
           <div className="w-max mx-auto pt-3">
-            <Button href="/cart" className="text-white !px-24 w-full">
-              Enroll now
-            </Button>
+            <button
+              onClick={handleEnrollNow}
+              className="text-white py-3 px-12 rounded-full w-full bg-black hover:bg-primaryred transition-all duration-500"
+            >
+              Apply now
+            </button>
           </div>
         </div>
       </div>
 
       {/* Additional Cards */}
-      <div className="bg-white rounded-lg overflow-hidden p-4 shadow-orange shadow-sm">
-        <div>
-          <Link
-            href={studyMaterial ?? "/"}
-            className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5"
-          >
-            <div className="text-orange">
-              <DownloadIcon className="w-8 h-8" />
-            </div>
-            <span className="font-medium text-sm">Download Study Material</span>
-          </Link>
 
-          <div className="flex items-center gap-3 border-b border-dashed border-gray-300 py-5">
-            <div className="text-orange">
-              <ClockIcon className="w-8 h-8" />
-            </div>
-            <div className="text-sm">
-              <span className="font-medium">Enrollment Deadline : </span>
-              <span>{enrollmentDeadline}</span>
-            </div>
+      {(studyMaterial || enrollmentDeadline || timeTable) && (
+        <div className="bg-white rounded-lg overflow-hidden p-4 shadow-orange shadow-sm">
+          <div>
+            {studyMaterial && (
+              <Link
+                href={studyMaterial ?? "/"}
+                className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5"
+              >
+                <div className="text-orange">
+                  <DownloadIcon className="w-8 h-8" />
+                </div>
+                <span className="font-medium text-sm">
+                  Download Study Material
+                </span>
+              </Link>
+            )}
+            {enrollmentDeadline && (
+              <div className="flex items-center gap-3 border-b border-dashed border-gray-300 py-5">
+                <div className="text-orange">
+                  <ClockIcon className="w-8 h-8" />
+                </div>
+                <div className="text-sm">
+                  <span className="font-medium">Enrollment Deadline : </span>
+                  <span>{enrollmentDeadline}</span>
+                </div>
+              </div>
+            )}
+
+            {timeTable && (
+              <Link
+                href={timeTable ?? "/"}
+                className="flex items-center gap-3 cursor-pointer py-5"
+              >
+                <div className="text-orange">
+                  <CalendarIcon2 className="h-8 w-8" />
+                </div>
+                <span className="font-medium text-sm">Download Timetable</span>
+              </Link>
+            )}
           </div>
-
-          <Link
-            href={timeTable ?? "/"}
-            className="flex items-center gap-3 cursor-pointer py-5"
-          >
-            <div className="text-orange">
-              <CalendarIcon2 className="h-8 w-8" />
-            </div>
-            <span className="font-medium text-sm">Download Timetable</span>
-          </Link>
         </div>
-      </div>
+      )}
 
       {/* Contact Card */}
       <div className="bg-[#DC8940]/90 text-white rounded-lg overflow-hidden shadow-sm px-4 py-8">

@@ -40,7 +40,7 @@ const Team = () => {
     facultyDetail();
   }, []);
 
-  return (
+  return teamMember?.length! > 0 ? (
     <>
       <section className="bg-gradient-to-t from-[#FFE5E5] via-[#FFEBD9] to-[#FFF5EE] padding-yx">
         <div className="screen ">
@@ -145,6 +145,8 @@ const Team = () => {
         </div>
       </section>
     </>
+  ) : (
+    <></>
   );
 };
 

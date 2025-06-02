@@ -35,7 +35,7 @@ export default function ContactForm() {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/enquiries`, // replace with actual POST endpoint
+        `${process.env.NEXT_PUBLIC_BASE_URL}/enquiries`, // replace with actual POST endpoint
         data,
         {
           headers: {
@@ -55,6 +55,7 @@ export default function ContactForm() {
       // Optionally add an error message/toast here
     } finally {
       setIsSubmitting(false);
+      reset();
     }
   };
 

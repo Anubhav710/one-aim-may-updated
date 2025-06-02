@@ -10,14 +10,12 @@ import { Discount } from "@/types";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { fetchData } from "@/utils/apiUtils";
 const Cart = () => {
   const router = useRouter();
   // Use the cart store to get courses and actions
-  const { courses, removeCourse, clearCart } = useCartStore();
-  const [coupon, setCoupon] = useState<Discount>({
-    code: "",
-    percentage: 0,
-  });
+  const { courses, removeCourse, clearCart, coupon, applyCoupon } =
+    useCartStore(); // Added coupon and applyCoupon from store
 
   const { register, handleSubmit, reset } = useForm<Discount>();
 
@@ -25,16 +23,9 @@ const Cart = () => {
     coupanData: Discount
   ) => {
     try {
-      const res = await axios.get<Discount>(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/promos/${coupanData.code}`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-          },
-        }
-      );
-      const datas: Discount = await res.data;
-      setCoupon(datas);
+      const data = await fetchData<Discount>(`/promos/${coupanData.code}`);
+
+      applyCoupon(data as Discount); // Use applyCoupon action from store
       toast.success("Coupon Applied Successfully");
     } catch (err) {
       toast.error("Invalid Coupon Code");
@@ -143,7 +134,7 @@ const Cart = () => {
             </div>
 
             {/* Price and Coupon */}
-            {
+            {courses.length > 0 && (
               <div className="lg:col-span-1">
                 {/* Coupon Section */}
                 <div className="bg-lightorange rounded-lg py-8 px-10 mb-4 text-white relative overflow-hidden">
@@ -246,7 +237,7 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-            }
+            )}
           </div>
         </div>
       </div>
