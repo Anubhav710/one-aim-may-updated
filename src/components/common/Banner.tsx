@@ -20,7 +20,7 @@ const Banner = ({ title, desp, children }: BannerProp) => {
         />
       </div>
       <hgroup className="space-y-5">
-        <h2 className="heading text-primaryred relative w-max  mx-auto">
+        <div className="heading text-primaryred relative w-max  mx-auto">
           <h2 className="relative z-20">{title}</h2>{" "}
           <Image
             src={"/images/icons/button-style.svg"}
@@ -29,7 +29,7 @@ const Banner = ({ title, desp, children }: BannerProp) => {
             height={120}
             className="absolute top-5 right-5"
           />
-        </h2>
+        </div>
         <p className="text-xl text-center max-sm:text-md font-semibold">
           {desp}
         </p>

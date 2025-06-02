@@ -212,3 +212,26 @@ export interface TypeFacultyShow extends Faculty {
   courses: Course[];
   testSeries: TestSeries[];
 }
+
+// Order Form Scema
+export interface OrderFormSchema {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  pin_code: string;
+  city: string;
+  state: string;
+  country: string;
+}
+
+export interface OrderFormErrors {
+  name?: string[];
+  email?: string[];
+  phone?: string[];
+  address?: string[];
+  pin_code?: string[];
+  city?: string[];
+  state?: string[];
+  country?: string[];
+}

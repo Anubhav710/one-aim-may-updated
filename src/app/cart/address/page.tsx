@@ -6,20 +6,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import PButton from "@/components/common/PButton";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { OrderFormSchema } from "@/types";
 
 // ✅ Zod Schema
 const addressSchema = z.object({
-  fullName: z.string().min(2, "Full name is required"),
+  name: z.string().min(2, "Full name is required"),
   phone: z
     .string()
     .min(10, "Phone must be 10 digits")
     .max(10, "Phone must be 10 digits"),
   email: z.string().email("Invalid email"),
-  pincode: z.string().min(5, "Pincode is required"),
-  fullAddress: z.string().min(5, "Address is required"),
+  pin_code: z.string().min(5, "Pincode is required"),
+  address: z.string().min(5, "Address is required"),
   state: z.string().min(2, "State is required"),
   city: z.string().min(2, "City is required"),
   additionalInfo: z.string().optional(),
+  country: z.string().min(2, "Country is required"),
 });
 
 type AddressFormData = z.infer<typeof addressSchema>;
@@ -36,10 +39,21 @@ const AddressPage = () => {
 
   const onSubmit = async (data: AddressFormData) => {
     try {
-      const response = await axios.post("/api/submit-address", data);
+      const response = await axios.post<OrderFormSchema>(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/orders`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+        }
+      );
       console.log("Address submitted:", response.data);
+      toast.success("Form is submitted successfully!");
     } catch (error) {
       console.error("Failed to submit address:", error);
+      toast.error("Failed to submit form. Please try again.");
     }
   };
 
@@ -61,13 +75,11 @@ const AddressPage = () => {
                 Full Name*
               </label>
               <input
-                {...register("fullName")}
+                {...register("name")}
                 className="w-full p-3 border border-gray-200 bg-[#CDCDCD]/20 rounded-md focus:ring-[#FF7B07]"
               />
-              {errors.fullName && (
-                <p className="text-red-500 text-sm">
-                  {errors.fullName.message}
-                </p>
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
               )}
             </div>
 
@@ -107,11 +119,13 @@ const AddressPage = () => {
                 Pincode*
               </label>
               <input
-                {...register("pincode")}
+                {...register("pin_code")}
                 className="w-full p-3 border border-gray-200 bg-[#CDCDCD]/20 rounded-md focus:ring-[#FF7B07]"
               />
-              {errors.pincode && (
-                <p className="text-red-500 text-sm">{errors.pincode.message}</p>
+              {errors.pin_code && (
+                <p className="text-red-500 text-sm">
+                  {errors.pin_code.message}
+                </p>
               )}
             </div>
 
@@ -121,13 +135,11 @@ const AddressPage = () => {
                 Full Address*
               </label>
               <input
-                {...register("fullAddress")}
+                {...register("address")}
                 className="w-full p-3 border border-gray-200 bg-[#CDCDCD]/20 rounded-md focus:ring-[#FF7B07]"
               />
-              {errors.fullAddress && (
-                <p className="text-red-500 text-sm">
-                  {errors.fullAddress.message}
-                </p>
+              {errors.address && (
+                <p className="text-red-500 text-sm">{errors.address.message}</p>
               )}
             </div>
 
@@ -158,10 +170,10 @@ const AddressPage = () => {
             {/* Additional Address Info */}
             <div>
               <label className="block text-sm text-gray-600 mb-1">
-                Additional Info (Optional)
+                Country*
               </label>
               <input
-                {...register("additionalInfo")}
+                {...register("country")}
                 className="w-full p-3 border border-gray-200 bg-[#CDCDCD]/20 rounded-md focus:ring-[#FF7B07]"
               />
             </div>
@@ -172,17 +184,11 @@ const AddressPage = () => {
               <PButton disabled={!isValid}>Proceed</PButton>
             ) : (
               <PButton type="submit" disabled={!isValid}>
-                <Link href={"/cart/payment"}>Proceed</Link>
+                Proceed
               </PButton>
             )}
           </div>
         </form>
-
-        <div className="border border-dashed border-gray-300 p-4 rounded-lg bg-white">
-          <button className="text-[#FF7B07] font-medium flex items-center w-full justify-center">
-            <span className="mr-2 text-xl">+</span> Add New Address
-          </button>
-        </div>
       </div>
     </div>
   );

@@ -80,6 +80,7 @@ const TestSeriesT: React.FC = () => {
         {displayedCourses.length > 0 ? (
           displayedCourses.map((course) => (
             <FeaturedCard
+              key={course.slug}
               testSeries={true}
               course={course}
               buttonText="Enroll Now"
