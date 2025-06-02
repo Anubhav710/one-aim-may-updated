@@ -31,7 +31,7 @@ const instagramPosts = [
 const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   const { blogId } = await params;
 
-  let currentBlog: TypeBlogShow | null = null; // Variable to hold the found blog
+  let currentBlog: TypeBlogShow | null = null;
 
   const resp = await fetchData<TypeBlogShow>(`/blogs/${blogId}`);
   currentBlog = resp || null;

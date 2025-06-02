@@ -1,21 +1,23 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
-import { IoChevronDown } from "react-icons/io5";
-import { socialLinks } from "@/constant/page";
 import { fetchData } from "@/utils/apiUtils";
 import { OrganizationInfo } from "@/types";
+import Link from "next/link";
+import Image from "next/image";
+import { IoChevronDown } from "react-icons/io5";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { socialLinks } from "@/constant/page";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedin,
+  FaSquareXTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
 
 const Footer = async () => {
   let companyData: OrganizationInfo | null = null;
-  try {
-    const data = await fetchData<OrganizationInfo>("/company-profile");
-    companyData = data ?? null;
-  } catch (err) {
-    console.error("Failed to fetch company data:", err);
-    // companyData will remain null, and the component will render with default/fallback values
-  }
+  const data = await fetchData<OrganizationInfo>("/company");
+  companyData = data ?? null;
 
   return (
     <footer className="text-gray-800 bg-[#FFEDDD] md:pt-20 pt-10 pb-10">
@@ -25,7 +27,7 @@ const Footer = async () => {
             <div className="flex justify-center sm:justify-start">
               <Link href="/">
                 <Image
-                  src={companyData?.logo_url || "/images/logo.svg"} // Updated to logo_url as per OrganizationInfo
+                  src={companyData?.logo_url || "/images/logo.svg"}
                   alt={companyData?.name || "Company Logo"}
                   width={220}
                   height={180}
@@ -46,77 +48,47 @@ const Footer = async () => {
                 </a>
               </p>
               <div className="pt-5">
-                <ul className="flex gap-x-4">
-                  {/* Map social media links from API when available, otherwise use default socialLinks */}
-                  {(companyData?.social_media &&
-                  Object.values(companyData.social_media).some(
-                    (link) => link !== null
-                  )
-                    ? [
-                        {
-                          name: "facebook",
-                          href:
-                            companyData.social_media.facebook_link ||
-                            socialLinks.find((sl) => sl.name === "facebook")
-                              ?.href,
-                          icon: socialLinks.find((sl) => sl.name === "facebook")
-                            ?.icon,
-                        },
-                        {
-                          name: "instagram",
-                          href:
-                            companyData.social_media.instagram_link ||
-                            socialLinks.find((sl) => sl.name === "instagram")
-                              ?.href,
-                          icon: socialLinks.find(
-                            (sl) => sl.name === "instagram"
-                          )?.icon,
-                        },
-                        {
-                          name: "twitter",
-                          href:
-                            companyData.social_media.twitter_link ||
-                            socialLinks.find((sl) => sl.name === "twitter")
-                              ?.href,
-                          icon: socialLinks.find((sl) => sl.name === "twitter")
-                            ?.icon,
-                        },
-                        {
-                          name: "linkedin",
-                          href:
-                            companyData.social_media.linkedin_link ||
-                            socialLinks.find((sl) => sl.name === "linkedin")
-                              ?.href,
-                          icon:
-                            socialLinks.find((sl) => sl.name === "linkedin")
-                              ?.icon ||
-                            socialLinks.find((sl) => sl.name === "quora")?.icon,
-                        },
-                        {
-                          name: "youtube",
-                          href:
-                            companyData.social_media.youtube_link ||
-                            socialLinks.find((sl) => sl.name === "youtube")
-                              ?.href,
-                          icon: socialLinks.find((sl) => sl.name === "youtube")
-                            ?.icon,
-                        },
-                      ].filter((link) => link.href) // Filter out links that are not defined
-                    : socialLinks
-                  ).map((link, index) => (
-                    <li
-                      key={index}
-                      className="bg-white rounded-full h-7 w-7 md:h-8 md:w-8 flex-center group hover:bg-primaryred hover:ring-[1.5px] hover:ring-white duration-300 ease-in-out cursor-pointer"
+                <ul className="flex gap-x-2">
+                  <li>
+                    <Link
+                      href={companyData?.social_media.facebook_link || "/"}
+                      className="bg-white inline-block p-2 rounded-full "
                     >
-                      <a
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link.icon /* Use icon from socialLinks */}
-                      </a>
-                    </li>
-                  ))}
+                      <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={companyData?.social_media.instagram_link || "/"}
+                      className="bg-white inline-block p-2 rounded-full "
+                    >
+                      <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={companyData?.social_media.twitter_link || "/"}
+                      className="bg-white inline-block p-2 rounded-full "
+                    >
+                      <FaSquareXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={companyData?.social_media.linkedin_link || "/"}
+                      className="bg-white inline-block p-2 rounded-full "
+                    >
+                      <FaLinkedin className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={companyData?.social_media.youtube_link || "/"}
+                      className="bg-white inline-block p-2 rounded-full "
+                    >
+                      <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -248,7 +220,6 @@ const Footer = async () => {
           <p className="text-primaryred">
             © {new Date().getFullYear()} Copyright by{" "}
             {companyData?.name || "One Aim"}{" "}
-            {/* companyData.name is correct as per OrganizationInfo */}
           </p>
           <div className="flex items-center gap-x-2">
             <p className="text-primaryred">
