@@ -188,7 +188,7 @@ export default async function TestSeriesDetail({
             {/* Right Sidebar (1/3 width on desktop) */}
             <div>
               <CourseEnrollCard
-                heading={`${testSeiesData?.heading}`}
+                title={`${testSeiesData?.heading}`}
                 instructors={testSeiesData?.faculties.map(
                   (data, i) => data.name
                 )}

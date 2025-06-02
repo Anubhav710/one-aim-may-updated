@@ -17,7 +17,7 @@ import { useCartStore } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 interface CourseEnrollCardProps {
-  heading: string;
+  title: string;
   instructors?: string[];
   price: number | undefined;
   originalPrice?: number;
@@ -36,7 +36,7 @@ interface CourseEnrollCardProps {
 }
 
 const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
-  heading,
+  title,
   instructors = [],
   studyMaterial,
   timeTable,
@@ -59,7 +59,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   const handleEnrollNow = () => {
     // Create a course object with the available data
     const courseData = {
-      heading,
+      title,
       price,
       originalPrice,
       image,
@@ -110,7 +110,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
               ))}
             </div>
           </div>
-          <h2 className="text-lg font-bold mb-2">{heading}</h2>
+          <h2 className="text-lg font-bold mb-2">{title}</h2>
           {languages && (
             <div className="flex items-center gap-2 mb-3">
               <LanguageIcon className="text-orange h-6 w-6" />
