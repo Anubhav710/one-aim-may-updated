@@ -16,7 +16,7 @@ const FacultyCom: React.FC<Faculty> = ({
   featured_image_url,
 }) => {
   return (
-    <div className="padding-bottom pt-14">
+    <div className=" padding-top">
       <div className="mdl:flex hidden ">
         <div className=" ml-28 ">
           <div className="h-[18rem] w-[18rem] rounded-full bg-white scale-150 relative left-16 overflow-hidden">
@@ -162,7 +162,7 @@ const FacultyCom: React.FC<Faculty> = ({
         </div>
       </div>
       {/* For Mobile View */}
-      <div className="screen mdl:hidden padding-bx">
+      <div className="screen mdl:hidden ">
         <div className="h-[14rem] w-[14rem] rounded-full bg-white top-7 mx-auto relative overflow-hidden">
           <Image
             src={featured_image_url || "/images/placeholder.png"}

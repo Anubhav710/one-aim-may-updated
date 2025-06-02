@@ -49,6 +49,7 @@ export interface Course {
   course_course_contents: CourseContent[];
   course_course_faqs: CourseFAQ[];
   faculties: Faculty[];
+  testing?: string;
 }
 export interface CourseContent {
   title: string;
@@ -205,4 +206,9 @@ export interface FAQType {
   active: number; // Consider changing to boolean if appropriate
   created_at: string; // format: YYYY-MM-DD HH:mm:ss
   updated_at: string; // format: YYYY-MM-DD HH:mm:ss
+}
+
+export interface TypeFacultyShow extends Faculty {
+  courses: Course[];
+  testSeries: TestSeries[];
 }

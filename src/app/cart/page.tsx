@@ -103,9 +103,11 @@ const Cart = () => {
                             {course.duration}
                           </div>
                         )}
-                        {course.language && (
+                        {course.faculties && (
                           <div className="text-sm text-orange bg-orange/10 px-2 rounded-full w-max mt-3">
-                            {course.language}
+                            {course.faculties
+                              .map((faculty) => faculty.name)
+                              .join(", ")}
                           </div>
                         )}
                       </div>

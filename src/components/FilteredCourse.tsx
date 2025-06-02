@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import CommonHeading from "./ui/CommonHeading";
 import FilteredCard from "./ui/FilteredCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Mousewheel, Navigation, Pagination } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { CommonHeading2 } from "./common/CommonHeading2";
-import axios from "axios";
-import { TestSeriesLists } from "@/types/test-series";
+import { fetchData } from "@/utils/apiUtils";
+import { TestSeries } from "@/types";
 
 const FilteredCourse = () => {
   const [dimensions, setDimensions] = useState({
@@ -15,7 +14,7 @@ const FilteredCourse = () => {
     height: typeof window !== "undefined" ? window.innerHeight : 800,
   });
 
-  const [testSeries, setTestSeries] = useState<TestSeriesLists | null>(null);
+  const [testSeries, setTestSeries] = useState<TestSeries[] | null>(null);
 
   useEffect(() => {
     // Set initial dimensions
@@ -35,19 +34,8 @@ const FilteredCourse = () => {
 
     // Fetch data on mount
     const fetchTestSeriesData = async () => {
-      try {
-        const response = await axios.get<TestSeriesLists>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/test-series`,
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
-            },
-          }
-        );
-        setTestSeries(response.data);
-      } catch (error) {
-        console.error("Error fetching test series:", error);
-      }
+      const resp = await fetchData<TestSeries[]>("/test-series");
+      setTestSeries(resp || null);
     };
 
     fetchTestSeriesData();

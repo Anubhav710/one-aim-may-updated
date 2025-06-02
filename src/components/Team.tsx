@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import CommonHeading from "./ui/CommonHeading";
 import TeamCard from "./ui/TeamCard";
 import Button from "./ui/Button";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -10,32 +9,20 @@ import { Navigation } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import { CommonHeading2 } from "./common/CommonHeading2";
-import { TeamMemberList } from "@/types";
+
 import axios from "axios";
+import { Faculty } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 
 const Team = () => {
   // Change const to let to allow assignment
-  let teamMemberList: TeamMemberList | null = null;
-  const [teamMember, setTeamMember] = useState<TeamMemberList>();
+  let teamMemberList: Faculty[] | null = null;
+  const [teamMember, setTeamMember] = useState<Faculty[]>();
 
   useEffect(() => {
     const facultyDetail = async () => {
-      try {
-        const response = await axios.get<TeamMemberList>(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/faculties`, // Use environment variable for base URL
-          {
-            headers: {
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
-            },
-          }
-        );
-        // Assign the fetched data to blogList
-        setTeamMember(response.data);
-      } catch (err) {
-        console.error("Error fetching blogs:", err);
-        // Optionally handle the error state, e.g., set blogList to an empty array
-        teamMemberList = [];
-      }
+      const resp = await fetchData<Faculty[]>("/faculties");
+      setTeamMember(resp);
     };
     facultyDetail();
   }, []);
@@ -116,12 +103,12 @@ const Team = () => {
                   <div className="transform transition-transform hover:scale-[1.02] duration-300">
                     <TeamCard
                       name={faculty.name}
-                      designation={faculty.designation}
-                      experience={faculty.experience}
-                      qualification={faculty.qualifications}
-                      specialization={faculty.designation}
-                      description={faculty.short_description}
-                      image={faculty.featured_image_url}
+                      designation={faculty.designation || ""}
+                      experience={faculty.experience || ""}
+                      qualification={faculty.qualifications || ""}
+                      specialization={faculty.designation || ""}
+                      description={faculty.short_description || ""}
+                      image={faculty.featured_image_url || ""}
                       facultSlug={faculty.slug}
                     />
                   </div>

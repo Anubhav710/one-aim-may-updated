@@ -16,6 +16,8 @@ import Button from "./ui/Button";
 import { useCartStore } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { Course } from "@/types";
+import { date } from "zod";
 interface CourseEnrollCardProps {
   title: string;
   instructors?: string[];
@@ -59,11 +61,33 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   const handleEnrollNow = () => {
     // Create a course object with the available data
     const courseData = {
-      title,
+      heading: title,
       price,
       originalPrice,
       image,
       slug,
+      language: languages || "",
+      duration,
+      faculties: [
+        {
+          name: instructors.map((date) => date),
+          slug: "",
+          designation: null,
+          experience: null,
+          qualifications: null,
+          specialization: null,
+          short_description: null,
+          long_description: null,
+          facebook_link: null,
+          instagram_link: null,
+          twitter_link: null,
+          linkedin_link: null,
+          youtube_link: null,
+          sequence: 0,
+          featured_image_url: null,
+        },
+      ],
+
       // Add any other required fields from the Course type
     };
 
@@ -85,7 +109,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
         <div className="relative h-64">
           <div className="w-full h-full">
             <Image
-              src={image ?? "/images/course/course-bg.png"}
+              src={image ?? "/images/placeholder.png"}
               alt="Course prep materials"
               fill
               className="object-cover"

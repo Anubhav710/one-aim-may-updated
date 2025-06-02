@@ -1,5 +1,4 @@
 import axios from "axios";
-import { TeamMemberList } from "@/types";
 import Banner from "@/components/common/Banner";
 import Link from "next/link";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
@@ -10,6 +9,9 @@ import {
   PassionIcon,
   TeachingIcon,
 } from "@/components/icons";
+import { Faculty } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
+import { notFound } from "next/navigation";
 
 const facultyHighlights = [
   {
@@ -35,24 +37,11 @@ const facultyHighlights = [
 ];
 
 const FacultyPage = async () => {
-  let teamMemberList: TeamMemberList | null = null;
+  let teamMemberList: Faculty[] | null = null;
 
-  try {
-    const response = await axios.get<TeamMemberList>(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/faculties`, // Use environment variable for base URL
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`, // Use environment variable for auth token
-        },
-      }
-    );
-
-    teamMemberList = await response.data;
-  } catch (err) {
-    console.error("Error fetching blogs:", err);
-
-    teamMemberList = [];
-  }
+  const resp = await fetchData<Faculty[]>("/faculties");
+  teamMemberList = resp || null;
+  if (!teamMemberList) return notFound();
 
   return (
     <main className="bg-[#FFF7F0]">
@@ -111,12 +100,12 @@ const FacultyPage = async () => {
               <div key={faculty.slug} className="h-full">
                 <TeamCard
                   name={faculty.name}
-                  designation={faculty.designation}
-                  experience={faculty.experience}
-                  qualification={faculty.qualifications}
-                  specialization={faculty.designation}
-                  description={faculty.short_description}
-                  image={faculty.featured_image_url}
+                  designation={faculty.designation || ""}
+                  experience={faculty.experience || ""}
+                  qualification={faculty.qualifications || ""}
+                  specialization={faculty.designation || ""}
+                  description={faculty.short_description || ""}
+                  image={faculty.featured_image_url || ""}
                   facultSlug={faculty.slug}
                 />
               </div>
