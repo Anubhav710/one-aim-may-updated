@@ -145,58 +145,76 @@ const Header = () => {
         <div className="bg-primaryred sm:space-x-3 flex justify-between items-center screen padding-x">
           <div className="hidden sm:block">
             <div className="flex gap-x-4">
-              <div className="flex items-center gap-x-2">
-                <FaPhoneAlt />
-                <a href="tel: +91-8955249714">+91-8955249714</a>
-              </div>
-              <div className="flex items-center gap-x-2">
-                <IoMdMail />
-                <a href="mailto:info@theoneaim.co.in">info@theoneaim.co.in</a>
-              </div>
+              {apiData?.phones[0].number && (
+                <div className="flex items-center gap-x-2">
+                  <FaPhoneAlt />
+                  <Link href={`tel:${apiData?.phones[0].number}`}>
+                    {apiData?.phones[0].number}
+                  </Link>
+                </div>
+              )}
+              {apiData?.emails[0].email && (
+                <div className="flex items-center gap-x-2">
+                  <IoMdMail />
+                  <a href={`mailto:${apiData?.emails[0].email}`}>
+                    {apiData?.emails[0].email}
+                  </a>
+                </div>
+              )}
             </div>
           </div>
 
           <div className="max-sm:mx-auto">
             <ul className="flex items-center  gap-x-2">
-              <Link
-                href={apiData?.social_media.facebook_link || "/"}
-                target="_blank"
-                className="bg-white inline-block p-1.5 rounded-full "
-              >
-                <FaFacebookF className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-              </Link>
+              {apiData?.social_media?.facebook_link && (
+                <Link
+                  href={apiData.social_media.facebook_link}
+                  target="_blank"
+                  className="bg-white inline-block p-1.5 rounded-full "
+                >
+                  <FaFacebookF className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                </Link>
+              )}
 
-              <Link
-                href={apiData?.social_media.instagram_link || "/"}
-                target="_blank"
-                className="bg-white inline-block p-1.5 rounded-full "
-              >
-                <FaInstagram className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-              </Link>
+              {apiData?.social_media?.instagram_link && (
+                <Link
+                  href={apiData.social_media.instagram_link}
+                  target="_blank"
+                  className="bg-white inline-block p-1.5 rounded-full "
+                >
+                  <FaInstagram className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                </Link>
+              )}
 
-              <Link
-                href={apiData?.social_media.twitter_link || "/"}
-                target="_blank"
-                className="bg-white inline-block p-1.5 rounded-full "
-              >
-                <FaSquareXTwitter className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-              </Link>
+              {apiData?.social_media?.twitter_link && (
+                <Link
+                  href={apiData.social_media.twitter_link}
+                  target="_blank"
+                  className="bg-white inline-block p-1.5 rounded-full "
+                >
+                  <FaSquareXTwitter className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                </Link>
+              )}
 
-              <Link
-                href={apiData?.social_media.linkedin_link || "/"}
-                target="_blank"
-                className="bg-white inline-block p-1.5 rounded-full "
-              >
-                <FaLinkedin className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-              </Link>
+              {apiData?.social_media?.linkedin_link && (
+                <Link
+                  href={apiData.social_media.linkedin_link}
+                  target="_blank"
+                  className="bg-white inline-block p-1.5 rounded-full "
+                >
+                  <FaLinkedin className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                </Link>
+              )}
 
-              <Link
-                href={apiData?.social_media.youtube_link || "/"}
-                target="_blank"
-                className="bg-white inline-block p-1.5 rounded-full "
-              >
-                <FaYoutube className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-              </Link>
+              {apiData?.social_media?.youtube_link && (
+                <Link
+                  href={apiData.social_media.youtube_link}
+                  target="_blank"
+                  className="bg-white inline-block p-1.5 rounded-full "
+                >
+                  <FaYoutube className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                </Link>
+              )}
             </ul>
           </div>
         </div>
@@ -257,13 +275,13 @@ const Header = () => {
           {/* Buttons */}
           {isLogIn ? (
             <div className="hidden xl:flex xl:items-center space-x-5">
-              <CustomDropdown
+              {/* <CustomDropdown
                 options={[
                   { value: "english", label: "English" },
                   { value: "hindi", label: "Hindi" },
                 ]}
                 className="w-44"
-              />
+              /> */}
 
               {/* Cart  */}
               <Link

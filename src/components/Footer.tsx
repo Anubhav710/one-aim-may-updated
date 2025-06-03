@@ -48,53 +48,65 @@ const Footer = async () => {
                 </a>
               </p>
               <div className="pt-5">
-                <ul className="flex gap-x-2">
-                  <li>
-                    <Link
-                      href={companyData?.social_media.facebook_link || "/"}
-                      target="_blank"
-                      className="bg-white inline-block p-2 rounded-full "
-                    >
-                      <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={companyData?.social_media.instagram_link || "/"}
-                      target="_blank"
-                      className="bg-white inline-block p-2 rounded-full "
-                    >
-                      <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={companyData?.social_media.twitter_link || "/"}
-                      target="_blank"
-                      className="bg-white inline-block p-2 rounded-full "
-                    >
-                      <FaSquareXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={companyData?.social_media.linkedin_link || "/"}
-                      target="_blank"
-                      className="bg-white inline-block p-2 rounded-full "
-                    >
-                      <FaLinkedin className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={companyData?.social_media.youtube_link || "/"}
-                      target="_blank"
-                      className="bg-white inline-block p-2 rounded-full "
-                    >
-                      <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-                    </Link>
-                  </li>
-                </ul>
+                {companyData?.social_media && (
+                  <ul className="flex gap-x-2">
+                    {companyData.social_media.facebook_link && (
+                      <li>
+                        <Link
+                          href={companyData.social_media.facebook_link}
+                          target="_blank"
+                          className="bg-white inline-block p-2 rounded-full "
+                        >
+                          <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                        </Link>
+                      </li>
+                    )}
+                    {companyData.social_media.instagram_link && (
+                      <li>
+                        <Link
+                          href={companyData.social_media.instagram_link}
+                          target="_blank"
+                          className="bg-white inline-block p-2 rounded-full "
+                        >
+                          <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                        </Link>
+                      </li>
+                    )}
+                    {companyData.social_media.twitter_link && (
+                      <li>
+                        <Link
+                          href={companyData.social_media.twitter_link}
+                          target="_blank"
+                          className="bg-white inline-block p-2 rounded-full "
+                        >
+                          <FaSquareXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                        </Link>
+                      </li>
+                    )}
+                    {companyData.social_media.linkedin_link && (
+                      <li>
+                        <Link
+                          href={companyData.social_media.linkedin_link}
+                          target="_blank"
+                          className="bg-white inline-block p-2 rounded-full "
+                        >
+                          <FaLinkedin className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                        </Link>
+                      </li>
+                    )}
+                    {companyData.social_media.youtube_link && (
+                      <li>
+                        <Link
+                          href={companyData.social_media.youtube_link}
+                          target="_blank"
+                          className="bg-white inline-block p-2 rounded-full "
+                        >
+                          <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
