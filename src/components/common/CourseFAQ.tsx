@@ -24,7 +24,7 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({ faqs }) => {
     <div>
       <div className="screen padding-bx space-y-2">
         <div className="mx-auto w-max">
-          <CommonHeading2 title="Course FAQ Asked Questions" />
+          <CommonHeading2 title="Course Content" />
         </div>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
