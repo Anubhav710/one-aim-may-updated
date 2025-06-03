@@ -275,13 +275,13 @@ const Header = () => {
           {/* Buttons */}
           {isLogIn ? (
             <div className="hidden xl:flex xl:items-center space-x-5">
-              <CustomDropdown
+              {/* <CustomDropdown
                 options={[
                   { value: "english", label: "English" },
                   { value: "hindi", label: "Hindi" },
                 ]}
                 className="w-44"
-              />
+              /> */}
 
               {/* Cart  */}
               <Link

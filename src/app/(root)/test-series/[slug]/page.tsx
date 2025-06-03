@@ -192,6 +192,7 @@ export default async function TestSeriesDetail({
                 instructors={testSeiesData?.faculties.map(
                   (data, i) => data.name
                 )}
+                type="test-series"
                 duration={testSeiesData?.duration}
                 question={testSeiesData?.questions_count}
                 videoLacture={testSeiesData?.video_lectures}

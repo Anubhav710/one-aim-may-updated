@@ -42,6 +42,7 @@ interface FeaturedCardProps {
 // Helper function to generate features based on course data
 const generateFeatures = (
   course?: Course | SimpleTestSeries, // Updated type
+  type?: string,
   duration?: string,
   videoLectures?: string,
   questionsCount?: string
@@ -95,6 +96,7 @@ const FeaturedCard = ({
   imageSrc,
   price,
   href,
+  type,
   buttonText = "Pay now",
   testSeries = false,
   course,
@@ -104,6 +106,7 @@ const FeaturedCard = ({
   // Generate features based on available data
   const features = generateFeatures(
     course,
+    type,
     duration || course?.duration,
     course?.video_lectures,
     course?.questions_count
@@ -131,6 +134,7 @@ const FeaturedCard = ({
         short_description: description || courseData?.short_description || "",
         featured: courseData?.featured || 0,
         sequence: courseData?.sequence || 0,
+        type,
         featured_image_url:
           imageSrc ||
           courseData?.featured_image_url ||

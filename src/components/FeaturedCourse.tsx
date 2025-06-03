@@ -30,6 +30,7 @@ import { CommonHeading2 } from "./common/CommonHeading2";
 
 import { Course } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
+import { toast } from "react-toastify";
 
 const FeaturedCourse = () => {
   const sectionRef = useRef(null);

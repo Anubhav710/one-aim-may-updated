@@ -31,6 +31,7 @@ interface CourseCategoryChild {
 }
 
 export interface Course {
+  type?: string;
   heading: string;
   slug: string;
   sub_heading: string | null;

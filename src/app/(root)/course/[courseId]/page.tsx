@@ -54,6 +54,7 @@ const page = async ({ params }: { params: Promise<{ courseId: string }> }) => {
             </div>
             <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
               <CourseEnrollCard
+                type="course"
                 title={`${courseData?.heading}`}
                 instructors={courseData?.faculties.map((data) => data.name)}
                 duration={courseData?.duration}

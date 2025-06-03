@@ -238,6 +238,7 @@ const Course: React.FC = () => {
                     <SwiperSlide key={course.slug}>
                       <FeaturedCard
                         course={course}
+                        type="course"
                         buttonText="Enroll Now"
                         href={course.slug}
                       />

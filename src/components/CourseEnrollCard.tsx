@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { Course } from "@/types";
 import { date } from "zod";
 interface CourseEnrollCardProps {
+  type?: string;
   title: string;
   instructors?: string[];
   price: number | undefined;
@@ -46,6 +47,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   price,
   originalPrice,
   languages,
+  type,
   features,
   enrollmentDeadline,
   contactPhone,
@@ -65,6 +67,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
       price,
       originalPrice,
       image,
+      type,
       slug,
       language: languages || "",
       duration,
