@@ -4,7 +4,6 @@ import CommonHeading from "@/components/ui/CommonHeading";
 import FeaturedCard from "@/components/ui/FeaturedCard";
 import { TestSeriesCategoryList } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 // Tab interface
