@@ -6,7 +6,6 @@ import TestSeriesC from "./components/TestSeriesC";
 import TestSeriesT from "./components/TestSeriesT";
 import HowItWork from "./components/HowItWork";
 import Testimonials from "@/components/Testimonials";
-import Footer from "@/components/Footer";
 
 const TestSeries = () => {
   return (
