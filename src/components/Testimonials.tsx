@@ -38,7 +38,7 @@ const Testimonials = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       const response = await axios.get<TestimonialList[]>(
-        "https://oneaim-admin.utxotech.com/api/v1/testimonials",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/testimonials`,
         {
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
