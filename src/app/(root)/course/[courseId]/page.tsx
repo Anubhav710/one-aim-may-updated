@@ -84,7 +84,7 @@ const page = async ({ params }: { params: Promise<{ courseId: string }> }) => {
             }
           />
 
-          <CourseFAQ faqs={courseData.course_course_faqs} />
+          <CourseFAQ faqs={courseData.course_course_contents} />
           <RelatedCourse courses={courseData.related_courses} />
           <FAQ />
         </div>

@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { CommonHeading2 } from "./CommonHeading2";
-import { CourseFAQ as CourseFAQType } from "@/types"; // Renamed to avoid conflict, and using correct type
+import { CourseContent } from "@/types"; // Renamed to avoid conflict, and using correct type
 import { FaChevronDown } from "react-icons/fa"; // Import the icon
 
 interface CourseFAQProps {
-  faqs: CourseFAQType[];
+  faqs: CourseContent[];
 }
 
 const CourseFAQ: React.FC<CourseFAQProps> = ({ faqs }) => {
@@ -33,7 +33,7 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({ faqs }) => {
                 onClick={() => toggleFAQIndex(index)}
                 className="w-full flex justify-between items-center py-4 text-lg font-medium text-left text-gray-700 hover:text-orange-500 focus:outline-none"
               >
-                <span className="text-orange">{faq.question}</span>
+                <span className="text-orange">{faq.title}</span>
                 <FaChevronDown
                   className={`transition-transform transform ${
                     openIndex === index ? "rotate-180" : "rotate-0"
@@ -57,7 +57,7 @@ const CourseFAQ: React.FC<CourseFAQProps> = ({ faqs }) => {
               >
                 <div
                   className="p-4 text-gray-600 text-sm"
-                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                  dangerouslySetInnerHTML={{ __html: faq.content }}
                 ></div>
               </div>
             </div>
