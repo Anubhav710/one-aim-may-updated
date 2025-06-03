@@ -144,9 +144,9 @@ const Cart = () => {
                   <div className="h-20 w-40 bg-[#FFF7F0] rounded-b-full absolute rotate-90 -right-20 top-1/2 transform -translate-y-1/2"></div>
 
                   <div className="text-center">
-                    <h2 className="text-xl font-bold mb-1">Flat 10% Off</h2>
+                    {/* <h2 className="text-xl font-bold mb-1">Flat 10% Off</h2> */}
                     <p className="mb-3">Save More on Your UPSC Preparation!</p>
-                    <p className="font-semibold">Use Code: 10off</p>
+                    {/* <p className="font-semibold">Use Code: 10off</p> */}
                   </div>
 
                   <div className="mt-4 relative z-40">
