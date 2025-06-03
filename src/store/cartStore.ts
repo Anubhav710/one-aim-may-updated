@@ -33,9 +33,9 @@ export const useCartStore = create<CartState>()(
       addCourse: (course) =>
         set((state) => {
           // Prevent adding duplicate courses
-          if (state.courses.find((c) => c.slug === course.slug)) {
-            return state;
-          }
+          // if (state.courses.find((c) => c.slug === course.slug)) {
+          //   return state;
+          // }
           return { courses: [...state.courses, course] };
         }),
       removeCourse: (courseId) =>
