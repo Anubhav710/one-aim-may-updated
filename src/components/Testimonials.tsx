@@ -34,13 +34,19 @@ const Testimonials = () => {
   const nextButtonClass = "custom-next-button";
   // Corrected state declaration and initialization
   const [testimonialData, setTestimonialData] = useState<TestimonialList[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const response = await fetchData<TestimonialList[]>(`/testimonials`);
-      setTestimonialData(response || []);
+      const response = await axios.get<TestimonialList[]>(
+        "https://oneaim-admin.utxotech.com/api/v1/testimonials",
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
+          },
+        }
+      );
+      const data = await response.data;
+      setTestimonialData(data || []);
     };
 
     fetchTestimonials();
