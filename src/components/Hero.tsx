@@ -39,7 +39,7 @@ const Hero = () => {
                       height={72}
                     />
                   </div>{" "}
-                  <h3>{"subtitle"}</h3>
+                  <h3>{"One Aim"}</h3>
                 </div>
 
                 <hgroup className="space-y-7 pb-11 pt-5 max-sm:pb-7 max-sm:pt-3">

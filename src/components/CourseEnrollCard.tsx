@@ -174,7 +174,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
               onClick={handleEnrollNow}
               className="text-white py-3 px-12 rounded-full w-full bg-black hover:bg-primaryred transition-all duration-500"
             >
-              Apply now
+              Enroll now
             </button>
           </div>
         </div>

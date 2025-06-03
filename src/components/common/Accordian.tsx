@@ -16,7 +16,7 @@ const Accordian: React.FC<AccordianProps> = ({ long_description }) => {
   };
 
   return (
-    <div className="screen relative mb-20">
+    <div className="screen relative my-24">
       <div
         className={`w-full   absolute bottom-0 h-[60px] ${
           showFullFacultyText
