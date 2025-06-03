@@ -1,8 +1,14 @@
 "use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { FaPhoneAlt, FaQuora, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaQuora,
+  FaInstagram,
+  FaYoutube,
+  FaLinkedin,
+} from "react-icons/fa";
 import { IoIosArrowForward, IoMdMail } from "react-icons/io";
-import { FaFacebookF } from "react-icons/fa6";
+import { FaFacebookF, FaSquareXTwitter } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 
 import { RiMenu3Line } from "react-icons/ri";
@@ -27,6 +33,8 @@ import {
   TestSeriesIcon,
 } from "./icons";
 import { useCartStore } from "@/store/cartStore";
+import { OrganizationInfo } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 // Constants
 const socialLinks = [
   {
@@ -69,6 +77,7 @@ const Header = () => {
   const path = usePathname();
   const { courses } = useCartStore();
   const isLogIn = true;
+  const [apiData, setApiData] = useState<OrganizationInfo>();
 
   // Navigation items with translations
   const navItems = [
@@ -118,6 +127,12 @@ const Header = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    const apiData = async () => {
+      const data = await fetchData<OrganizationInfo>("/company");
+      setApiData(data);
+    };
+    apiData();
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -142,15 +157,46 @@ const Header = () => {
           </div>
 
           <div className="max-sm:mx-auto">
-            <ul className="flex gap-x-4  ">
-              {socialLinks.map((link, index) => (
-                <li
-                  key={index}
-                  className="bg-white rounded-full h-7 w-7 md:h-6 md:w-6 md:p-3.5 flex-center group hover:bg-primaryred hover:ring-[1.5px] hover:ring-white duration-300 ease-in-out cursor-pointer"
-                >
-                  <a href={link.href}>{link.icon}</a>
-                </li>
-              ))}
+            <ul className="flex items-center  gap-x-2">
+              <Link
+                href={apiData?.social_media.facebook_link || "/"}
+                target="_blank"
+                className="bg-white inline-block p-1.5 rounded-full "
+              >
+                <FaFacebookF className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+              </Link>
+
+              <Link
+                href={apiData?.social_media.instagram_link || "/"}
+                target="_blank"
+                className="bg-white inline-block p-1.5 rounded-full "
+              >
+                <FaInstagram className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+              </Link>
+
+              <Link
+                href={apiData?.social_media.twitter_link || "/"}
+                target="_blank"
+                className="bg-white inline-block p-1.5 rounded-full "
+              >
+                <FaSquareXTwitter className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+              </Link>
+
+              <Link
+                href={apiData?.social_media.linkedin_link || "/"}
+                target="_blank"
+                className="bg-white inline-block p-1.5 rounded-full "
+              >
+                <FaLinkedin className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+              </Link>
+
+              <Link
+                href={apiData?.social_media.youtube_link || "/"}
+                target="_blank"
+                className="bg-white inline-block p-1.5 rounded-full "
+              >
+                <FaYoutube className="h-4 w-4 md:h-4 md:w-4 text-primaryred group-hover:text-white duration-300 ease-in-out" />
+              </Link>
             </ul>
           </div>
         </div>
@@ -351,7 +397,10 @@ const Header = () => {
                       </div>
                     )}
                   </div>
-                  <Link href="/cart" className="hover:text-red-700 font-semibold">
+                  <Link
+                    href="/cart"
+                    className="hover:text-red-700 font-semibold"
+                  >
                     Cart
                   </Link>
                 </div>

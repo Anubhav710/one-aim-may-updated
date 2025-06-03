@@ -188,6 +188,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             {studyMaterial && (
               <Link
                 href={studyMaterial ?? "/"}
+                target="_blank"
                 className="flex items-center gap-3 cursor-pointer border-b border-dashed hover:text-orange-500  border-gray-300 pb-5"
               >
                 <div className="text-orange">
@@ -213,6 +214,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             {timeTable && (
               <Link
                 href={timeTable ?? "/"}
+                target="_blank"
                 className="flex items-center gap-3 cursor-pointer py-5"
               >
                 <div className="text-orange">

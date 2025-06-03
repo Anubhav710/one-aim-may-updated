@@ -52,6 +52,7 @@ const Footer = async () => {
                   <li>
                     <Link
                       href={companyData?.social_media.facebook_link || "/"}
+                      target="_blank"
                       className="bg-white inline-block p-2 rounded-full "
                     >
                       <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
@@ -60,6 +61,7 @@ const Footer = async () => {
                   <li>
                     <Link
                       href={companyData?.social_media.instagram_link || "/"}
+                      target="_blank"
                       className="bg-white inline-block p-2 rounded-full "
                     >
                       <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
@@ -68,6 +70,7 @@ const Footer = async () => {
                   <li>
                     <Link
                       href={companyData?.social_media.twitter_link || "/"}
+                      target="_blank"
                       className="bg-white inline-block p-2 rounded-full "
                     >
                       <FaSquareXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
@@ -76,6 +79,7 @@ const Footer = async () => {
                   <li>
                     <Link
                       href={companyData?.social_media.linkedin_link || "/"}
+                      target="_blank"
                       className="bg-white inline-block p-2 rounded-full "
                     >
                       <FaLinkedin className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
@@ -84,6 +88,7 @@ const Footer = async () => {
                   <li>
                     <Link
                       href={companyData?.social_media.youtube_link || "/"}
+                      target="_blank"
                       className="bg-white inline-block p-2 rounded-full "
                     >
                       <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
