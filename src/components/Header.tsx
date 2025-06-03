@@ -268,7 +268,7 @@ const Header = () => {
       {isMenuOpen && (
         <div className="fixed top-0 right-0 w-[80%] h-screen bg-white shadow-lg z-[1999] overflow-y-auto px-4">
           {/* top header  */}
-          <div className="flex flex-col h-[30%]">
+          <div className="flex flex-col">
             <div className="p-4 flex justify-end">
               <button
                 onClick={toggleMenu}
@@ -290,24 +290,6 @@ const Header = () => {
               </a>
             </div>
             {/* Middle header  */}
-            <div className="bg-red-40 flex items-center gap-x-3">
-              <div className="h-20 w-20 rounded-full overflow-hidden">
-                <Image
-                  src={"/images/team/AatibaNasti.png"}
-                  alt="profile pic"
-                  width={1200}
-                  height={1200}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div>
-                <h5 className="text-xl font-semibold">Aatiba Nasti</h5>
-                <p className="text-sm text-gray-500">+91 1234567890</p>
-              </div>
-              <div className="ml-auto">
-                <IoIosArrowForward className="h-6 w-6 text-orange" />
-              </div>
-            </div>
           </div>
 
           {/* List Of items  */}
@@ -359,8 +341,23 @@ const Header = () => {
                   Contact Us
                 </a>
               </div>
+              {isLogIn && (
+                <div className="flex gap-4">
+                  <div className="text-orange hover:text-red-700 relative">
+                    <BagIcon />
+                    {courses.length > 0 && (
+                      <div className="h-5 w-5 text-white absolute bg-[#DC8940] -top-2 rounded-full -right-2 text-sm flex items-center justify-center">
+                        {courses.length}
+                      </div>
+                    )}
+                  </div>
+                  <Link href="/cart" className="hover:text-red-700 font-semibold">
+                    Cart
+                  </Link>
+                </div>
+              )}
             </div>
-            <div className="space-y-5 mt-auto pb-4">
+            {/* <div className="space-y-5  mt-auto pb-4">
               <div className="flex gap-4 self-end">
                 <div className="text-orange hover:text-red-700">
                   <LogoutIcon />
@@ -372,7 +369,7 @@ const Header = () => {
                   Logout
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       )}
