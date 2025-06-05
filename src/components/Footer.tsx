@@ -25,15 +25,17 @@ const Footer = async () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-x-10">
           <div className="mb-8 sm:mb-0">
             <div className="flex justify-center sm:justify-start">
-              <Link href="/">
-                <Image
-                  src={companyData?.logo_url || "/images/logo.svg"}
-                  alt={companyData?.name || "Company Logo"}
-                  width={220}
-                  height={180}
-                  className="w-auto h-auto"
-                />
-              </Link>
+              <div className="w-52">
+                <Link href="/">
+                  <Image
+                    src={companyData?.logo_url || "/logo.png"}
+                    alt={companyData?.name || "Company Logo"}
+                    width={220}
+                    height={180}
+                    className="w-full h-full object-cover"
+                  />
+                </Link>
+              </div>
             </div>
             <div className="text-[#C1151B] mt-4">
               <p className="text-sm md:text-base">

@@ -35,39 +35,6 @@ import {
 import { useCartStore } from "@/store/cartStore";
 import { OrganizationInfo } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
-// Constants
-const socialLinks = [
-  {
-    href: "https://www.facebook.com/oneaimeducation/",
-    icon: (
-      <FaFacebookF className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.instagram.com/oneaim__official/",
-    icon: (
-      <FaInstagram className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://x.com/OneAim01",
-    icon: (
-      <FaXTwitter className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.quora.com/profile/One-Aim-5",
-    icon: (
-      <FaQuora className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-  {
-    href: "https://www.youtube.com/@OneAim-q7r",
-    icon: (
-      <FaYoutube className="h-4 w-4 md:h-5 md:w-5 text-primaryred group-hover:text-white duration-300 ease-in-out" />
-    ),
-  },
-];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,7 +46,7 @@ const Header = () => {
   const isLogIn = true;
   const [apiData, setApiData] = useState<OrganizationInfo>();
 
-  // Navigation items with translations
+  // Navigation items
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -88,21 +55,44 @@ const Header = () => {
     { href: "/contact-us", label: "Contact" },
   ];
 
-  // Functions
+  // Toggle mobile menu
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((open) => !open);
   };
 
+  // Scroll handler: hides header if scrolling down, shows if scrolling up (or near top)
   const handleScroll = useCallback(() => {
-    if (typeof window !== "undefined") {
-      const scrollY = window.scrollY;
-      const scrollDelta = scrollY - lastScrollY;
+    if (typeof window === "undefined") return;
 
-      setHeaderVisible(scrollY < 100 || (scrollDelta < -5 && scrollY > 100));
-      setLastScrollY(scrollY > 0 ? scrollY : 0);
+    const scrollY = window.scrollY;
+    const delta = scrollY - lastScrollY;
+
+    // If user scrolled down more than 5px and passed 100px, hide header.
+    // If user scrolled up more than 5px OR is near top, show header.
+    if (scrollY > 100 && delta > 5) {
+      setHeaderVisible(false);
+    } else if (delta < -5 || scrollY < 100) {
+      setHeaderVisible(true);
     }
+
+    setLastScrollY(scrollY);
   }, [lastScrollY]);
 
+  // Fetch organization info + add/remove scroll listener
+  useEffect(() => {
+    const load = async () => {
+      const data = await fetchData<OrganizationInfo>("/company");
+      setApiData(data);
+    };
+    load();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  // Animate mobile menu when it opens
   useEffect(() => {
     if (isMenuOpen && mobileMenuRef.current) {
       gsap.fromTo(
@@ -110,7 +100,6 @@ const Header = () => {
         { opacity: 0, x: 100 },
         { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
       );
-
       gsap.fromTo(
         ".mobile-menu-item",
         { opacity: 0, y: 20 },
@@ -126,21 +115,9 @@ const Header = () => {
     }
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    const apiData = async () => {
-      const data = await fetchData<OrganizationInfo>("/company");
-      setApiData(data);
-    };
-    apiData();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll]);
-
   return (
     <header className="z-50 sticky top-0">
+      {/* RED TOP BAR: hide/show via translate-y */}
       {(apiData?.phones?.[0]?.number ||
         apiData?.emails?.[0]?.email ||
         apiData?.social_media?.facebook_link ||
@@ -148,7 +125,14 @@ const Header = () => {
         apiData?.social_media?.linkedin_link ||
         apiData?.social_media?.twitter_link ||
         apiData?.social_media?.youtube_link) && (
-        <div className="header-top text-white bg-primaryred py-[8px]">
+        <div
+          className={`
+            header-top
+            bg-primaryred text-white py-[8px]
+            transform transition-transform duration-300 ease-in-out
+            ${headerVisible ? "translate-y-0" : "-translate-y-full"}
+          `}
+        >
           <div className="bg-primaryred sm:space-x-3 flex justify-between items-center screen padding-x">
             <div className="hidden sm:block">
               <div className="flex gap-x-4">
@@ -224,24 +208,30 @@ const Header = () => {
         </div>
       )}
 
+      {/* WHITE MAIN HEADER: also hide/show via translate-y */}
       <div
-        className={`desktop-heading bg-white relative transition-transform duration-300 ${
-          headerVisible
-            ? "translate-y-0"
-            : "-translate-y-[66%] md:-translate-y-[69%] lg:-translate-y-[60%]  top-full"
-        }`}
+        className={`
+          desktop-heading bg-white relative transition-transform duration-300 ease-in-out
+          ${
+            headerVisible
+              ? "translate-y-0"
+              : "-translate-y-[45%] lg:-translate-y-[45%]"
+          }
+        `}
       >
         <div className="screen py-2 flex items-center justify-between padding-x">
           {/* Logo */}
-          <Link href="/">
-            <Image
-              src={apiData?.logo_url || "/images/logo.svg"}
-              alt={apiData?.name || "Company Logo"}
-              width={220}
-              height={180}
-              className="w-auto h-auto"
-            />
-          </Link>
+          <div className="w-52">
+            <Link href="/">
+              <Image
+                src={apiData?.logo_url || "/logo.png"}
+                alt={apiData?.name || "Company Logo"}
+                width={220}
+                height={180}
+                className="w-full h-full object-cover"
+              />
+            </Link>
+          </div>
 
           {/* Desktop navigation */}
           <nav>
@@ -280,21 +270,12 @@ const Header = () => {
           {/* Buttons */}
           {isLogIn ? (
             <div className="hidden xl:flex xl:items-center space-x-5">
-              {/* <CustomDropdown
-                options={[
-                  { value: "english", label: "English" },
-                  { value: "hindi", label: "Hindi" },
-                ]}
-                className="w-44"
-              /> */}
-
-              {/* Cart  */}
               <Link
                 href={"/cart"}
                 className="h-12 w-12 p-3 bg-[#FF7B07]/20 group hover:bg-primaryred duration-300 ease-in-out rounded-full flex-center relative cursor-pointer"
               >
                 <BagIcon className="h-7 w-7 text-black group-hover:text-white duration-300 ease-in-out" />
-                <div className=" h-5 w-5 text-white absolute bg-[#DC8940] top-1 rounded-full right-0  text-sm flex items-center justify-center">
+                <div className="h-5 w-5 text-white absolute bg-[#DC8940] top-1 rounded-full right-0 text-sm flex items-center justify-center">
                   {courses.length}
                 </div>
               </Link>
@@ -313,11 +294,12 @@ const Header = () => {
                 href="/auth/login"
                 className="!py-3 !px-8 hover:bg-primaryred !text-white"
               >
-                {"login"}
+                login
               </Button>
             </div>
           )}
-          {/* Mobile menu button */}
+
+          {/* Mobile menu toggle */}
           <div className="xl:hidden">
             <button
               onClick={toggleMenu}
@@ -333,10 +315,12 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
       {isMenuOpen && (
-        <div className="fixed top-0 right-0 w-[80%] h-screen bg-white shadow-lg z-[1999] overflow-y-auto px-4">
-          {/* top header  */}
+        <div
+          ref={mobileMenuRef}
+          className="fixed top-0 right-0 w-[80%] h-screen bg-white shadow-lg z-[1999] overflow-y-auto px-4"
+        >
           <div className="flex flex-col">
             <div className="p-4 flex justify-end">
               <button
@@ -346,102 +330,81 @@ const Header = () => {
                 <IoMdClose className="h-8 w-8" />
               </button>
             </div>
-            <div className="mb-3">
-              {/* Logo */}
+            <div className="w-52">
               <Link href="/">
                 <Image
-                  src={apiData?.logo_url || "/images/logo.svg"}
+                  src={apiData?.logo_url || "/logo.png"}
                   alt={apiData?.name || "Company Logo"}
                   width={220}
                   height={180}
-                  className="w-auto h-auto"
+                  className="w-full h-full object-cover"
                 />
               </Link>
             </div>
-            {/* Middle header  */}
           </div>
 
-          {/* List Of items  */}
-          <div className="flex flex-col  h-[70%]">
-            <div className="mt-10  space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="text-orange hover:text-red-700">
-                  <HomeIcon />
-                </div>
-                <a href="/" className="hover:text-red-700 font-semibold">
-                  Home
-                </a>
+          <div className="flex flex-col h-[70%] mt-10 space-y-8">
+            <div className="flex items-start gap-4 mobile-menu-item">
+              <div className="text-orange hover:text-red-700">
+                <HomeIcon />
               </div>
-              <div className="flex gap-4">
-                <div className="text-orange hover:text-red-700">
-                  <AboutIcon />
-                </div>
-                <a href="/about" className="hover:text-red-700 font-semibold">
-                  About
-                </a>
-              </div>
-              <div className="flex gap-4">
-                <div className="text-orange hover:text-red-700">
-                  <CourseIcon />
-                </div>
-                <a href="/course" className="hover:text-red-700 font-semibold">
-                  Courses
-                </a>
-              </div>
-              <div className="flex gap-4">
-                <div className="text-orange hover:text-red-700">
-                  <TestSeriesIcon />
-                </div>
-                <a
-                  href="/test-series"
-                  className="hover:text-red-700 font-semibold"
-                >
-                  Test Series
-                </a>
-              </div>
-              <div className="flex gap-4">
-                <div className="text-orange hover:text-red-700">
-                  <ContactIcon />
-                </div>
-                <a
-                  href="/contact-us"
-                  className="hover:text-red-700 font-semibold"
-                >
-                  Contact Us
-                </a>
-              </div>
-              {isLogIn && (
-                <div className="flex gap-4">
-                  <div className="text-orange hover:text-red-700 relative">
-                    <BagIcon />
-                    {courses.length > 0 && (
-                      <div className="h-5 w-5 text-white absolute bg-[#DC8940] -top-2 rounded-full -right-2 text-sm flex items-center justify-center">
-                        {courses.length}
-                      </div>
-                    )}
-                  </div>
-                  <Link
-                    href="/cart"
-                    className="hover:text-red-700 font-semibold"
-                  >
-                    Cart
-                  </Link>
-                </div>
-              )}
+              <Link href="/" className="hover:text-red-700 font-semibold">
+                Home
+              </Link>
             </div>
-            {/* <div className="space-y-5  mt-auto pb-4">
-              <div className="flex gap-4 self-end">
-                <div className="text-orange hover:text-red-700">
-                  <LogoutIcon />
-                </div>
-                <a
-                  href="/auth/logout"
-                  className="hover:text-red-700 font-semibold"
-                >
-                  Logout
-                </a>
+            <div className="flex gap-4 mobile-menu-item">
+              <div className="text-orange hover:text-red-700">
+                <AboutIcon />
               </div>
-            </div> */}
+              <Link href="/about" className="hover:text-red-700 font-semibold">
+                About
+              </Link>
+            </div>
+            <div className="flex gap-4 mobile-menu-item">
+              <div className="text-orange hover:text-red-700">
+                <CourseIcon />
+              </div>
+              <Link href="/course" className="hover:text-red-700 font-semibold">
+                Courses
+              </Link>
+            </div>
+            <div className="flex gap-4 mobile-menu-item">
+              <div className="text-orange hover:text-red-700">
+                <TestSeriesIcon />
+              </div>
+              <Link
+                href="/test-series"
+                className="hover:text-red-700 font-semibold"
+              >
+                Test Series
+              </Link>
+            </div>
+            <div className="flex gap-4 mobile-menu-item">
+              <div className="text-orange hover:text-red-700">
+                <ContactIcon />
+              </div>
+              <Link
+                href="/contact-us"
+                className="hover:text-red-700 font-semibold"
+              >
+                Contact Us
+              </Link>
+            </div>
+            {isLogIn && (
+              <div className="flex gap-4 mobile-menu-item">
+                <div className="text-orange hover:text-red-700 relative">
+                  <BagIcon />
+                  {courses.length > 0 && (
+                    <div className="h-5 w-5 text-white absolute bg-[#DC8940] -top-2 rounded-full -right-2 text-sm flex items-center justify-center">
+                      {courses.length}
+                    </div>
+                  )}
+                </div>
+                <Link href="/cart" className="hover:text-red-700 font-semibold">
+                  Cart
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

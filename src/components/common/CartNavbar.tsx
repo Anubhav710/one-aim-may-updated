@@ -1,26 +1,39 @@
 "use client";
+import { OrganizationInfo } from "@/types";
+import { fetchData } from "@/utils/apiUtils";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const CartNavbar = () => {
   const pathname = usePathname();
   const isCartPage = pathname === "/cart";
   const isAddressPage = pathname === "/cart/address";
   const isPaymentPage = pathname === "/cart/payment";
+  const [apiData, setApiData] = useState<OrganizationInfo>();
+  useEffect(() => {
+    const datas = async () => {
+      const data = await fetchData<OrganizationInfo>("/company");
+      setApiData(data);
+    };
+    datas();
+  }, []);
 
   return (
     <header className="bg-[#FFF7F0]">
       <div className="screen padding-x flex justify-between items-center py-3">
-        <a href="/" className="cursor-pointer max-sm:hidden ">
-          <Image
-            src={"/images/logo.svg"}
-            alt="logo"
-            width={120}
-            height={50}
-            className="w-[170px] md:w-[160px] lg:w-[220px]"
-          />
-        </a>
+        <div className="w-52">
+          <Link href="/">
+            <Image
+              src={apiData?.logo_url || "/logo.png"}
+              alt={apiData?.name || "Company Logo"}
+              width={220}
+              height={180}
+              className="w-full h-full object-cover"
+            />
+          </Link>
+        </div>
         <div className="flex max-sm:mx-auto">
           <div className="flex items-center text-xl">
             <p
