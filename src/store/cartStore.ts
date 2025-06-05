@@ -1,11 +1,11 @@
-import { Course, Discount } from "@/types";
+import { CartStore, Course, Discount } from "@/types";
 import { create } from "zustand";
 import { persist, PersistOptions, createJSONStorage } from "zustand/middleware";
 
 interface CartState {
-  courses: Course[];
+  courses: CartStore[];
   coupon: Discount;
-  addCourse: (course: Course) => void;
+  addCourse: (course: CartStore) => void;
   removeCourse: (courseId: string) => void;
   clearCart: () => void;
   applyCoupon: (coupon: Discount) => void;
@@ -13,7 +13,7 @@ interface CartState {
 }
 
 type CartPersist = {
-  courses: Course[];
+  courses: CartStore[];
   coupon: Discount;
 };
 

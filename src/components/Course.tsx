@@ -23,6 +23,7 @@ const Course: React.FC = () => {
   useEffect(() => {
     const loadCourseCategories = async () => {
       const data = await fetchData<CourseCategoryList>("/course-categories");
+
       if (data) {
         setCourseCategoryList(data);
         if (data.length > 0) {
@@ -237,10 +238,17 @@ const Course: React.FC = () => {
                   currentCourseContent.map((course) => (
                     <SwiperSlide key={course.slug}>
                       <FeaturedCard
-                        course={course}
                         type="course"
-                        buttonText="Enroll Now"
+                        heading={course.heading}
+                        slug={course.slug}
                         href={course.slug}
+                        duration={course.duration}
+                        faculties={course.faculties}
+                        featured_image_url={course.featured_image_url}
+                        short_description={course.short_description}
+                        video_lectures={course.video_lectures}
+                        questions_count={course.questions_count}
+                        price={course.price}
                       />
                     </SwiperSlide>
                   ))

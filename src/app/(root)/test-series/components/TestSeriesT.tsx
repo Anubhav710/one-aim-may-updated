@@ -2,7 +2,8 @@
 
 import CommonHeading from "@/components/ui/CommonHeading";
 import FeaturedCard from "@/components/ui/FeaturedCard";
-import { TestSeriesCategoryList } from "@/types";
+import { TestSeriesCategory } from "@/types";
+
 import { fetchData } from "@/utils/apiUtils";
 import React, { useEffect, useState } from "react";
 
@@ -13,15 +14,15 @@ interface Tab {
 }
 
 const TestSeriesT: React.FC = () => {
-  const [testSeriesData, setTestSeriesData] = useState<
-    TestSeriesCategoryList[]
-  >([]);
+  const [testSeriesData, setTestSeriesData] = useState<TestSeriesCategory[]>(
+    []
+  );
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTestSeries, setActiveTestSeries] = useState<string>("");
 
   useEffect(() => {
     const fetchTestSeriesData = async () => {
-      const response = await fetchData<TestSeriesCategoryList[]>(
+      const response = await fetchData<TestSeriesCategory[]>(
         "/test-series-categories"
       );
       setTestSeriesData(response || []);
@@ -42,7 +43,7 @@ const TestSeriesT: React.FC = () => {
   }, []);
 
   const selectedCategory = testSeriesData.find(
-    (category: TestSeriesCategoryList) => category.slug === activeTestSeries
+    (category: TestSeriesCategory) => category.slug === activeTestSeries
   );
 
   const displayedCourses = selectedCategory?.test_series || [];
@@ -76,21 +77,24 @@ const TestSeriesT: React.FC = () => {
 
       {/* Courses Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayedCourses.length > 0 ? (
+        {displayedCourses &&
           displayedCourses.map((course) => (
             <FeaturedCard
-              key={course.slug}
-              testSeries={true}
-              course={course}
-              buttonText="Enroll Now"
+              type="test-series"
+              heading={course.heading}
+              slug={course.slug}
               href={course.slug}
+              duration={course.duration}
+              featured_image_url={
+                course.featured_image_url ?? "/images/placeholder.png"
+              }
+              short_description={course.short_description}
+              video_lectures={course.video_lectures}
+              questions_count={course.questions_count}
+              price={course.price}
+              testSeries
             />
-          ))
-        ) : (
-          <p className="text-center text-gray-500 col-span-full">
-            No test series available for this category.
-          </p>
-        )}
+          ))}
       </div>
     </div>
   );

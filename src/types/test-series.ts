@@ -1,6 +1,6 @@
 interface TestSeries {
   heading: string;
-  slug: string;
+
   sub_heading: string;
   language: string;
   duration: string;
@@ -18,6 +18,7 @@ interface TestSeries {
   timetable_url: string | null;
   test_series_categories: TestSeriesCategory[];
   faculties: Faculty[];
+  slug: string;
 }
 
 interface TestSeriesCategory {

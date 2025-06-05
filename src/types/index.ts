@@ -31,26 +31,27 @@ interface CourseCategoryChild {
 }
 
 export interface Course {
-  type?: string;
+  type: string;
+
   heading: string;
+
   slug: string;
-  sub_heading: string | null;
-  language: string;
+  sub_heading?: string | null;
+  language?: string;
   duration: string;
   video_lectures: string;
   questions_count: string;
   price: number;
   short_description: string;
-  featured: number;
-  sequence: number;
+  featured?: boolean;
+  sequence?: number;
   featured_image_url: string;
-  content: string | TrustedHTML;
-  study_material_url: string;
-  timetable_url: string;
-  course_course_contents: CourseContent[];
-  course_course_faqs: CourseFAQ[];
-  faculties: Faculty[];
-  testing?: string;
+  content?: string | TrustedHTML;
+  study_material_url?: string;
+  timetable_url?: string;
+  course_course_contents?: CourseContent[];
+  course_course_faqs?: CourseFAQ[];
+  faculties?: Faculty[];
 }
 export interface CourseContent {
   title: string;
@@ -85,6 +86,7 @@ export type CourseCategoryList = CourseCategory[];
 export interface SingleCourse extends Course {
   related_courses: Course[];
   faculties: Faculty[];
+  slug: string;
 }
 
 //################################################################################ Courses Interfcae ################################################################################################################
@@ -142,31 +144,6 @@ export interface TestimonialItem {
 }
 
 export type TestimonialList = TestimonialItem;
-
-// Testseries
-
-export interface TestSeries {
-  heading: string;
-  slug: string;
-  sub_heading: string;
-  language: string;
-  duration: string;
-  video_lectures: string;
-  questions_count: string;
-  price: number;
-  short_description: string;
-  featured: number;
-  sequence: number;
-  featured_image_url: string | null;
-  study_material_url: string | null;
-  timetable_url: string | null;
-}
-
-export interface TestSeriesCategory extends CourseCategory {
-  test_series: TestSeries[];
-}
-
-export type TestSeriesCategoryList = TestSeriesCategory;
 
 //Blog
 
@@ -235,4 +212,52 @@ export interface OrderFormErrors {
   city?: string[];
   state?: string[];
   country?: string[];
+}
+
+export interface CartStore {
+  type: string;
+  slug: string;
+  heading: string;
+  faculty?: string[];
+  duration: string;
+  price: number;
+  image: string;
+}
+
+interface TestSeriesPivot {
+  test_series_category_id: number;
+  test_series_id: number;
+}
+
+interface TestSeries {
+  heading: string;
+  slug: string;
+  sub_heading: string;
+  language: string;
+  duration: string;
+  video_lectures: string;
+  questions_count: string;
+  price: number;
+  short_description: string;
+  featured: number;
+  sequence: number;
+  featured_image_url: string | null;
+  study_material_url: string;
+  timetable_url: string;
+  pivot: TestSeriesPivot;
+}
+
+interface TestSeriesChildCategory {
+  name: string;
+  slug: string;
+  sequence: number;
+  test_series: TestSeries[];
+}
+
+export interface TestSeriesCategory {
+  name: string;
+  slug: string;
+  sequence: number;
+  children: TestSeriesChildCategory[];
+  test_series: TestSeries[];
 }

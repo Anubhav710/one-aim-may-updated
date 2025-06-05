@@ -203,9 +203,17 @@ const Course: React.FC = () => {
                   currentCourseContent.map((course) => (
                     <div key={course.slug}>
                       <FeaturedCard
-                        course={course}
-                        buttonText="Enroll Now"
+                        type="course"
+                        heading={course.heading}
+                        slug={course.slug}
                         href={course.slug}
+                        duration={course.duration}
+                        faculties={course.faculties}
+                        featured_image_url={course.featured_image_url}
+                        short_description={course.short_description}
+                        video_lectures={course.video_lectures}
+                        questions_count={course.questions_count}
+                        price={course.price}
                       />
                     </div>
                   ))

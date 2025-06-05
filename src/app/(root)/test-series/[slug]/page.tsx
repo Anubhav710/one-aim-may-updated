@@ -10,7 +10,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 
-import CourseEnrollCard from "@/components/CourseEnrollCard";
+import CourseEnrollCard from "@/components/ui/CourseEnrollCard";
 
 import { SingleTestSeries } from "@/types/test-series";
 import { notFound } from "next/navigation";
@@ -188,15 +188,16 @@ export default async function TestSeriesDetail({
             {/* Right Sidebar (1/3 width on desktop) */}
             <div>
               <CourseEnrollCard
-                title={`${testSeiesData?.heading}`}
+                heading={testSeiesData.heading}
                 instructors={testSeiesData?.faculties.map(
                   (data, i) => data.name
                 )}
+                slug={testSeiesData.slug}
                 type="test-series"
                 duration={testSeiesData?.duration}
                 question={testSeiesData?.questions_count}
                 videoLacture={testSeiesData?.video_lectures}
-                image={testSeiesData?.featured_image_url}
+                image={testSeiesData?.featured_image_url ?? ""}
                 price={testSeiesData?.price}
                 languages={testSeiesData?.language}
                 timeTable={testSeiesData?.timetable_url}

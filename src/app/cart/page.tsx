@@ -33,6 +33,7 @@ const Cart = () => {
       reset();
     }
   };
+  console.log(courses);
 
   // Calculate price details based on courses in cart
   const calculatePriceDetails = () => {
@@ -71,21 +72,15 @@ const Cart = () => {
             {/* Cart Items */}
             <div className="lg:col-span-2">
               {courses.length > 0 &&
-                courses.map((course) => (
-                  <div
-                    key={course.slug}
-                    className="bg-white rounded-lg p-4 mb-4 shadow"
-                  >
+                courses.map((course, i) => (
+                  <div key={i} className="bg-white rounded-lg p-4 mb-4 shadow">
                     <div className="flex flex-col md:flex-row gap-4">
                       <div className="w-full md:w-1/4 h-32 relative">
                         <div className="w-full h-full bg-gray-200 rounded-md overflow-hidden">
                           {/* Replace with actual images */}
                           <div className="w-full h-full bg-gray-300 ">
                             <Image
-                              src={
-                                course.featured_image_url ||
-                                "/images/placeholder.png"
-                              }
+                              src={course.image || "/images/placeholder.png"}
                               alt={course.heading}
                               fill
                               className="object-cover rounded-2xl"
@@ -103,10 +98,10 @@ const Cart = () => {
                             {course.duration}
                           </div>
                         )}
-                        {course.faculties && (
+                        {course.faculty && (
                           <div className="text-sm text-orange bg-orange/10 px-2 rounded-full w-max mt-3">
-                            {course.faculties
-                              .map((faculty) => faculty.name)
+                            {course.faculty
+                              .map((faculty) => faculty)
                               .join(", ")}
                           </div>
                         )}

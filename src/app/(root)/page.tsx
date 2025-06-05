@@ -2,7 +2,7 @@ import About from "@/components/About";
 import Blog from "@/components/Blog";
 import { FAQ } from "@/components/common/FAQ";
 import Course from "@/components/Course";
-import FeaturedCourse from "@/components/FeaturedCourse";
+import FeaturedCourse from "@/components/common/FeaturedCourse";
 import FilteredCourse from "@/components/FilteredCourse";
 
 import Hero from "@/components/Hero";

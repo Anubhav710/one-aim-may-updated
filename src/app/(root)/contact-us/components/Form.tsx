@@ -1,6 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiMapPin } from "react-icons/hi2";
@@ -9,6 +9,8 @@ import { FaChevronDown } from "react-icons/fa";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { fetchData } from "@/utils/apiUtils";
+import { OrganizationInfo } from "@/types";
 
 type FormData = {
   name: string;
@@ -27,9 +29,17 @@ export default function ContactForm() {
   } = useForm<FormData>({
     mode: "onChange", // Validate on change to enable/disable submit button
   });
+  const [companyData, setCompanyData] = useState<OrganizationInfo>();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => {
+    const companyData = async () => {
+      const data = await fetchData<OrganizationInfo>("/company");
 
+      setCompanyData(data);
+    };
+    companyData();
+  }, []);
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
 
@@ -172,40 +182,57 @@ export default function ContactForm() {
             height={1200}
             className="w-full rounded-lg object-cover"
           />
-          <div className="bg-white p-7 rounded-xl shadow-sm space-y-5">
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
-              <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
-                <FaPhoneAlt className="h-[45%] w-[45%] text-[#FF8315]" />
-              </div>
+          {companyData?.phones[0].number &&
+            companyData?.addresses[0].address &&
+            companyData?.emails[0].email && (
               <div>
-                <p className="font-semibold text-gray-700">Phone Number</p>
-                <p className="text-orange">+91 8079064769</p>
-              </div>
-            </div>
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
-              <div>
-                <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
-                  <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
+                <div className="bg-white p-7 rounded-xl shadow-sm space-y-5">
+                  {companyData?.phones[0].number && (
+                    <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
+                      <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
+                        <FaPhoneAlt className="h-[45%] w-[45%] text-[#FF8315]" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700">
+                          Phone Number
+                        </p>
+                        <p className="text-orange">
+                          {companyData?.phones[0].number}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {companyData?.addresses[0].address && (
+                    <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
+                      <div>
+                        <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
+                          <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
+                        </div>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700">Address</p>
+                        <p className="text-orange">
+                          {companyData?.addresses[0].address}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {companyData?.emails[0].email && (
+                    <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
+                      <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
+                        <MdEmail className="h-[45%] w-[45%] text-[#FF8315]" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-700">Email</p>
+                        <p className="text-orange">
+                          {companyData?.emails[0].email}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div>
-                <p className="font-semibold text-gray-700">Address</p>
-                <p className="text-orange">
-                  123, Omega, Anukampa, Near Jagdguru Sanskriti College,
-                  Bhankrota
-                </p>
-              </div>
-            </div>
-            <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
-              <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
-                <MdEmail className="h-[45%] w-[45%] text-[#FF8315]" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-700">Email</p>
-                <p className="text-orange">indo@oneaim.com.in</p>
-              </div>
-            </div>
-          </div>
+            )}
         </div>
       </div>
     </div>

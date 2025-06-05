@@ -11,36 +11,36 @@ import {
   LanguageIcon,
   LiveClassIcon,
   ScheduleIcon,
-} from "./icons";
-import Button from "./ui/Button";
+} from "../icons";
+import Button from "./Button";
 import { useCartStore } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { Course } from "@/types";
+import { CartStore, Course, Faculty } from "@/types";
 import { date } from "zod";
 interface CourseEnrollCardProps {
-  type?: string;
-  title: string;
-  instructors?: string[];
-  price: number | undefined;
+  type: string;
+  heading: string;
+  instructors: string[];
+  price: number;
   originalPrice?: number;
   languages: string | undefined;
   features: string[];
   enrollmentDeadline: string | undefined;
   contactPhone: string;
   contactAddress: string;
-  duration: string | undefined;
-  image: string | undefined | null;
+  duration: string;
+  image: string;
   videoLacture: string | undefined;
   question: string | undefined;
   studyMaterial?: any;
   timeTable: string | undefined | null;
-  slug?: string; // Add slug for course identification
+  slug: string; // Add slug for course identification
 }
 
 const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
-  title,
-  instructors = [],
+  heading,
+  instructors,
   studyMaterial,
   timeTable,
   image,
@@ -55,53 +55,25 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
   duration,
   question,
   videoLacture,
-  slug = "", // Default to empty string if not provided
+  slug, // Default to empty string if not provided
 }) => {
   const { addCourse } = useCartStore();
   const router = useRouter();
 
-  const handleEnrollNow = () => {
-    // Create a course object with the available data
-    const courseData = {
-      heading: title,
-      price,
-      originalPrice,
-      image,
-      type,
-      slug,
-      language: languages || "",
-      duration,
-      faculties: [
-        {
-          name: instructors.map((date) => date),
-          slug: "",
-          designation: null,
-          experience: null,
-          qualifications: null,
-          specialization: null,
-          short_description: null,
-          long_description: null,
-          facebook_link: null,
-          instagram_link: null,
-          twitter_link: null,
-          linkedin_link: null,
-          youtube_link: null,
-          sequence: 0,
-          featured_image_url: null,
-        },
-      ],
+  // Create a course object with the available data
+  const handleAddToCart = () => {
+    const cartStore: CartStore = {
+      type: type,
+      slug: slug,
+      heading: heading,
 
-      // Add any other required fields from the Course type
+      faculty: instructors?.map((data) => data),
+      duration: duration,
+      price: price,
+      image: image,
     };
-
-    // Add the course to the cart store
-    addCourse(courseData as any); // Using 'as any' as a temporary solution
-    toast.success("Course added to cart!");
-
-    // Navigate to the cart page
-    setTimeout(() => {
-      router.push("/cart");
-    }, 2000);
+    addCourse(cartStore);
+    toast.success("Items is added to your cart");
   };
 
   return (
@@ -126,6 +98,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
             <div className="text-[#FF7B07] bg-gradient-to-r from-[#FFE9E9] to-[#FFF5EC] px-4 py-1 text-xs  rounded-full">
               {duration}
             </div>
+
             <div className="flex gap-2">
               {instructors.map((data, i) => (
                 <div
@@ -137,7 +110,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
               ))}
             </div>
           </div>
-          <h2 className="text-lg font-bold mb-2">{title}</h2>
+          <h2 className="text-lg font-bold mb-2">{heading}</h2>
           {languages && (
             <div className="flex items-center gap-2 mb-3">
               <LanguageIcon className="text-orange h-6 w-6" />
@@ -174,7 +147,7 @@ const CourseEnrollCard: React.FC<CourseEnrollCardProps> = ({
           </div>
           <div className="w-max mx-auto pt-3">
             <button
-              onClick={handleEnrollNow}
+              onClick={handleAddToCart}
               className="text-white py-3 px-12 rounded-full w-full bg-black hover:bg-primaryred transition-all duration-500"
             >
               Enroll now

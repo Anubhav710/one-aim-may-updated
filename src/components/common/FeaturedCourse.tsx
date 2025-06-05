@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import FeaturedCard from "./ui/FeaturedCard";
+import FeaturedCard from "../ui/FeaturedCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight, FaClipboardList } from "react-icons/fa";
-import Button from "./ui/Button";
+import Button from "../ui/Button";
 
 import {
   VideoIcon,
@@ -26,7 +26,7 @@ import {
   BiUser,
   BiVideo,
 } from "react-icons/bi";
-import { CommonHeading2 } from "./common/CommonHeading2";
+import { CommonHeading2 } from "./CommonHeading2";
 
 import { Course } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
@@ -128,11 +128,17 @@ const FeaturedCourse = () => {
                 <SwiperSlide key={index}>
                   <div className="h-full transform transition-transform hover:scale-[1.02] duration-300">
                     <FeaturedCard
-                      title={course.heading}
-                      description={course.short_description}
-                      price={course.price}
+                      type="course"
+                      heading={course.heading}
+                      slug={course.slug}
                       href={course.slug}
-                      imageSrc={course.featured_image_url}
+                      duration={course.duration}
+                      faculties={course.faculties}
+                      featured_image_url={course.featured_image_url}
+                      short_description={course.short_description}
+                      video_lectures={course.video_lectures}
+                      questions_count={course.questions_count}
+                      price={course.price}
                     />
                   </div>
                 </SwiperSlide>

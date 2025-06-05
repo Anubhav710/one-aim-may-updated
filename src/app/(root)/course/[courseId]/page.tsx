@@ -5,7 +5,7 @@ import CourseFAQ from "@/components/common/CourseFAQ";
 import FacultyCom from "@/components/common/FacultyCom";
 import { FAQ } from "@/components/common/FAQ";
 import RelatedCourse from "@/components/common/RelatedCourse";
-import CourseEnrollCard from "@/components/CourseEnrollCard";
+import CourseEnrollCard from "@/components/ui/CourseEnrollCard";
 import { SingleCourse } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
 import Image from "next/image";
@@ -55,8 +55,9 @@ const page = async ({ params }: { params: Promise<{ courseId: string }> }) => {
             <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
               <CourseEnrollCard
                 type="course"
-                title={`${courseData?.heading}`}
+                heading={`${courseData.heading}`}
                 instructors={courseData?.faculties.map((data) => data.name)}
+                slug={courseData.slug}
                 duration={courseData?.duration}
                 question={courseData?.questions_count}
                 videoLacture={courseData?.video_lectures}
@@ -85,7 +86,7 @@ const page = async ({ params }: { params: Promise<{ courseId: string }> }) => {
             }
           />
 
-          <CourseFAQ faqs={courseData.course_course_contents} />
+          <CourseFAQ faqs={courseData.course_course_contents || []} />
           <RelatedCourse courses={courseData.related_courses} />
           <FAQ />
         </div>
