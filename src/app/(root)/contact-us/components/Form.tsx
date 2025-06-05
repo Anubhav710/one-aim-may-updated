@@ -197,26 +197,25 @@ export default function ContactForm() {
                           Phone Number
                         </p>
                         <p className="text-orange">
-                          {companyData?.phones[0].number}
+                          {companyData.phones.map((ph) => ph.number).join(", ")}
                         </p>
                       </div>
                     </div>
                   )}
-                  {companyData?.addresses[0].address && (
-                    <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
-                      <div>
-                        <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
-                          <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
+                  {companyData?.addresses[0].address &&
+                    companyData.addresses.map((ad) => (
+                      <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
+                        <div>
+                          <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
+                            <HiMapPin className="h-[45%] w-[45%] text-[#FF8315]" />
+                          </div>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-700">Address</p>
+                          <p className="text-orange">{ad.address}</p>
                         </div>
                       </div>
-                      <div>
-                        <p className="font-semibold text-gray-700">Address</p>
-                        <p className="text-orange">
-                          {companyData?.addresses[0].address}
-                        </p>
-                      </div>
-                    </div>
-                  )}
+                    ))}
                   {companyData?.emails[0].email && (
                     <div className="flex max-sm:flex-col max-sm:text-center items-center gap-3 ring-1 px-3 py-3 rounded-xl ring-orange bg-[rgba(255,123,7,0.04)]">
                       <div className="h-14 w-14 flex items-center justify-center rounded-full bg-[#FFE8D4]">
@@ -225,7 +224,7 @@ export default function ContactForm() {
                       <div>
                         <p className="font-semibold text-gray-700">Email</p>
                         <p className="text-orange">
-                          {companyData?.emails[0].email}
+                          {companyData.emails.map((em) => em.email).join(", ")}
                         </p>
                       </div>
                     </div>
