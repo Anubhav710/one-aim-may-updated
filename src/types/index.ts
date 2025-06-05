@@ -227,6 +227,7 @@ export interface CartStore {
 interface TestSeriesPivot {
   test_series_category_id: number;
   test_series_id: number;
+  faculties?: Faculty[];
 }
 
 export interface TestSeries {
@@ -244,6 +245,7 @@ export interface TestSeries {
   featured_image_url: string | null;
   study_material_url: string;
   timetable_url: string;
+  faculties?: Faculty[];
   pivot: TestSeriesPivot;
 }
 
@@ -252,6 +254,7 @@ interface TestSeriesChildCategory {
   slug: string;
   sequence: number;
   test_series: TestSeries[];
+  faculties?: Faculty[];
 }
 
 export interface TestSeriesCategory {
@@ -260,6 +263,7 @@ export interface TestSeriesCategory {
   sequence: number;
   children: TestSeriesChildCategory[];
   test_series: TestSeries[];
+  faculties?: Faculty[];
 }
 
 export interface TestSeriesDetails {

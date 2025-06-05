@@ -83,6 +83,7 @@ const TestSeriesT: React.FC = () => {
               type="test-series"
               heading={course.heading}
               slug={course.slug}
+              faculties={course.faculties?.map((data) => data)}
               href={course.slug}
               duration={course.duration}
               featured_image_url={
