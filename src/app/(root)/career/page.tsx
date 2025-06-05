@@ -14,8 +14,14 @@ import {
 } from "@/components/icons";
 import Button from "@/components/ui/Button";
 import CarrerForm from "@/components/CarrerForm";
+import { fetchData } from "@/utils/apiUtils";
+import { JobOpening } from "@/types";
 
-const CareerPage = () => {
+const CareerPage = async () => {
+  let data: JobOpening[] | null = null;
+  const resp = await fetchData<JobOpening[]>("/job-openings");
+  data = resp || null;
+
   const benefits = [
     {
       id: 1,
@@ -179,8 +185,8 @@ const CareerPage = () => {
       {/* Current Job Openings */}
       <section>
         <div className="screen padding-bx">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:h-[55vh] min-h-[400px]">
-            {jobs.map((job, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+            {data?.map((job, i) => (
               <div
                 key={job.id}
                 className={`${
@@ -190,15 +196,16 @@ const CareerPage = () => {
                 } bg-white p-6 rounded-t-3xl shadow-lg`}
               >
                 <h3 className="text-xl sm:text-2xl font-bold text-orange mb-2 xl:text-3xl">
-                  {job.title}
+                  {job?.designation}
                 </h3>
-                <p className="mb-4">{job.location}</p>
+                <p className="mb-4">{job?.location}</p>
 
                 <div className="mb-4">
-                  <h4 className="text-base sm:text-lg font-semibold mb-2">
+                  <div dangerouslySetInnerHTML={{ __html: job.content }}></div>
+                  {/* <h4 className="text-base sm:text-lg font-semibold mb-2">
                     Responsibilities:
-                  </h4>
-                  <ul className={` text-xs space-y-1  sm:text-[0.9rem]`}>
+                  </h4> */}
+                  {/* <ul className={` text-xs space-y-1  sm:text-[0.9rem]`}>
                     {job.responsibilities.map((item, idx) => (
                       <li key={idx} className="flex items-start">
                         <span
@@ -209,10 +216,10 @@ const CareerPage = () => {
                         <span>{item}</span>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
                 </div>
 
-                <div>
+                {/* <div>
                   <h4 className="text-base sm:text-lg font-semibold mb-2">
                     Requirements:
                   </h4>
@@ -228,7 +235,7 @@ const CareerPage = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>

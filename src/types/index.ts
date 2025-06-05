@@ -289,3 +289,11 @@ export interface TestSeriesDetails {
   test_series_categories: TestSeriesCategory[];
   faculties: Faculty[];
 }
+
+export interface JobOpening {
+  id: number;
+  designation: string;
+  location: string;
+  content: string; // HTML content
+  sequence: number;
+}
