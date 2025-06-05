@@ -12,9 +12,9 @@ import {
 
 import CourseEnrollCard from "@/components/ui/CourseEnrollCard";
 
-import { SingleTestSeries } from "@/types/test-series";
 import { notFound } from "next/navigation";
 import { fetchData } from "@/utils/apiUtils";
+import { TestSeriesDetails } from "@/types";
 
 const testData = {
   title: "Essay Writing Test",
@@ -106,10 +106,10 @@ export default async function TestSeriesDetail({
   params: Promise<{ slug: string }>;
 }) {
   // In a real app, you would fetch data based on the slug
-  let testSeiesData: SingleTestSeries | null = null;
+  let testSeiesData: TestSeriesDetails | null = null;
   const { slug } = await params;
 
-  const resp = await fetchData<SingleTestSeries>(`/test-series/${slug}`);
+  const resp = await fetchData<TestSeriesDetails>(`/test-series/${slug}`);
   testSeiesData = resp || null;
   if (!testSeiesData) return notFound();
 

@@ -229,7 +229,7 @@ interface TestSeriesPivot {
   test_series_id: number;
 }
 
-interface TestSeries {
+export interface TestSeries {
   heading: string;
   slug: string;
   sub_heading: string;
@@ -260,4 +260,28 @@ export interface TestSeriesCategory {
   sequence: number;
   children: TestSeriesChildCategory[];
   test_series: TestSeries[];
+}
+
+export interface TestSeriesDetails {
+  heading: string;
+  slug: string;
+  sub_heading: string;
+  language: string;
+  duration: string;
+  video_lectures: string;
+  questions_count: string;
+  enrolment_deadline_date: string;
+  price: number;
+  short_description: string;
+  long_description: string;
+  content: string;
+  extra_content: string | null;
+  featured_image_caption: string | null;
+  featured: number;
+  sequence: number;
+  featured_image_url: string | null;
+  study_material_url: string;
+  timetable_url: string;
+  test_series_categories: TestSeriesCategory[];
+  faculties: Faculty[];
 }
