@@ -13,8 +13,10 @@ import { CommonHeading2 } from "./common/CommonHeading2";
 import axios from "axios";
 import { Faculty } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
+import { useRouter } from "next/navigation";
 
 const Team = () => {
+  const router = useRouter();
   // Change const to let to allow assignment
   let teamMemberList: Faculty[] | null = null;
   const [teamMember, setTeamMember] = useState<Faculty[]>();
@@ -126,7 +128,10 @@ const Team = () => {
           </div>
         </div>
         <div className="w-max mx-auto mt-5">
-          <Button href="/faculty" className="!px-16 !text-white">
+          <Button
+            onClick={() => router.push("/faculty")}
+            className="!px-16 !text-white"
+          >
             View All
           </Button>
         </div>

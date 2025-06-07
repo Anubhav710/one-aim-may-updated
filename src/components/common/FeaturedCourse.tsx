@@ -31,12 +31,14 @@ import { CommonHeading2 } from "./CommonHeading2";
 import { Course } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const FeaturedCourse = () => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const swiperRef = useRef(null);
   const [featuredCourses, setFeaturedCourses] = useState<Course[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -156,8 +158,12 @@ const FeaturedCourse = () => {
           </div>
 
           {/* View all courses button */}
-          <div className="h-full w-max mx-auto mt-5">
-            <Button className="text-white mt-10" href="/course">
+          <div className="h-full w-max mx-auto">
+            <Button
+              onClick={() => router.push("/course")}
+              className="text-white mt-10"
+              href="/course"
+            >
               View All Courses
             </Button>
           </div>

@@ -7,16 +7,19 @@ const Button = ({
   href,
   disabled,
   type,
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
   href?: string;
   disabled?: boolean;
+  onClick?: () => void;
   type?: "submit" | "reset" | "button" | undefined;
 }) => {
   return (
     <button
       type={type}
+      onClick={onClick}
       disabled={disabled}
       className={`${
         disabled ? "bg-gray-400 cursor-not-allowed" : ""

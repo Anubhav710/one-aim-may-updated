@@ -3,8 +3,10 @@ import Image from "next/image";
 import React from "react";
 import MagneticButton from "./ui/MagnaticButton";
 import Button from "./ui/Button";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
   return (
     <section
       id="home"
@@ -67,7 +69,7 @@ const Hero = () => {
                   </div>
                   <div className="w-max">
                     <Button
-                      href="/contact-us"
+                      onClick={() => router.push("/contact-us")}
                       className="bg-transparent  !hover:text-primaryred ring-[1px] ring-black font-medium hover:ring-primaryred hover:bg-transparent hover:text-primaryred"
                     >
                       Join Now

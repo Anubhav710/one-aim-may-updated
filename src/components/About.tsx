@@ -5,6 +5,7 @@ import Button from "./ui/Button";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { CommonHeading2 } from "./common/CommonHeading2";
+import { useRouter } from "next/navigation";
 
 const About = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,6 +13,7 @@ const About = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const decorRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -133,7 +135,7 @@ const About = () => {
                 </hgroup>
                 <div className="mt-5 md:mt-7">
                   <Button
-                    href="/about"
+                    onClick={() => router.push("/about")}
                     className="text-sm md:text-base text-white"
                   >
                     Know More
