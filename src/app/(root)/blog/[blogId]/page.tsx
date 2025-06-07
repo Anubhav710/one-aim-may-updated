@@ -27,6 +27,7 @@ const instagramPosts = [
   "/images/blog/blog-2.png",
   "/images/blog/blog.png",
 ];
+export const dynamic = "force-dynamic";
 
 const BlogId = async ({ params }: { params: Promise<{ blogId: string }> }) => {
   const { blogId } = await params;

@@ -2,10 +2,11 @@ import Banner from "@/components/common/Banner";
 import Link from "next/link";
 import React from "react";
 import BlogCard from "@/components/ui/BlogCard";
-import axios from "axios";
 import { Blogs } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
 import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 const BlogPage = async () => {
   // Change const to let to allow assignment

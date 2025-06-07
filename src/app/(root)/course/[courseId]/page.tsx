@@ -13,6 +13,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 const page = async ({ params }: { params: Promise<{ courseId: string }> }) => {
   const { courseId } = await params;
 

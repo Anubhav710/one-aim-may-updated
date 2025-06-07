@@ -17,6 +17,8 @@ import CarrerForm from "@/components/CarrerForm";
 import { fetchData } from "@/utils/apiUtils";
 import { JobOpening } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 const CareerPage = async () => {
   let data: JobOpening[] | null = null;
   const resp = await fetchData<JobOpening[]>("/job-openings");

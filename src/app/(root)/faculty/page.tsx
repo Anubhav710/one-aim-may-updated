@@ -1,4 +1,3 @@
-import axios from "axios";
 import Banner from "@/components/common/Banner";
 import Link from "next/link";
 import { CommonHeading2 } from "@/components/common/CommonHeading2";
@@ -12,6 +11,8 @@ import {
 import { Faculty } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
 import { notFound } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 const facultyHighlights = [
   {

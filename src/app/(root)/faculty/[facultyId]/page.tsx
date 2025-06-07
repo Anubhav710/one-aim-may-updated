@@ -5,12 +5,11 @@ import Testimonials from "@/components/Testimonials";
 import { TestSeriesShow } from "@/components/TestSeries";
 import { TypeFacultyShow } from "@/types";
 import { fetchData } from "@/utils/apiUtils";
-
-import axios from "axios";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
+
+export const dynamic = "force-dynamic";
 
 const FacultyPage = async ({
   params,
