@@ -8,20 +8,22 @@ import { z } from "zod";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-// Define schema with refined file validation for both resume and image
+// Zod schema for validation
 export const careerSchema = z.object({
-  name: z.string().min(1, "Full name is required"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(1, "Phone number is required"),
-  location: z.string().optional(),
-  qualification: z.string().optional(),
-  experience: z.string().optional(),
+  name: z.string().min(1, "Full name is required").max(255),
+  email: z.string().email("Invalid email address").max(255),
+  phone: z.string().min(1, "Phone number is required").max(20),
+  location: z.string().max(255),
+  qualification: z.string().max(500),
+  experience: z.string().max(255),
+  message: z.string().max(255),
   resume: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, "Resume is required")
+    .any()
+    .refine((file) => file instanceof File && file.size > 0, {
+      message: "Resume file is required",
+    })
     .refine(
-      (files) =>
-        files.length > 0 &&
+      (file) =>
         [
           "application/pdf",
           "application/msword",
@@ -31,47 +33,19 @@ export const careerSchema = z.object({
           "image/jpg",
           "image/webp",
           "image/gif",
-        ].includes(files[0].type),
-      "Resume must be a PDF, Word document, or image file"
+        ].includes(file.type),
+      { message: "Only PDF, DOC, DOCX, or image files are allowed" }
     )
-    .refine(
-      (files) => files.length > 0 && files[0].size <= 5 * 1024 * 1024,
-      "Resume must be less than 5MB"
-    ),
-  photo: z
-    .instanceof(FileList)
-    .optional()
-    .refine(
-      (files) => files?.length === 0 || files?.length! > 0,
-      "Please upload a photo"
-    )
-    .refine(
-      (files) =>
-        files?.length === 0 ||
-        (files?.length! > 0 &&
-          [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-            "image/webp",
-            "image/gif",
-          ].includes(files![0].type)),
-      "Photo must be a JPEG, PNG, JPG, WEBP, or GIF image"
-    )
-    .refine(
-      (files) =>
-        files?.length === 0 ||
-        (files?.length! > 0 && files![0].size <= 2 * 1024 * 1024),
-      "Photo must be less than 2MB"
-    ),
+    .refine((file) => file.size < 5 * 1024 * 1024, {
+      message: "File size must be under 5MB",
+    }),
 });
 
 export type Career = z.infer<typeof careerSchema>;
 
 const CareerForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fileError, setFileError] = useState<string | null>(null);
-  const [photoError, setPhotoError] = useState<string | null>(null);
+  const [resumePreview, setResumePreview] = useState<string | null>(null);
 
   const {
     register,
@@ -81,94 +55,21 @@ const CareerForm = () => {
     watch,
   } = useForm<Career>({
     resolver: zodResolver(careerSchema),
-    mode: "onChange", // Enable live validation
+    mode: "onChange",
   });
 
-  // Watch for file changes to display previews
-  const resumeFile = watch("resume");
-  const photoFile = watch("photo");
-
-  // Handle file validation manually for better user experience
-  const validateResumeFile = (files: FileList | null) => {
-    if (!files || files.length === 0) {
-      setFileError("Resume is required");
-      return false;
-    }
-
-    const file = files[0];
-    const validTypes = [
-      "application/pdf",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "image/jpeg",
-      "image/png",
-      "image/jpg",
-      "image/webp",
-      "image/gif",
-    ];
-
-    if (!validTypes.includes(file.type)) {
-      setFileError("Resume must be a PDF, Word document, or image file");
-      return false;
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      setFileError("Resume must be less than 5MB");
-      return false;
-    }
-
-    setFileError(null);
-    return true;
-  };
-
-  const validatePhotoFile = (files: FileList | null) => {
-    if (!files || files.length === 0) {
-      setPhotoError(null);
-      return true; // Photo is optional
-    }
-
-    const file = files[0];
-    const validTypes = [
-      "image/jpeg",
-      "image/png",
-      "image/jpg",
-      "image/webp",
-      "image/gif",
-    ];
-
-    if (!validTypes.includes(file.type)) {
-      setPhotoError("Photo must be a JPEG, PNG, JPG, WEBP, or GIF image");
-      return false;
-    }
-
-    if (file.size > 2 * 1024 * 1024) {
-      setPhotoError("Photo must be less than 2MB");
-      return false;
-    }
-
-    setPhotoError(null);
-    return true;
-  };
-
   const onSubmit = async (data: Career) => {
-    // Validate files before submission
-    const isResumeValid = validateResumeFile(data.resume);
-
-    if (!isResumeValid) {
-      return; // Stop submission if files are invalid
-    }
-
     setIsSubmitting(true);
+
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("phone", data.phone);
-    if (data.location) formData.append("location", data.location);
-    if (data.qualification)
-      formData.append("qualification", data.qualification);
-    if (data.experience) formData.append("experience", data.experience);
-    if (data.resume?.[0]) formData.append("resume", data.resume[0]);
-    if (data.photo?.[0]) formData.append("photo", data.photo[0]);
+    formData.append("location", data.location);
+    formData.append("qualification", data.qualification);
+    formData.append("experience", data.experience);
+    formData.append("message", data.message);
+    formData.append("resume", data.resume);
 
     try {
       const response = await axios.post(
@@ -182,21 +83,20 @@ const CareerForm = () => {
         }
       );
 
-      console.log("Server response:", response.data);
       toast.success("Your application has been sent successfully!");
       reset();
-      setFileError(null);
-      setPhotoError(null);
+      setResumePreview(null);
     } catch (error: any) {
-      console.error("Error sending form data:", error);
       const errorMessage =
         error.response?.data?.message ||
-        "Failed to send your application. Please try again.";
+        "Something went wrong. Please try again.";
       toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  const resumeFile = watch("resume");
 
   return (
     <form
@@ -300,93 +200,72 @@ const CareerForm = () => {
           )}
         </div>
 
-        <div>
+        <div className="md:col-span-2">
+          <label className="block text-sm mb-1 font-medium text-gray-700">
+            Message
+          </label>
+          <textarea
+            {...register("message")}
+            className="w-full p-2 border border-gray-300 focus:border-[#FF7B07] focus:outline-none rounded-sm"
+            rows={4}
+            disabled={isSubmitting}
+          />
+          {errors.message && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.message.message}
+            </p>
+          )}
+        </div>
+
+        <div className="md:col-span-2">
           <label className="block text-sm mb-1 font-medium text-gray-700">
             Resume<span className="text-red-500">*</span>
           </label>
           <input
             type="file"
-            {...register("resume", {
-              onChange: (e) => validateResumeFile(e.target.files),
-            })}
-            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.webp"
+            {...register("resume")}
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.gif"
             className="w-full p-2 border-b border-gray-300 text-gray-700"
             disabled={isSubmitting}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file && file.type.startsWith("image/")) {
+                setResumePreview(URL.createObjectURL(file));
+              } else {
+                setResumePreview(null);
+              }
+            }}
           />
-          {(errors.resume || fileError) && (
+          {errors.resume && (
             <p className="text-red-500 text-sm mt-1">
-              {errors.resume?.message || fileError}
+              {String(errors.resume.message)}
             </p>
           )}
-          {resumeFile?.[0] && !fileError && (
+          {resumeFile instanceof File && !errors.resume && (
             <div className="mt-2">
               <p className="text-green-500 text-sm">
-                File selected: {resumeFile[0].name} (
-                {Math.round(resumeFile[0].size / 1024)} KB)
+                File selected: {resumeFile.name} (
+                {Math.round(resumeFile.size / 1024)} KB)
               </p>
-              {resumeFile[0].type.startsWith("image/") && (
+              {resumePreview && (
                 <div className="mt-2 w-24 h-24 border border-gray-300 rounded-md overflow-hidden">
                   <img
-                    src={URL.createObjectURL(resumeFile[0])}
+                    src={resumePreview}
                     alt="Resume Preview"
                     className="w-full h-full object-cover"
-                    onLoad={() =>
-                      URL.revokeObjectURL(URL.createObjectURL(resumeFile[0]))
-                    }
+                    onLoad={() => URL.revokeObjectURL(resumePreview)}
                   />
                 </div>
               )}
             </div>
           )}
         </div>
-
-        <div>
-          <label className="block text-sm mb-1 font-medium text-gray-700">
-            Photo (Optional)
-          </label>
-          <input
-            type="file"
-            {...register("photo", {
-              onChange: (e) => validatePhotoFile(e.target.files),
-            })}
-            accept=".jpg,.jpeg,.png,.gif,.webp"
-            className="w-full p-2 border-b border-gray-300 text-gray-700"
-            disabled={isSubmitting}
-          />
-          {(errors.photo || photoError) && (
-            <p className="text-red-500 text-sm mt-1">
-              {errors.photo?.message || photoError}
-            </p>
-          )}
-          {/* {photoFile?.[0] && !photoError && (
-            <div className="mt-2">
-              <p className="text-green-500 text-sm">
-                Image selected: {photoFile[0].name} (
-                {Math.round(photoFile[0].size / 1024)} KB)
-              </p>
-              <div className="mt-2 w-24 h-24 border border-gray-300 rounded-md overflow-hidden">
-                <img
-                  src={URL.createObjectURL(photoFile[0])}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
-                  onLoad={() =>
-                    URL.revokeObjectURL(URL.createObjectURL(photoFile[0]))
-                  }
-                />
-              </div>
-            </div>
-          )} */}
-        </div>
       </div>
 
       <div className="flex justify-center">
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="text-white !py-2 !px-7 xl:!px-10 xl:!py-4 xl:text-[1rem] bg-[#FF7B07] hover:bg-[#e66a06] disabled:bg-gray-400"
-        >
-          {isSubmitting ? "Submitting..." : "Submit"}
-        </Button>
+        <button type="submit" disabled={isSubmitting} className="">
+          {isSubmitting ? "Submitting..." : "Submit Application"}
+        </button>
       </div>
     </form>
   );

@@ -298,3 +298,18 @@ export interface JobOpening {
   content: string; // HTML content
   sequence: number;
 }
+
+export interface CareerApplication {
+  message: string;
+  application: {
+    name: string;
+    email: string;
+    phone: string;
+    location: string;
+    experience: string;
+    qualifications: string;
+    message: string;
+    job_opening_designation: string;
+    submitted_at: string; // ISO timestamp
+  };
+}
