@@ -189,6 +189,7 @@ export interface FAQType {
 export interface TypeFacultyShow extends Faculty {
   courses: Course[];
   testSeries: TestSeries[];
+  test_series?: TestSeries[];
 }
 
 // Order Form Scema

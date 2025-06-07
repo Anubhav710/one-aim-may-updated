@@ -71,7 +71,7 @@ const TestimonialCard = ({
             {name}
           </p>
           <p className="text-[12px] text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-            Manager at xyz {subHeading}
+            {subHeading}
           </p>
         </hgroup>
       </div>
